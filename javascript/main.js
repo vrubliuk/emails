@@ -1,23 +1,60 @@
 ﻿(function(){
     "use strict";
-
     accordion();
+    // copySimpleNotesToClipboard();
 
-    const pendingPickup = "Hi,\nPlease send the release sheet for\nThanks";
-
-    document.getElementById("button").onclick = () => {
-        showSnackbar();
-        var inp = document.createElement('textarea');
-     
-        document.body.appendChild(inp);
-        inp.value = pendingPickup;
-        inp.select();
-        document.execCommand('copy');
-        inp.remove();
-    };
+  
+   
+    class quickCopyButton {
+      constructor (buttonClass, phraseClass, key) {
+            this.phrase = document.getElementsByClassName(phraseClass)[key];
+            this.button = document.getElementsByClassName(buttonClass)[key];
+            this.button.onclick = function () {
+              copyToClipboard(this.phrase);
+            }
 
 
+          }
 
+    }
+
+
+    let fff = new quickCopyButton("phrase", "quickCopy", 0);
+
+
+
+
+    // class Phrase {
+    //   constructor (phrase, quickCopy) {
+    //     this.phrase = phrase;
+    //     this.quickCopy = quickCopy;
+    //   }
+      
+    // }
+    function copySimpleNotesToClipboard() {
+      let phraseAll = document.getElementsByClassName("phrase");
+      let quickCopyAll = document.getElementsByClassName("quickCopy");
+      for (let i = 0; i < quickCopyAll.length; i++) {
+        quickCopyAll[i].onclick = () => {
+          copyToClipboard(phraseAll[i].innerHTML);
+        }
+
+      }
+    }
+   
+
+
+    function copyToClipboard(value) {
+      let fakeTextarea = document.createElement('textarea');
+      document.body.appendChild(fakeTextarea);
+      fakeTextarea.value = value;
+      fakeTextarea.select();
+      document.execCommand('copy');
+      fakeTextarea.remove();
+      showSnackbar();
+    }
+
+    
     
 
 
@@ -40,7 +77,7 @@
     function showSnackbar() {
         let x = document.getElementById("snackbar")
         x.className = "show";
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 1000);
     }
 
 })();

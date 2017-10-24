@@ -1,10 +1,21 @@
+ //PLACEHOLDERS
+ %clearfix {
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
 // GENERAL STYLES
 body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
+ 
+    // outline: none !important;
     &:focus {
       outline: none !important;
+      outline: 0;
     }
 }
 a,
@@ -18,28 +29,35 @@ a:visited {
     background: red;
   }
 
-
+#container {
+    margin: 0 auto;
+    // border: solid 5px blue;
+    @extend %clearfix;
+}
 
 // MENU PANEL
 #panelMenu {
-    max-width: 25%;
+    width: 25%;
+    border: solid 1px red;
+    min-width: 400px;
+    float: left;
 }
 
 button.accordion {
     // background-color: #eee;
     // color: #444;
     background-color: #333; 
-    color: #777;
+    color: #eee;
     cursor: pointer;
     padding: 18px;
     width: 100%;
     border: none;
     text-align: left;
     outline: none;
-    font-size: 15px;
+    font-size: 18px;
     transition: 0.4s;
     text-transform: uppercase;
-    font-weight: bold;
+    // font-weight: bold;
 }
 
 // button.accordion.active, button.accordion:hover {
@@ -48,7 +66,7 @@ button.accordion {
 
 button.accordion:after {
     content: '\002B';
-    color: #777;
+    color: #eee;
     font-weight: bold;
     float: right;
     margin-left: 5px;
@@ -59,26 +77,64 @@ button.accordion.active:after {
 }
 
 div.accordionPanel {
+    user-select: none;
     padding: 0;
     background-color: white;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+    div.phraseContainer {
+        height: 20px;
+        padding: 5px;
+        background-color: #eee;
+        
+        &:hover {
+            background-color: #ccc; 
+        }
+
+        span.phrase {
+            font-size: 16px;
+        }
+
+
+        button.quickCopy {
+            border:none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: -1px;
+            margin-right: -1px;
+            outline: 0 !important;
+            line-height: 20px;
+            background-color: rgba(255, 0, 0, 0.521);
+            color: white;
+        }
+    }
+   div.email {
+    padding: 5px;
+    background-color: #eee;
+    cursor: pointer;
+    &:hover {
+        background-color: #ccc; 
+    }
+   }
+
+
 }
 
+
+button.quickCopy {
+  
+  float: right;
+}
 
 
 
 
 //WORKING PANEL
 
-
-
-
-
-
-
-
+#panelWorking {
+    border: solid 1px green;
+}
 
 
 //SNACKBAR

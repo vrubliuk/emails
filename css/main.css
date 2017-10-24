@@ -1,9 +1,15 @@
+#container:after {
+  content: "";
+  display: table;
+  clear: both; }
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif; }
   body:focus {
-    outline: none !important; }
+    outline: none !important;
+    outline: 0; }
 
 a,
 a:hover,
@@ -19,28 +25,31 @@ a:visited {
   color: white;
   background: red; }
 
+#container {
+  margin: 0 auto; }
+
 #panelMenu {
-  max-width: 25%; }
+  width: 25%;
+  border: solid 1px red;
+  min-width: 400px;
+  float: left; }
 
 button.accordion {
   background-color: #333;
-  color: #777;
+  color: #eee;
   cursor: pointer;
   padding: 18px;
   width: 100%;
   border: none;
   text-align: left;
   outline: none;
-  font-size: 15px;
-  -webkit-transition: 0.4s;
-  -o-transition: 0.4s;
+  font-size: 18px;
   transition: 0.4s;
-  text-transform: uppercase;
-  font-weight: bold; }
+  text-transform: uppercase; }
 
 button.accordion:after {
   content: '\002B';
-  color: #777;
+  color: #eee;
   font-weight: bold;
   float: right;
   margin-left: 5px; }
@@ -49,13 +58,45 @@ button.accordion.active:after {
   content: "\2212"; }
 
 div.accordionPanel {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   padding: 0;
   background-color: white;
   max-height: 0;
   overflow: hidden;
-  -webkit-transition: max-height 0.2s ease-out;
-  -o-transition: max-height 0.2s ease-out;
   transition: max-height 0.2s ease-out; }
+  div.accordionPanel div.phraseContainer {
+    height: 20px;
+    padding: 5px;
+    background-color: #eee; }
+    div.accordionPanel div.phraseContainer:hover {
+      background-color: #ccc; }
+    div.accordionPanel div.phraseContainer span.phrase {
+      font-size: 16px; }
+    div.accordionPanel div.phraseContainer button.quickCopy {
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: -1px;
+      margin-right: -1px;
+      outline: 0 !important;
+      line-height: 20px;
+      background-color: rgba(255, 0, 0, 0.521);
+      color: white; }
+  div.accordionPanel div.email {
+    padding: 5px;
+    background-color: #eee;
+    cursor: pointer; }
+    div.accordionPanel div.email:hover {
+      background-color: #ccc; }
+
+button.quickCopy {
+  float: right; }
+
+#panelWorking {
+  border: solid 1px green; }
 
 #snackbar {
   visibility: hidden;
