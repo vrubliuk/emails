@@ -7,10 +7,36 @@
     }
   }
 // GENERAL STYLES
+
+//COLORS
+$bgcolor: #282c34;
+$bgcolordarker: #21252b;
+$bgcolorlighter: #2c313a;
+$greycolor: hsl(220, 14%, 71%);
+$redcolor: hsl(  5, 48%, 51%);
+$redcolorbrighter: rgb(230, 50, 50);
+$bluecolor: hsl(207, 82%, 66%);
+$purplecolor: hsl(286, 60%, 67%);
+$orangecolor:hsl( 39, 67%, 69%);
+$cyancolor: hsl(187, 47%, 55%); 
+$greencolor: hsl( 95, 38%, 62%);
+
+
+*{
+    font-family: 'Roboto Condensed', sans-serif;
+    color: $greycolor;
+    outline: none !important;
+    box-sizing: border-box;
+}
+
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
+    // font-family: 'Montserrat', sans-serif;
+    // font-family: Consolas, monaco, monospace;
+    // font-family: 'Roboto Condensed', sans-serif !important;
+    background-color: $bgcolor;
  
     // outline: none !important;
     &:focus {
@@ -38,16 +64,15 @@ a:visited {
 // MENU PANEL
 #panelMenu {
     width: 25%;
-    border: solid 1px red;
-    min-width: 400px;
+    border-right: solid 5px $bgcolordarker;
+    // min-width: 400px;
+    min-height: 100vh;
     float: left;
 }
 
-button.accordion {
-    // background-color: #eee;
-    // color: #444;
-    background-color: #333; 
-    color: #eee;
+.accordion {
+    background-color: $bgcolordarker;
+    color: $greycolor;
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -57,19 +82,15 @@ button.accordion {
     font-size: 18px;
     transition: 0.4s;
     text-transform: uppercase;
-    // font-weight: bold;
 }
 
-// button.accordion.active, button.accordion:hover {
-//     background-color: #ccc;
-// }
 
 button.accordion:after {
     content: '\002B';
-    color: #eee;
-    font-weight: bold;
+    color: $greycolor;
     float: right;
     margin-left: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 button.accordion.active:after {
@@ -79,24 +100,16 @@ button.accordion.active:after {
 div.accordionPanel {
     user-select: none;
     padding: 0;
-    background-color: white;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+    color: #61aad7;
     div.phraseContainer {
-        height: 20px;
+        height: 30px;
         padding: 5px;
-        background-color: #eee;
-        
-        &:hover {
-            background-color: #ccc; 
-        }
-
         span.phrase {
             font-size: 16px;
         }
-
-
         button.quickCopy {
             border:none;
             font-size: 16px;
@@ -105,25 +118,25 @@ div.accordionPanel {
             margin-right: -1px;
             outline: 0 !important;
             line-height: 20px;
-            background-color: rgba(255, 0, 0, 0.521);
-            color: white;
+            background-color: $redcolor;
+            color: whitesmoke;
+            &:hover {
+                background-color: $redcolorbrighter;
+            }
         }
     }
    div.email {
     padding: 5px;
-    background-color: #eee;
+    height: 30px;
     cursor: pointer;
     &:hover {
-        background-color: #ccc; 
+        background-color: $bgcolorlighter;
     }
    }
-
-
 }
 
 
 button.quickCopy {
-  
   float: right;
 }
 
@@ -133,8 +146,68 @@ button.quickCopy {
 //WORKING PANEL
 
 #panelWorking {
-    border: solid 1px green;
+    // border: solid 1px red;
+    min-height: 100vh;
+    width: 75%;
+    float: right;
 }
+
+#textareaContainer {
+    display: block;
+    // border: solid 1px green;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+#subjectContainer {
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size:22px;
+    background-color: $bgcolordarker;
+    height: 40px;
+    user-select: none;
+    span {
+        display: block;
+        float: left;
+        width: 10%;
+        padding-left: 5px;
+    //     line-height: 50px;
+}
+
+    #subject {
+        padding-left: 10px;
+        height: 30px;
+        border: none;
+        display: block;
+        float: right;
+        width: 90%;
+        background-color: $bgcolorlighter;
+    }
+}
+
+#textarea {
+    font-size:22px;
+    display: block;
+ 
+    border: solid 5px $bgcolordarker;
+    background-color: $bgcolorlighter;
+    resize: none;
+    // height: 50%;
+    width: 100%;
+    user-select: none;
+    padding-left: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 //SNACKBAR
@@ -142,8 +215,9 @@ button.quickCopy {
     visibility: hidden; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
     margin-left: -125px; /* Divide value of min-width by 2 */
-    background-color: #333; /* Black background color */
-    color: #fff; /* White text color */
+    // background-color: #333; 
+    background-color: $greencolor;
+    color: whitesmoke; /* White text color */
     text-align: center; /* Centered text */
     border-radius: 2px; /* Rounded borders */
     padding: 16px; /* Padding */
@@ -155,30 +229,19 @@ button.quickCopy {
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
 #snackbar.show {
-    visibility: visible; /* Show the snackbar */
+    visibility: visible; 
 
 /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
 However, delay the fade out process for 2.5 seconds */
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+
+    animation: fadein 0.5s, fadeout 0.5s 1s;
 }
 
-/* Animations to fade the snackbar in and out */
-@-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;} 
-    to {bottom: 30px; opacity: 1;}
-}
 
 @keyframes fadein {
     from {bottom: 0; opacity: 0;}
     to {bottom: 30px; opacity: 1;}
 }
-
-@-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;} 
-    to {bottom: 0; opacity: 0;}
-}
-
 @keyframes fadeout {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}

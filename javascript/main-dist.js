@@ -1,37 +1,13 @@
 "use strict";
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
 (function () {
   "use strict";
 
+  // MENU PANEL
+
   accordion();
-  // copySimpleNotesToClipboard();
+  copySimpleNotesToClipboard();
 
-
-  var quickCopyButton = function quickCopyButton(buttonClass, phraseClass, key) {
-    _classCallCheck(this, quickCopyButton);
-
-    this.phrase = document.getElementsByClassName(phraseClass)[key];
-    this.button = document.getElementsByClassName(buttonClass)[key];
-    this.button.onclick = function () {
-      copyToClipboard(this.phrase);
-    };
-  };
-
-  var fff = new quickCopyButton("phrase", "quickCopy", 0);
-
-  // class Phrase {
-  //   constructor (phrase, quickCopy) {
-  //     this.phrase = phrase;
-  //     this.quickCopy = quickCopy;
-  //   }
-
-  // }
   function copySimpleNotesToClipboard() {
     var phraseAll = document.getElementsByClassName("phrase");
     var quickCopyAll = document.getElementsByClassName("quickCopy");
@@ -46,7 +22,6 @@ function _classCallCheck(instance, Constructor) {
       _loop(i);
     }
   }
-
   function copyToClipboard(value) {
     var fakeTextarea = document.createElement('textarea');
     document.body.appendChild(fakeTextarea);
@@ -56,8 +31,7 @@ function _classCallCheck(instance, Constructor) {
     fakeTextarea.remove();
     showSnackbar();
   }
-
-  function accordion(params) {
+  function accordion() {
     var acc = document.getElementsByClassName("accordion");
     for (var i = 0; i < acc.length; i++) {
       acc[i].onclick = function () {
@@ -72,6 +46,10 @@ function _classCallCheck(instance, Constructor) {
     }
   }
 
+  //WORKING PANEL
+
+
+  //FOOTER
   function showSnackbar() {
     var x = document.getElementById("snackbar");
     x.className = "show";
