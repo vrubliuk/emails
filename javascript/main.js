@@ -39,7 +39,64 @@
         }
     }
 
+    let x = `Hi, 
+    Please advise if we can use the attached BOL (page ) to process ? I am not sure if it is signed by the receiver.
+    Thanks`;
+
     //WORKING PANEL
+    let emailsObject = {
+      "BOL_is_not_signed":`Hi, 
+      Please advise if we can use the attached BOL (page ) to process ? It is not signed by the receiver.
+      Thanks`,
+      "BOL_is_not_signed_(not_sure)": x
+    };
+
+    // alert(emailsObject["BOL_is_not_signed_(not_sure)"]);
+
+    class Email {
+      constructor (name, messageText, availableOptions) {
+        let self = this;
+        this.name = name;
+        this.messageText = messageText;
+        this.availableOptions = availableOptions;
+        this.button = findButton();
+        
+    
+        
+
+
+
+        
+        function findButton() {
+          let buttonAll  = document.getElementsByClassName("email");
+          for (let i = 0; i < buttonAll.length; i++) {
+            if (buttonAll[i].innerHTML === self.name) {
+              return buttonAll[i];
+            }
+          }
+        }
+
+        // document.getElementsByClassName("email").innerText.find(this.name);
+        // this.button.onclick = () => {
+        //   alert("asd");
+        // }
+      }
+     
+
+
+    };
+
+    let t = new Email("BOL is not signed");
+    alert(t.button);
+
+
+
+
+
+
+
+
+
 
 
 

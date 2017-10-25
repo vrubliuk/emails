@@ -1,5 +1,11 @@
 "use strict";
 
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
 (function () {
   "use strict";
 
@@ -46,8 +52,44 @@
     }
   }
 
-  //WORKING PANEL
+  var x = "Hi, \n    Please advise if we can use the attached BOL (page ) to process ? I am not sure if it is signed by the receiver.\n    Thanks";
 
+  //WORKING PANEL
+  var emailsObject = {
+    "BOL_is_not_signed": "Hi, \n      Please advise if we can use the attached BOL (page ) to process ? It is not signed by the receiver.\n      Thanks",
+    "BOL_is_not_signed_(not_sure)": x
+  };
+
+  // alert(emailsObject["BOL_is_not_signed_(not_sure)"]);
+
+  var Email = function Email(name, messageText, availableOptions) {
+    _classCallCheck(this, Email);
+
+    var self = this;
+    this.name = name;
+    this.messageText = messageText;
+    this.availableOptions = availableOptions;
+    this.button = findButton();
+
+    function findButton() {
+      var buttonAll = document.getElementsByClassName("email");
+      for (var i = 0; i < buttonAll.length; i++) {
+        if (buttonAll[i].innerHTML === self.name) {
+          return buttonAll[i];
+        }
+      }
+    }
+
+    // document.getElementsByClassName("email").innerText.find(this.name);
+    // this.button.onclick = () => {
+    //   alert("asd");
+    // }
+  };
+
+  ;
+
+  var t = new Email("BOL is not signed");
+  alert(t.button);
 
   //FOOTER
   function showSnackbar() {
