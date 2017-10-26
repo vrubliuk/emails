@@ -22,7 +22,7 @@
       fakeTextarea.select();
       document.execCommand('copy');
       fakeTextarea.remove();
-      showSnackbar();
+      showSnackbar("Copied to clipboard");
     }
     function accordion() {
         let acc = document.getElementsByClassName("accordion");
@@ -39,55 +39,45 @@
         }
     }
 
-    let x = `Hi, 
-    Please advise if we can use the attached BOL (page ) to process ? I am not sure if it is signed by the receiver.
-    Thanks`;
 
     //WORKING PANEL
-    let emailsObject = {
-      "BOL_is_not_signed":`Hi, 
-      Please advise if we can use the attached BOL (page ) to process ? It is not signed by the receiver.
-      Thanks`,
-      "BOL_is_not_signed_(not_sure)": x
+    let BOL_is_not_signed = {
+      name: "BOL is not signed",
+      messageText: `Hi,\nPlease advise if we can use the attached BOL (page ) to process ? It is not signed by the receiver.\nThanks`
+    };
+    let BOL_is_not_signed_not_sure = {
+      name: "BOL is not signed (not sure)",
+      messageText: `Hi,\nPlease advise if we can use the attached BOL (page ) to process ? I am not sure if it is signed by the receiver.\nThanks`
     };
 
-    // alert(emailsObject["BOL_is_not_signed_(not_sure)"]);
 
+  
     class Email {
       constructor (name, messageText, availableOptions) {
-        let self = this;
+        // let self = this;
         this.name = name;
         this.messageText = messageText;
         this.availableOptions = availableOptions;
-        this.button = findButton();
-        
-    
-        
-
-
-
-        
-        function findButton() {
+        this.textarea = document.getElementById("textarea");
+        this.getButton = () => {
           let buttonAll  = document.getElementsByClassName("email");
           for (let i = 0; i < buttonAll.length; i++) {
-            if (buttonAll[i].innerHTML === self.name) {
+            if (buttonAll[i].innerHTML === this.name) {
               return buttonAll[i];
             }
           }
-        }
-
-        // document.getElementsByClassName("email").innerText.find(this.name);
-        // this.button.onclick = () => {
-        //   alert("asd");
-        // }
+        };
+        this.button = this.getButton();
+        this.button.onclick = () => {
+          this.textarea.value = this.messageText;
+        };  
       }
-     
+    }
 
 
-    };
-
-    let t = new Email("BOL is not signed");
-    alert(t.button);
+    let t = new Email(BOL_is_not_signed.name, BOL_is_not_signed.messageText);
+    let i = new Email(BOL_is_not_signed_not_sure.name, BOL_is_not_signed_not_sure.messageText);
+  
 
 
 
@@ -103,8 +93,9 @@
 
 
     //FOOTER
-    function showSnackbar() {
+    function showSnackbar(text) {
         let x = document.getElementById("snackbar");
+        x.innerHTML = text;
         x.className = "show";
         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 1000);
     }
