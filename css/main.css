@@ -82,7 +82,8 @@ div.accordionPanel {
     height: 30px;
     padding: 5px; }
     div.accordionPanel div.phraseContainer span.phrase {
-      font-size: 16px; }
+      font-size: 16px;
+      margin-left: 5px; }
     div.accordionPanel div.phraseContainer button.quickCopy {
       border: none;
       font-size: 16px;
@@ -92,11 +93,13 @@ div.accordionPanel {
       outline: 0 !important;
       line-height: 20px;
       background-color: #be5046;
+      background-color: #21252b;
       color: whitesmoke; }
       div.accordionPanel div.phraseContainer button.quickCopy:hover {
-        background-color: #e63232; }
+        background-color: #be5046; }
   div.accordionPanel div.email {
     padding: 5px;
+    padding-left: 10px;
     height: 30px;
     cursor: pointer; }
     div.accordionPanel div.email:hover {
@@ -151,7 +154,8 @@ button.quickCopy {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding-left: 5px; }
+  padding-left: 5px;
+  overflow: auto; }
 
 #snackbar {
   visibility: hidden;

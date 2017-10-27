@@ -9,8 +9,72 @@ function _classCallCheck(instance, Constructor) {
 (function () {
   "use strict";
 
-  // MENU PANEL
+  //GENERAL
 
+  includeNotesToMarkup();
+  includeSamplesToMarkup();
+
+  var Email = function Email(object) {
+    var _this = this;
+
+    _classCallCheck(this, Email);
+
+    // let self = this;
+    this.name = object.name;
+    this.messageText = object.messageText;
+    this.availableOptions = object.availableOptions;
+    this.textarea = document.getElementById("textarea");
+    this.getButton = function () {
+      var buttonAll = document.getElementsByClassName("email");
+      for (var i = 0; i < buttonAll.length; i++) {
+        if (buttonAll[i].innerHTML === _this.name) {
+          return buttonAll[i];
+        }
+      }
+    };
+    this.button = this.getButton();
+    this.button.onclick = function () {
+      _this.textarea.value = _this.messageText;
+    };
+  };
+
+  for (var i = 0; i < samples.length; i++) {
+    new Email(samples[i]);
+  }
+
+  function includeNotesToMarkup() {
+    var section = document.getElementById("notesPanel");
+    for (var _i = 0; _i < notes.length; _i++) {
+      var phraseContainer = document.createElement('div');
+      phraseContainer.classList.add("phraseContainer");
+      var phrase = document.createElement('span');
+      phrase.classList.add("phrase");
+      phrase.innerHTML = notes[_i];
+      var quickCopy = document.createElement('button');
+      quickCopy.classList.add("quickCopy");
+      quickCopy.innerHTML = "Copy";
+      section.appendChild(phraseContainer);
+      phraseContainer.appendChild(phrase);
+      phraseContainer.appendChild(quickCopy);
+    }
+  }
+
+  function includeSamplesToMarkup() {
+    var sections = document.getElementsByClassName("accordion");
+    for (var _i2 = 0; _i2 < samples.length; _i2++) {
+      var sample = samples[_i2];
+      var button = document.createElement('div');
+      button.classList.add("email");
+      button.innerHTML = sample.name;
+      for (var _i3 = 0; _i3 < sections.length; _i3++) {
+        if (sections[_i3].innerHTML.toLowerCase() === sample.section) {
+          sections[_i3].nextElementSibling.appendChild(button);
+        }
+      }
+    }
+  }
+
+  // MENU PANEL
   accordion();
   copySimpleNotesToClipboard();
 
@@ -18,14 +82,14 @@ function _classCallCheck(instance, Constructor) {
     var phraseAll = document.getElementsByClassName("phrase");
     var quickCopyAll = document.getElementsByClassName("quickCopy");
 
-    var _loop = function _loop(_i) {
-      quickCopyAll[_i].onclick = function () {
-        copyToClipboard(phraseAll[_i].innerHTML);
+    var _loop = function _loop(_i4) {
+      quickCopyAll[_i4].onclick = function () {
+        copyToClipboard(phraseAll[_i4].innerHTML);
       };
     };
 
-    for (var _i = 0; _i < quickCopyAll.length; _i++) {
-      _loop(_i);
+    for (var _i4 = 0; _i4 < quickCopyAll.length; _i4++) {
+      _loop(_i4);
     }
   }
   function copyToClipboard(value) {
@@ -34,13 +98,14 @@ function _classCallCheck(instance, Constructor) {
     fakeTextarea.value = value;
     fakeTextarea.select();
     document.execCommand('copy');
-    fakeTextarea.remove();
+    // fakeTextarea.remove();
+    fakeTextarea.parentNode.removeChild(fakeTextarea);
     showSnackbar("Copied to clipboard");
   }
   function accordion() {
     var acc = document.getElementsByClassName("accordion");
-    for (var _i2 = 0; _i2 < acc.length; _i2++) {
-      acc[_i2].onclick = function () {
+    for (var _i5 = 0; _i5 < acc.length; _i5++) {
+      acc[_i5].onclick = function () {
         this.classList.toggle("active");
         var panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
@@ -53,41 +118,6 @@ function _classCallCheck(instance, Constructor) {
   }
 
   //WORKING PANEL
-  var BOL_is_not_signed = {
-    name: "BOL is not signed",
-    messageText: "Hi,\nPlease advise if we can use the attached BOL (page ) to process ? It is not signed by the receiver.\nThanks"
-  };
-  var BOL_is_not_signed_not_sure = {
-    name: "BOL is not signed (not sure)",
-    messageText: "Hi,\nPlease advise if we can use the attached BOL (page ) to process ? I am not sure if it is signed by the receiver.\nThanks"
-  };
-
-  var Email = function Email(name, messageText, availableOptions) {
-    var _this = this;
-
-    _classCallCheck(this, Email);
-
-    // let self = this;
-    this.name = name;
-    this.messageText = messageText;
-    this.availableOptions = availableOptions;
-    this.textarea = document.getElementById("textarea");
-    this.getButton = function () {
-      var buttonAll = document.getElementsByClassName("email");
-      for (var _i3 = 0; _i3 < buttonAll.length; _i3++) {
-        if (buttonAll[_i3].innerHTML === _this.name) {
-          return buttonAll[_i3];
-        }
-      }
-    };
-    this.button = this.getButton();
-    this.button.onclick = function () {
-      _this.textarea.value = _this.messageText;
-    };
-  };
-
-  var t = new Email(BOL_is_not_signed.name, BOL_is_not_signed.messageText);
-  var i = new Email(BOL_is_not_signed_not_sure.name, BOL_is_not_signed_not_sure.messageText);
 
   //FOOTER
   function showSnackbar(text) {
