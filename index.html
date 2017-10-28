@@ -13,10 +13,7 @@
 </head>
 
 <body>
-
-
     <div id="container">
-
         <div id="panelMenu">
             <button class="accordion">Notes</button>
             <div id="notesPanel" class="accordionPanel">
@@ -43,44 +40,142 @@
             <div class="accordionPanel"></div>
             <button class="accordion">MISC</button>
             <div class="accordionPanel"></div>
-
-
-
-
-
-
         </div>
-
         <div id="panelWorking">
             <div id="textareaContainer">
                 <div id="subjectContainer">
                     <span>Subject:</span>
-                    <input type="text" name="subject" id="subject" readonly>
+                    <input type="text" name="subject" id="subject">
                 </div>
+                <textarea id="textarea" name="message" rows="10" placeholder="Nothing to show here yet :("></textarea>
+                <form id="sectionOptions">
+                    <!-- <p>Available options:</p> -->
 
+                    <!-- <div id="rowTitle">
+                        Available options
+                    </div> -->
+                    <div id="rowLoad" class="rowOptions">
+                        <span class="rowLabel">Load id:</span>
+                        <input type="text" id="inputload" class="inputsOptions">
+                        <br>
+                        <span class="rowLabel">Include load id to subject line:</span>
+                        <label class="switch">
+                            <input id="loadToSubject" type="checkbox" checked class="inputsOptions">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div id="rowGreeting" class="rowOptions">
+                        <span class="rowLabel">Greeting:</span>
+                        <label class="containerCheckbox">Hi
+                            <input type="radio" checked="checked" name="checkboxGreeting" class="inputsOptions">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="containerCheckbox">Hello
+                            <input type="radio" name="checkboxGreeting" class="inputsOptions">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="containerCheckbox">Good morning
+                            <input type="radio" name="checkboxGreeting" class="inputsOptions">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="containerCheckbox">Good afternoon
+                            <input type="radio" name="checkboxGreeting" class="inputsOptions">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div id="rowReceiver" class="rowOptions">
+                        <span class="rowLabel">Receiver's name:</span>
+                        <input type="text" id="inputReceiver" class="inputsOptions">
+                    </div>
+                    <div id="rowPage" class="rowOptions">
+                        <span class="rowLabel">Page number in attachment:</span>
+                        <input type="text" id="inputPage" class="inputsOptions">
+                    </div>
+                    <div id="rowPageRange" class="rowOptions">
+                        <span class="rowLabel">Page numbers in attachment:</span>
+                        <input type="text" id="inputPageFrom" class="inputsOptions" placeholder="from"> /
+                        <input type="text" id="inputPageTo" class="inputsOptions" placeholder="to">
+                    </div>
+                    <div id="rowFee" class="rowOptions">
+                        <span class="rowLabel">Fee amount:</span>
+                        <input type="text" id="inputFee" class="inputsOptions">
+                    </div>
+                    <div id="rowMissing" class="rowOptions">
+                        <span class="rowLabel">Document missing:</span>
+                        <input type="text" id="inputDocument" class="inputsOptions">
+                    </div>
+                    <div id="rowShipment" class="rowOptions">
+                        <span class="rowLabel">Shipment numbers:</span>
+                        <input type="text" id="inputShipmentPRO" class="inputsOptions" placeholder="in PLS PRO"> /
+                        <input type="text" id="inputShipmentPW" class="inputsOptions" placeholder="on BOL">
+                    </div>
+                    <div id="rowIncorectCity" class="rowOptions">
+                        <span class="rowLabel">Incorrect point:</span>
 
+                        <label class="containerCheckbox">origin
+                            <input type="radio" checked="checked" name="checkboxDirection">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="containerCheckbox">destination
+                            <input type="radio" name="checkboxDirection">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div id="rowCity" class="rowOptions">
+                        <span class="rowLabel">Cities:</span>
+                        <input type="text" id="inputCityPRO" class="inputsOptions" placeholder="in PLS PRO"> /
+                        <input type="text" id="inputCityPW" class="inputsOptions" placeholder="on BOL">
+                    </div>
+                    <div id="rowDate" class="rowOptions">
+                        <span class="rowLabel">Dates:</span>
+                        <input type="text" id="inputDatePRO" class="inputsOptions" placeholder="in PLS PRO"> /
+                        <input type="text" id="inputDatePW" class="inputsOptions" placeholder="on BOL">
+                    </div>
+                    <div id="rowWeight" class="rowOptions">
+                        <span class="rowLabel">Weights:</span>
+                        <input type="text" id="inputWeightPRO" class="inputsOptions" placeholder="in PLS PRO"> /
+                        <input type="text" id="inputWeightPW" class="inputsOptions" placeholder="on BOL">
+                    </div>
+                    <div id="rowRate" class="rowOptions">
+                        <span class="rowLabel">Rates:</span>
+                        <input type="text" id="inputRatePRO" class="inputsOptions" placeholder="in PLS PRO"> /
+                        <input type="text" id="inputRatePW" class="inputsOptions" placeholder="on invoice">
+                    </div>
+                    <div id="rowCarrier" class="rowOptions">
+                        <span class="rowLabel">Carrier's names:</span>
+                        <input type="text" id="inputCarrierPRO" class="inputsOptions" placeholder="in PLS PRO"> /
+                        <input type="text" id="inputCarrierPW" class="inputsOptions" placeholder="on invoice">
+                    </div>
+                    <div id="rowPickupDate" class="rowOptions">
+                        <span class="rowLabel">Pickup date:</span>
+                        <input type="text" id="inputPickupDate" class="inputsOptions">
+                    </div>
+                    <div id="rowCities" class="rowOptions">
+                        <span class="rowLabel">Cities:</span>
+                        <input type="text" id="inputCityFrom" class="inputsOptions" placeholder="from"> /
+                        <input type="text" id="inputCityTo" class="inputsOptions" placeholder="to">
+                    </div>
+                    <div id="rowGratitude" class="rowOptions">
+                        <span class="rowLabel">Gratitude:</span>
 
-                <textarea id="textarea" name="message" rows="10" readonly>Nothing to show here yet :(</textarea>
-
-                <!-- <p>Available options:</p> -->
-
-
-
-
-
+                        <label class="containerCheckbox">Thanks
+                            <input type="radio" checked="checked" name="checkboxGratitude">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="containerCheckbox">Thank you
+                            <input type="radio" name="checkboxGratitude">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </form>
+                <div id="sectionButton">
+                    <button id="buttonCreateEmail" class="buttonFinal">Create email</button>
+                    <button id="buttonCopyMessage" class="buttonFinal">Copy message</button>
+                </div>
             </div>
-
-
-
-
         </div>
-
-
         <div id="snackbar"></div>
-
     </div>
-
-    <!-- <button type="button" id="button">Click</button> -->
     <script src="javascript/samples.js" defer></script>
     <script src="javascript/main.js" defer></script>
 </body>

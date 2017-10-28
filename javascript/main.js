@@ -57,7 +57,7 @@
       button.classList.add("email");
       button.innerHTML = sample.name;
       for (let i = 0; i < sections.length; i++) {
-        if (sections[i].innerHTML.toLowerCase() === sample.section) {
+        if (sections[i].innerHTML.toLowerCase() === sample.section.toLowerCase()) {
           sections[i].nextElementSibling.appendChild(button);
         }
       }
@@ -86,7 +86,7 @@
     document.execCommand('copy');
     // fakeTextarea.remove();
     fakeTextarea.parentNode.removeChild(fakeTextarea);
-    showSnackbar("Copied to clipboard");
+    showSnackbar("Successfully copied", "green");
   }
   function accordion() {
     let acc = document.getElementsByClassName("accordion");
@@ -106,12 +106,47 @@
 
   //WORKING PANEL
 
+document.getElementById("buttonCopyMessage").onclick = copyMessage;
+document.getElementById("buttonCreateEmail").onclick = createMessage;
+
+function copyMessage() {
+  // alert(options.load());
+
+  let text = document.getElementById("textarea").value;
+  if(!text) {
+    showSnackbar("Message is empty!", "red");
+    return;
+  }
+  let fakeTextarea = document.createElement('textarea');
+  document.body.appendChild(fakeTextarea);
+  fakeTextarea.value = text;
+  fakeTextarea.select();
+  document.execCommand('copy');
+  fakeTextarea.parentNode.removeChild(fakeTextarea);
+  showSnackbar("Successfully copied", "green");
+}
+
+function createMessage() {
+  let text = document.getElementById("textarea").value;
+  if(!text) {
+    showSnackbar("Message is empty!", "red");
+    return;
+  }
+  let correctedText = text.replace(/\n/g, "%0A");
+  let subject = document.getElementById("subject").value;
+  location.href = `mailto:?subject=${subject}&body=${correctedText}`;
+  showSnackbar("Creating email", "green");
+}
+
+
   //FOOTER
-  function showSnackbar(text) {
+  function showSnackbar(text, color) {
     let x = document.getElementById("snackbar");
     x.innerHTML = text;
-    x.className = "show";
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
+    x.className = "snackbarShow";
+
+    x.classList.add("snackbar"+color);
+    setTimeout(function () { x.className = x.className.replace("snackbarShow", ""); }, 1000);
   }
 
 })();
