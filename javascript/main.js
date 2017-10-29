@@ -5,11 +5,11 @@
   includeNotesToMarkup();
   includeSamplesToMarkup();
 
-
+  
 
   class Email {
     constructor(object) {
-      // let self = this;
+      let self = this;
       this.name = object.name;
       this.messageText = object.messageText;
       this.availableOptions = object.availableOptions;
@@ -17,20 +17,35 @@
       this.getButton = () => {
         let buttonAll = document.getElementsByClassName("email");
         for (let i = 0; i < buttonAll.length; i++) {
-          if (buttonAll[i].innerHTML === this.name) {
+          if (buttonAll[i].innerHTML.toLowerCase() === this.name.toLowerCase()) {
             return buttonAll[i];
           }
         }
       };
       this.button = this.getButton();
-      this.button.onclick = () => {
-        this.textarea.value = this.messageText;
+      this.showAvailableOptions = () => {
+        for (let i = 0; i < this.availableOptions.length; i++) {
+          let option = this.availableOptions[i].charAt(0).toUpperCase() + this.availableOptions[i].slice(1);
+          document.getElementById("row" + option).style.display = "block";
+        }
       };
+
+      this.button.onclick = () => {
+        currentSample = this.name;
+        hideAllOptions();
+        clearTextInputs();
+        this.textarea.value = this.messageText();
+        this.showAvailableOptions();
+      };
+
+      
     }
   }
   for (let i = 0; i < samples.length; i++) {
     new Email(samples[i]);
   }
+
+
 
   function includeNotesToMarkup() {
     let section = document.getElementById("notesPanel");
@@ -55,7 +70,7 @@
       let sample = samples[i];
       let button = document.createElement('div');
       button.classList.add("email");
-      button.innerHTML = sample.name;
+      button.innerHTML = sample.name.toLowerCase();
       for (let i = 0; i < sections.length; i++) {
         if (sections[i].innerHTML.toLowerCase() === sample.section.toLowerCase()) {
           sections[i].nextElementSibling.appendChild(button);
@@ -84,7 +99,6 @@
     fakeTextarea.value = value;
     fakeTextarea.select();
     document.execCommand('copy');
-    // fakeTextarea.remove();
     fakeTextarea.parentNode.removeChild(fakeTextarea);
     showSnackbar("Successfully copied", "green");
   }
@@ -106,37 +120,59 @@
 
   //WORKING PANEL
 
-document.getElementById("buttonCopyMessage").onclick = copyMessage;
-document.getElementById("buttonCreateEmail").onclick = createMessage;
-
-function copyMessage() {
-  // alert(options.load());
-
-  let text = document.getElementById("textarea").value;
-  if(!text) {
-    showSnackbar("Message is empty!", "red");
-    return;
+  function hideAllOptions() {
+    let options = document.getElementsByClassName("rowOptions");
+    for (let i = 0; i < options.length; i++) {
+      options[i].style.display = "none";
+    }
   }
-  let fakeTextarea = document.createElement('textarea');
-  document.body.appendChild(fakeTextarea);
-  fakeTextarea.value = text;
-  fakeTextarea.select();
-  document.execCommand('copy');
-  fakeTextarea.parentNode.removeChild(fakeTextarea);
-  showSnackbar("Successfully copied", "green");
-}
 
-function createMessage() {
-  let text = document.getElementById("textarea").value;
-  if(!text) {
-    showSnackbar("Message is empty!", "red");
-    return;
+  function clearTextInputs() {
+    let textInputs = document.getElementsByClassName("inputText");
+    for (let i = 0; i < textInputs.length; i++) {
+      textInputs[i].value = "";
+    } 
+    let subjectLine = document.getElementById("subject");
+    subjectLine.value = "";
   }
-  let correctedText = text.replace(/\n/g, "%0A");
-  let subject = document.getElementById("subject").value;
-  location.href = `mailto:?subject=${subject}&body=${correctedText}`;
-  showSnackbar("Creating email", "green");
-}
+
+
+
+
+
+
+
+  document.getElementById("buttonCopyMessage").onclick = copyMessage;
+  document.getElementById("buttonCreateEmail").onclick = createMessage;
+
+  function copyMessage() {
+    // alert(options.load());
+
+    let text = document.getElementById("textarea").value;
+    if (!text) {
+      showSnackbar("Message is empty!", "red");
+      return;
+    }
+    let fakeTextarea = document.createElement('textarea');
+    document.body.appendChild(fakeTextarea);
+    fakeTextarea.value = text;
+    fakeTextarea.select();
+    document.execCommand('copy');
+    fakeTextarea.parentNode.removeChild(fakeTextarea);
+    showSnackbar("Successfully copied", "green");
+  }
+
+  function createMessage() {
+    let text = document.getElementById("textarea").value;
+    if (!text) {
+      showSnackbar("Message is empty!", "red");
+      return;
+    }
+    let correctedText = text.replace(/\n/g, "%0A");
+    let subject = document.getElementById("subject").value;
+    location.href = `mailto:?subject=${subject}&body=${correctedText}`;
+    showSnackbar("Creating email", "green");
+  }
 
 
   //FOOTER
@@ -145,7 +181,7 @@ function createMessage() {
     x.innerHTML = text;
     x.className = "snackbarShow";
 
-    x.classList.add("snackbar"+color);
+    x.classList.add("snackbar" + color);
     setTimeout(function () { x.className = x.className.replace("snackbarShow", ""); }, 1000);
   }
 

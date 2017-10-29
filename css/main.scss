@@ -52,22 +52,26 @@ a:visited {
 }
 ::selection {
     color: whitesmoke;
-    background: $bluecolor;
+    background: rgba(97, 175, 239, 0.996); // rgba for Chrome
   }
 
 #container {
     margin: 0 auto;
     // border: solid 5px blue;
     @extend %clearfix;
+ 
+
 }
 
 // MENU PANEL
 #panelMenu {
     width: 25%;
-    border-right: solid 5px $bgcolordarker;
+    // border-right: solid 5px $bgcolordarker;
     // min-width: 400px;
     min-height: 100vh;
+ 
     float: left;
+    background-color: $bgcolordarker;
 }
 
 .accordion {
@@ -75,7 +79,13 @@ a:visited {
     color: $greycolor;
     color: $bluecolor;
     cursor: pointer;
-    padding: 18px;
+    // padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+
     width: 100%;
     border: none;
     text-align: left;
@@ -83,6 +93,9 @@ a:visited {
     font-size: 18px;
     transition: 0.4s;
     text-transform: uppercase;
+    &:hover {
+        background-color: $bgcolorlighter;
+    }
 }
 .accordion:first-child {
     color: $orangecolor;
@@ -106,6 +119,7 @@ button.accordion.active:after {
 }
 
 div.accordionPanel {
+    background-color: $bgcolordarker;
     user-select: none;
     padding: 0;
     max-height: 0;
@@ -115,6 +129,7 @@ div.accordionPanel {
     div.phraseContainer {
         height: 30px;
         padding: 5px;
+        padding-left: 15px;
   
         &:hover {
             background-color: $bgcolorlighter;
@@ -130,13 +145,13 @@ div.accordionPanel {
             font-size: 16px;
             cursor: pointer;
             margin-top: -1px;
-            margin-right: -1px;
+            margin-right: 14px;
             outline: 0 !important;
             line-height: 20px;
-           
+            float: right;
             background-color: $orangecolor;
             color: whitesmoke;
-            border-radius: 3px; 
+            border-radius: 4px; 
             &:hover {
                 
             }
@@ -144,7 +159,7 @@ div.accordionPanel {
     }
    div.email {
     padding: 5px;
-    padding-left: 10px;
+    padding-left: 20px;
     height: 30px;
 
     cursor: pointer;
@@ -155,10 +170,6 @@ div.accordionPanel {
 }
 
 
-button.quickCopy {
-  float: right;
-}
-
 
 
 
@@ -166,12 +177,13 @@ button.quickCopy {
 
 #panelWorking {
     // border: solid 1px red;
-    min-height: 100vh;
+    // min-height: 100vh;
     width: 75%;
     float: right;
+    height: 100%;
 }
 
-#textareaContainer {
+#panelWorkingContainer {
     display: block;
     // border: solid 1px green;
     width: 75%;
@@ -179,45 +191,57 @@ button.quickCopy {
     margin-top: 50px;
 }
 #subjectContainer {
+    // border-top-left-radius: 5px;
+    // border-top-right-radius: 5px;
     padding: 5px;
-    margin-bottom: 10px;
-    font-size:22px;
+    // margin-bottom: 10px;
     background-color: $bgcolordarker;
-    height: 40px;
+    height: 45px;
     user-select: none;
-    span {
-        display: block;
-        float: left;
-        width: 10%;
+    // padding-bottom: 10px;
+    border-bottom: solid 5px $purplecolor;
+    #subjectTitle {
         padding-left: 5px;
-    //     line-height: 50px;
-}
-
-    #subject {
+        line-height: 30px;
+        width: 250px;
         font-size:22px;
-        padding-left: 10px;
-        height: 30px;
-        border: none;
+        float: left;
+    }
+    #subjectValue {
+        float: left;
         display: block;
-        float: right;
-        width: 90%;
-        background-color: $bgcolorlighter;
+        padding-left: 10px;
+        font-size:22px;
+        #subject {
+            line-height: 30px;
+            padding-left: 5px;
+            height: 30px;
+            border: none;
+            // background-color: $bgcolorlighter;
+            background-color: $bgcolordarker;
+            font-size:22px;
+            display: block;
+            width: 250px;
+        }
     }
 }
 
 #textarea {
     font-size:22px;
     display: block;
- 
-    border: solid 5px $bgcolordarker;
-    background-color: $bgcolorlighter;
+    border: none;
+    // border-bottom: solid 5px $purplecolor;
+    // background-color: $bgcolorlighter;
+    background-color: $bgcolordarker;
     resize: none;
     // height: 50%;
     width: 100%;
     user-select: none;
-    padding-left: 5px;
+    padding: 10px;
     overflow:auto;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
+    // border-bottom-left-radius: 5px;
+    // border-bottom-right-radius: 5px;
 }
 
 #sectionOptions {
@@ -225,10 +249,15 @@ button.quickCopy {
     line-height: 40px;
     background-color: $bgcolordarker;
     padding-left: 10px;
+    // border-radius: 6px;
 }
 
 #rowTitle {
     // background-color: $bgcolordarker;
+}
+
+.rowOptions {
+    display: none;
 }
 
 .rowLabel {
@@ -236,22 +265,17 @@ button.quickCopy {
     width: 250px;
 }
 
-.inputsOptions {
+
+.inputText {
     background-color: $bgcolorlighter;
-    border: solid 2px $bgcolordarker;
-    border-radius: 2px;
+    border: none;
+    // border-radius: 2px;
     height: 30px;
     padding: 5px;
     font-size: 18px;
+    width: 250px;
 }
 
-hr{
-    height: 1px;
-    // border: none;
-    border-radius: 2px;
-    background-color: $bgcolordarker;
-    border: 1px solid $bgcolordarker;
-}
 
 //SWITCH
 .switch {
@@ -424,7 +448,7 @@ hr{
     // background-color: $greencolor;
     color: whitesmoke; /* White text color */
     text-align: center; /* Centered text */
-    border-radius: 5px; /* Rounded borders */
+    border-radius: 6px; /* Rounded borders */
     padding: 16px; /* Padding */
     position: fixed; /* Sit on top of the screen */
     z-index: 1; /* Add a z-index if needed */

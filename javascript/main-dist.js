@@ -19,7 +19,7 @@ function _classCallCheck(instance, Constructor) {
 
     _classCallCheck(this, Email);
 
-    // let self = this;
+    var self = this;
     this.name = object.name;
     this.messageText = object.messageText;
     this.availableOptions = object.availableOptions;
@@ -27,14 +27,25 @@ function _classCallCheck(instance, Constructor) {
     this.getButton = function () {
       var buttonAll = document.getElementsByClassName("email");
       for (var i = 0; i < buttonAll.length; i++) {
-        if (buttonAll[i].innerHTML === _this.name) {
+        if (buttonAll[i].innerHTML.toLowerCase() === _this.name.toLowerCase()) {
           return buttonAll[i];
         }
       }
     };
     this.button = this.getButton();
+    this.showAvailableOptions = function () {
+      for (var i = 0; i < _this.availableOptions.length; i++) {
+        var option = _this.availableOptions[i].charAt(0).toUpperCase() + _this.availableOptions[i].slice(1);
+        document.getElementById("row" + option).style.display = "block";
+      }
+    };
+
     this.button.onclick = function () {
-      _this.textarea.value = _this.messageText;
+      currentSample = _this.name;
+      hideAllOptions();
+      clearTextInputs();
+      _this.textarea.value = _this.messageText();
+      _this.showAvailableOptions();
     };
   };
 
@@ -65,7 +76,7 @@ function _classCallCheck(instance, Constructor) {
       var sample = samples[_i2];
       var button = document.createElement('div');
       button.classList.add("email");
-      button.innerHTML = sample.name;
+      button.innerHTML = sample.name.toLowerCase();
       for (var _i3 = 0; _i3 < sections.length; _i3++) {
         if (sections[_i3].innerHTML.toLowerCase() === sample.section.toLowerCase()) {
           sections[_i3].nextElementSibling.appendChild(button);
@@ -98,7 +109,6 @@ function _classCallCheck(instance, Constructor) {
     fakeTextarea.value = value;
     fakeTextarea.select();
     document.execCommand('copy');
-    // fakeTextarea.remove();
     fakeTextarea.parentNode.removeChild(fakeTextarea);
     showSnackbar("Successfully copied", "green");
   }
@@ -118,6 +128,22 @@ function _classCallCheck(instance, Constructor) {
   }
 
   //WORKING PANEL
+
+  function hideAllOptions() {
+    var options = document.getElementsByClassName("rowOptions");
+    for (var _i6 = 0; _i6 < options.length; _i6++) {
+      options[_i6].style.display = "none";
+    }
+  }
+
+  function clearTextInputs() {
+    var textInputs = document.getElementsByClassName("inputText");
+    for (var _i7 = 0; _i7 < textInputs.length; _i7++) {
+      textInputs[_i7].value = "";
+    }
+    var subjectLine = document.getElementById("subject");
+    subjectLine.value = "";
+  }
 
   document.getElementById("buttonCopyMessage").onclick = copyMessage;
   document.getElementById("buttonCreateEmail").onclick = createMessage;
