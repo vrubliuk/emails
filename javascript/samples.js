@@ -71,11 +71,11 @@ let options = {
   },
   shipmentPRO () {
     let data = document.getElementById("inputShipmentPRO").value;
-    return data ? data : "";
+    return data ? ` (${data})` : "";
   },
   shipmentPW () {
     let data = document.getElementById("inputShipmentPW").value;
-    return data ? data : "";
+    return data ? ` (${data})` : "";
   },
   incorrectCity () {
     let checkboxDirection = document.getElementsByClassName("checkboxDirection");
@@ -88,32 +88,61 @@ let options = {
 
   cityPRO () {
     let data = document.getElementById("inputCityPRO").value;
-    return data ? data : "";
+    return data ? ` (${data})` : "";
   },
   cityPW () {
     let data = document.getElementById("inputCityPW").value;
-    return data ? data : "";
+    return data ? ` (${data})` : "";
   },
   datePRO () {
     let data = document.getElementById("inputDatePRO").value;
-    return data ? data : "";
+    return data ? ` (${data})` : "";
   },
   datePW () {
     let data = document.getElementById("inputDatePW").value;
-    return data ? data : "";
+    return data ? ` (${data})` : "";
   },
   weightPRO () {
     let data = document.getElementById("inputWeightPRO").value;
-    return data ? `${data} lbs` : "";
+    return data ? ` (${data} lbs)` : "";
   },
   weightPW () {
     let data = document.getElementById("inputWeightPW").value;
-    return data ? `${data} lbs` : "";
+    return data ? ` (${data} lbs)` : "";
+  },
+  carrierPRO  () {
+    let data = document.getElementById("inputCarrierPRO").value;
+    return data ?  ` (${data})` : "";
+  },
+  carrierPW  () {
+    let data = document.getElementById("inputCarrierPW").value;
+    return data ?  ` (${data})` : "";
   },
 
-
-
-
+  pickupDate () {
+    let data = document.getElementById("inputPickupDate").value;
+    return data ? data : "";
+  },
+  cityFrom () {
+    let data = document.getElementById("inputCityFrom").value;
+    return data ? data : "";
+  },
+  cityTo () {
+    let data = document.getElementById("inputCityTo").value;
+    return data ? data : "";
+  },
+  numberPRO () {
+    let data = document.getElementById("inputNumberPRO").value;
+    return data ? data : "";
+  },
+  freightBillDate () {
+    let data = document.getElementById("inputFreightBillDate").value;
+    return data ? data : "";
+  },
+  customer () {
+    let data = document.getElementById("inputCustomer").value;
+    return data ? ` (${data})` : "";
+  },
   gratitude () {
     let checkboxGratitude = document.getElementsByClassName("checkboxGratitude");
     for (let i = 0; i < checkboxGratitude.length; i++) {
@@ -144,7 +173,7 @@ let samples = [
   
 
   {
-    name: "Using paperwork as BOL",
+    name: "using paperwork as BOL",
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "gratitude"],
     messageText () {
@@ -152,7 +181,7 @@ let samples = [
     }
   },
   {
-    name: "Paperwork is not complete",
+    name: "paperwork is not complete",
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "document", "gratitude"],
     messageText () {
@@ -160,7 +189,7 @@ let samples = [
     }
   },
   {
-    name: "Release sheet",
+    name: "release sheet",
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
@@ -168,7 +197,7 @@ let samples = [
     }
   },
   {
-    name: "Pending pickup",
+    name: "pending pickup",
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
@@ -176,7 +205,24 @@ let samples = [
     }
   },
   {
-    name: "Shipment planning",
+    name: "claim (to AE)",
+    section: "status issues",
+    availableOptions: ["greeting", "receiver", "load", "gratitude"],
+    messageText () {
+      return `${options.greeting()}${options.receiver()},\nAccording to the note in PLS PRO, there was a possible claim on ${options.load()}. Can we process this load now?\n${options.gratitude()}`;
+    }
+  },
+
+  {
+    name: "claim (to claims department)",
+    section: "status issues",
+    availableOptions: ["greeting", "receiver", "load", "gratitude"],
+    messageText () {
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the claim on load ${options.load()} has already been resolved? Can we pay the carrier and bill the customer?\n${options.gratitude()}`;
+    }
+  },
+  {
+    name: "shipment planning",
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
@@ -184,7 +230,7 @@ let samples = [
     }
   },
   {
-    name: "Closed",
+    name: "closed",
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
@@ -192,7 +238,7 @@ let samples = [
     }
   },
   {
-    name: "Reopen",
+    name: "reopen",
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
@@ -200,7 +246,15 @@ let samples = [
     }
   },
   {
-    name: "Lumper receipt",
+    name: "cancelled per carrier",
+    section: "status issues",
+    availableOptions: ["greeting", "receiver", "load", "gratitude"],
+    messageText () {
+      return `${options.greeting()}${options.receiver()},\nPer the carrier this load ${options.load()} was cancelled. Can we close it in the system?\n${options.gratitude()}`;
+    }
+  },
+  {
+    name: "additional fee",
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "fee", "load", "gratitude"],
     messageText () {
@@ -208,11 +262,11 @@ let samples = [
     }
   },
   {
-    name: "Mismatching rates",
+    name: "mismatching rates",
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude", "rate"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise which carrier's rate is correct for ${options.load()}? PLS PRO is showing $${options.ratePRO()}, the carrier’s invoice - $${options.ratePW()}.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise which carrier's rate is correct for ${options.load()}? The carrier’s invoice is showing $${options.ratePW()}, PLS PRO - $${options.ratePRO()}.\n${options.gratitude()}`;
     }
   },
   {
@@ -232,7 +286,7 @@ let samples = [
     }
   },
   {
-    name: "Hundred weight",
+    name: "hundred weight",
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
@@ -240,51 +294,133 @@ let samples = [
     }
   },
   {
-    name: "Number of pieces",
+    name: "number of pieces",
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
       return `${options.greeting()}${options.receiver()},\nPlease advise what number of pieces we should put in PLS for ${options.load()} to reflect the correct rates?\n${options.gratitude()}`;
     }
   },
-
-
-
-
-
-
   {
-    name: "Different shipment numbers",
+    name: "different shipment numbers",
     section: "something doesn't match", 
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "shipment", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The shipment number on it (${options.shipmentPW()}) doesn't match PLS PRO (${options.shipmentPRO()}).\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The shipment number on it${options.shipmentPW()} doesn't match PLS PRO${options.shipmentPRO()}.\n${options.gratitude()}`;
     }
   },
   {
-    name: "Different cities",
+    name: "different cities",
     section: "something doesn't match",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "incorrectCity", "city", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The ${options.incorrectCity()} city on it (${options.cityPW()}) doesn't match PLS PRO (${options.cityPRO()}).\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The ${options.incorrectCity()} city on it${options.cityPW()} doesn't match PLS PRO${options.cityPRO()}.\n${options.gratitude()}`;
     }
   },
   {
-    name: "Different dates",
+    name: "different dates",
     section: "something doesn't match",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "date", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The date on it (${options.datePRO()}) doesn't match PLS PRO (${options.datePRO()}).\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The date on it${options.datePW()} doesn't match PLS PRO${options.datePRO()}.\n${options.gratitude()}`;
     }
   },
   {
-    name: "Different weights",
+    name: "different weights",
     section: "something doesn't match",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "weight", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} is complete to process ${options.load()}? The weight on it (${options.weightPW()}) doesn't match PLS PRO (${options.weightPRO()}).\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} is complete to process ${options.load()}? The weight on it${options.weightPW()} doesn't match PLS PRO${options.weightPRO()}.\n${options.gratitude()}`;
     }
-  }
+  },
+  {
+    name: "different carrier's names",
+    section: "carrier issues",
+    availableOptions: ["greeting", "receiver", "load", "carrier", "gratitude"],
+    messageText () {
+      return `${options.greeting()}${options.receiver()},\nThere are different carrier's names on the invoice${options.carrierPW()} and in PLS PRO${options.carrierPRO()}. The load is ${options.load()}. Please advise. Is there another id# this paperwork goes to?\n${options.gratitude()}`;
+    }
+  },
+  {
+    name: "missing paperwork request",
+    section: "carrier issues",
+    availableOptions: ["greeting", "receiver", "load", "pickupDate", "cities", "gratitude"],
+    messageText () {
+      return `${options.greeting()}${options.receiver()},\nCould you please provide the correct BOL for this shipment?\nPLS LOAD #: ${options.load()}\nPickup date: ${options.pickupDate()}\nFrom: ${options.cityFrom()}\nTo: ${options.cityTo()}\n${options.gratitude()}`;
+    }
+  },
+
+  {
+    name: "carrier doesn't have BOL",
+    section: "carrier issues",
+    availableOptions: ["greeting", "receiver", "load", "gratitude"],
+    messageText () {
+      return `${options.greeting()}${options.receiver()},\nPlease see below the carrier's answer regarding the paperwork for ${options.load()}. Could you help to get the paperwork? Or should we close the load?\n${options.gratitude()}`;
+    }
+  },
+  {
+    name: "carrier doesn't have load in his system",
+    section: "carrier issues",
+    availableOptions: ["greeting", "receiver", "load", "gratitude"],
+    messageText () {
+      return `${options.greeting()}${options.receiver()},\nPlease see below and advise. Per the carrier they don't have ${options.load()} in their system. Should we close it in the system?\n${options.gratitude()}`;
+    }
+  },
+  
+
+
+  {
+    name: "no paperwork in Onbase yet",
+    section: "misc",
+    availableOptions: ["greeting", "receiver", "load", "gratitude"],
+    messageText () {
+      return `${options.greeting()}${options.receiver()},\nWe haven't received the paperwork for ${options.load()} from the carrier yet.\n${options.gratitude()}`;
+    }
+  },
+  {
+    name: "WEYERHAEUSER",
+    section: "misc",
+    availableOptions: ["greeting", "load", "gratitude"],
+    messageText () {
+      return `${options.greeting()} Michael,\nPlease advise if the attached paperwork is good to go? Load#: ${options.load()}.\n${options.gratitude()}`;
+    }
+  },
+  {
+    name: "put data in PLS PRO",
+    section: "TO SUPPORT REQUEST",
+    availableOptions: ["greeting", "load", "numberPRO", "freightBillDate", "gratitude"],
+    messageText () {
+      return `${options.greeting()},\nI am not able to add pro# and date for this load ${options.load()}. Please put the following data in PLS PRO FLEX:\nPRO#: ${options.numberPRO()}\nFreight bill date: ${options.freightBillDate()}\n${options.gratitude()}`;
+    }
+  },
+
+  {
+    name: "PLS PRO isn't working",
+    section: "TO SUPPORT REQUEST",
+    availableOptions: ["greeting", "gratitude"],
+    messageText () {
+      return `${options.greeting()},\nPlease be informed that PLS PRO FLEX hasn’t been working about 10 min. We can login but nothing else.\n${options.gratitude()}`;
+    }
+  },
+  {
+    name: "unable to release to FB status",
+    section: "TO SUPPORT REQUEST",
+    availableOptions: ["greeting", "gratitude"],
+    messageText () {
+      return `${options.greeting()},\nPlease be informed that we are unable to release loads to field billing status about 10 minutes in PLS PRO FLEX.\n${options.gratitude()}`;
+    }
+  },
+  {
+    name: "customer's payment",
+    section: "TO ACCOUNTS RECEIVABLE",
+    availableOptions: ["greeting", "receiver", "load", "customer", "gratitude"],
+    messageText () {
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the customer${options.customer()} has paid for ${options.load()}?\n${options.gratitude()}`;
+    }
+  },
+
+
+
 
 
 ];

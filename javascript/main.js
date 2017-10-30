@@ -70,7 +70,8 @@
       let sample = samples[i];
       let button = document.createElement('div');
       button.classList.add("email");
-      button.innerHTML = sample.name.toLowerCase();
+      // button.innerHTML = sample.name.toLowerCase();
+      button.innerHTML = sample.name;
       for (let i = 0; i < sections.length; i++) {
         if (sections[i].innerHTML.toLowerCase() === sample.section.toLowerCase()) {
           sections[i].nextElementSibling.appendChild(button);

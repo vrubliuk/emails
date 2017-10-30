@@ -76,7 +76,8 @@ function _classCallCheck(instance, Constructor) {
       var sample = samples[_i2];
       var button = document.createElement('div');
       button.classList.add("email");
-      button.innerHTML = sample.name.toLowerCase();
+      // button.innerHTML = sample.name.toLowerCase();
+      button.innerHTML = sample.name;
       for (var _i3 = 0; _i3 < sections.length; _i3++) {
         if (sections[_i3].innerHTML.toLowerCase() === sample.section.toLowerCase()) {
           sections[_i3].nextElementSibling.appendChild(button);
