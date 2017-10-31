@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emails</title>
     <link rel="icon" href="images/icon.png">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
     <link href="css/main.css" rel="stylesheet">
 </head>
 
@@ -48,11 +49,23 @@
                 <div id="subjectContainer">
                     <div id="subjectTitle">Subject:</div>
                     <div id="subjectValue">
-                        <input type="text" name="subject" id="subject" disabled>
+                        <input type="text" name="subject" id="subject" >
                     </div>
                 </div>
 
-                <textarea id="textarea" name="message" rows="10" placeholder="Nothing to show here yet :(" disabled></textarea>
+                <div id="textareaContainer">
+               
+                    <textarea id="textarea" name="message" rows="10" placeholder="Enter text here..." ></textarea>
+                    <button id="lockButton">
+                        <i id="lockIcon" class="fa fa-lock" aria-hidden="true"></i>
+                        <i id="unlockIcon" class="fa fa-unlock-alt" aria-hidden="true"></i>
+                    </button>
+                    
+
+
+
+                </div>
+
                 <form id="sectionOptions">
                     <!-- <p>Available options:</p> -->
 
