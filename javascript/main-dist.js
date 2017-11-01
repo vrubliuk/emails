@@ -11,6 +11,7 @@ function _classCallCheck(instance, Constructor) {
 
   //GENERAL
 
+  var currentSample = void 0;
   includeNotesToMarkup();
   includeSamplesToMarkup();
 
@@ -19,10 +20,10 @@ function _classCallCheck(instance, Constructor) {
 
     _classCallCheck(this, Email);
 
-    var self = this;
     this.name = object.name;
     this.messageText = object.messageText;
     this.availableOptions = object.availableOptions;
+    this.subject = document.getElementById("subject");
     this.textarea = document.getElementById("textarea");
     this.getButton = function () {
       var buttonAll = document.getElementsByClassName("email");
@@ -44,8 +45,16 @@ function _classCallCheck(instance, Constructor) {
       currentSample = _this.name;
       hideAllOptions();
       clearTextInputs();
+      lockEmail();
       _this.textarea.value = _this.messageText();
       _this.showAvailableOptions();
+      if (_this.name === "statistics") {
+        var date = new Date();
+        var month = ("0" + (date.getMonth() + 1)).slice(-2);
+        var day = ("0" + date.getDate()).slice(-2);
+        var year = date.getFullYear();
+        _this.subject.value = "statistics " + month + "/" + day + "/" + year;
+      }
     };
   };
 
@@ -130,17 +139,87 @@ function _classCallCheck(instance, Constructor) {
 
   //WORKING PANEL
 
+  AddDataFromInputsToTextarea();
+  function AddDataFromInputsToTextarea() {
+    function updateTextarea() {
+      for (var _i6 = 0; _i6 < samples.length; _i6++) {
+        if (samples[_i6].name === currentSample) {
+          textarea.value = samples[_i6].messageText();
+        }
+      }
+    }
+    var textarea = document.getElementById("textarea");
+    var textInputs = document.getElementsByClassName("inputText");
+    var subjectLine = document.getElementById("subject");
+    var includeLoadToSubjectLineCheckbox = document.getElementById("loadToSubject");
+    for (var _i7 = 0; _i7 < textInputs.length; _i7++) {
+      textInputs[_i7].onkeyup = function () {
+        updateTextarea();
+        if (includeLoadToSubjectLineCheckbox.checked) {
+          subjectLine.value = options.subject();
+        }
+      };
+    }
+
+    includeLoadToSubjectLineCheckbox.onchange = function () {
+      if (!includeLoadToSubjectLineCheckbox.checked) {
+        subjectLine.value = "";
+      } else {
+        subjectLine.value = options.subject();
+      }
+    };
+
+    var page = document.getElementById("inputPage");
+    var pageFrom = document.getElementById("inputPageFrom");
+    var pageTo = document.getElementById("inputPageTo");
+    page.onkeyup = function () {
+      pageFrom.value = "";
+      pageTo.value = "";
+      updateTextarea();
+    };
+    pageFrom.onkeyup = function () {
+      page.value = "";
+      updateTextarea();
+    };
+    pageTo.onkeyup = function () {
+      page.value = "";
+      updateTextarea();
+    };
+    UpdateTextAreaOnCheckboxChange("checkboxGreeting");
+    UpdateTextAreaOnCheckboxChange("checkboxRate");
+    UpdateTextAreaOnCheckboxChange("checkboxDirection");
+    UpdateTextAreaOnCheckboxChange("checkboxOtherActivities");
+    UpdateTextAreaOnCheckboxChange("checkboxGratitude");
+    function UpdateTextAreaOnCheckboxChange(checkboxClass) {
+      var checkboxClassElements = document.getElementsByClassName(checkboxClass);
+      for (var _i8 = 0; _i8 < checkboxClassElements.length; _i8++) {
+        checkboxClassElements[_i8].onchange = function () {
+          updateTextarea();
+        };
+      }
+    }
+  }
+
+  function lockEmail() {
+    var subject = document.getElementById("subject");
+    var textarea = document.getElementById("textarea");
+  }
+
+  function unlockEmail() {
+    hideAllOptions();
+  }
+
   function hideAllOptions() {
     var options = document.getElementsByClassName("rowOptions");
-    for (var _i6 = 0; _i6 < options.length; _i6++) {
-      options[_i6].style.display = "none";
+    for (var _i9 = 0; _i9 < options.length; _i9++) {
+      options[_i9].style.display = "none";
     }
   }
 
   function clearTextInputs() {
     var textInputs = document.getElementsByClassName("inputText");
-    for (var _i7 = 0; _i7 < textInputs.length; _i7++) {
-      textInputs[_i7].value = "";
+    for (var _i10 = 0; _i10 < textInputs.length; _i10++) {
+      textInputs[_i10].value = "";
     }
     var subjectLine = document.getElementById("subject");
     subjectLine.value = "";
@@ -150,8 +229,6 @@ function _classCallCheck(instance, Constructor) {
   document.getElementById("buttonCreateEmail").onclick = createMessage;
 
   function copyMessage() {
-    // alert(options.load());
-
     var text = document.getElementById("textarea").value;
     if (!text) {
       showSnackbar("Message is empty!", "red");

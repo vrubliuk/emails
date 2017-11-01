@@ -182,23 +182,22 @@ div.accordionPanel {
 #lockButton {
   font-size: 20px;
   border: none;
-  display: inline-block;
   background-color: transparent;
   height: 40px;
   width: 40px;
-  cursor: pointer;
   float: right;
-  margin-top: -40px;
-  color: #be5046; }
-  #lockButton:hover #lockIcon {
-    display: none; }
-  #lockButton:hover #unlockIcon {
-    display: inline; }
+  margin-top: -40px; }
   #lockButton #lockIcon {
+    display: inline-block;
+    width: 100%;
     color: #be5046;
-    display: none; }
+    display: none;
+    cursor: pointer; }
   #lockButton #unlockIcon {
-    color: #98c379; }
+    display: inline-block;
+    width: 100%;
+    color: #98c379;
+    cursor: pointer; }
 
 #sectionOptions {
   font-size: 18px;

@@ -2,17 +2,16 @@
   "use strict";
 
   //GENERAL
+  let currentSample;
   includeNotesToMarkup();
   includeSamplesToMarkup();
 
-  
-
   class Email {
     constructor(object) {
-      let self = this;
       this.name = object.name;
       this.messageText = object.messageText;
       this.availableOptions = object.availableOptions;
+      this.subject = document.getElementById("subject");
       this.textarea = document.getElementById("textarea");
       this.getButton = () => {
         let buttonAll = document.getElementsByClassName("email");
@@ -34,12 +33,20 @@
         currentSample = this.name;
         hideAllOptions();
         clearTextInputs();
+        lockEmail();
         this.textarea.value = this.messageText();
         this.showAvailableOptions();
+        if (this.name === "statistics") {
+          let date = new Date();
+          let month = ("0" + (date.getMonth() + 1)).slice(-2);
+          let day = ("0" + date.getDate()).slice(-2);
+          let year = date.getFullYear();
+          this.subject.value = `statistics ${month}/${day}/${year}`;
+        }
+
       };
 
-      
-    }
+    } 
   }
   for (let i = 0; i < samples.length; i++) {
     new Email(samples[i]);
@@ -118,8 +125,87 @@
     }
   }
 
-
   //WORKING PANEL
+
+AddDataFromInputsToTextarea();
+function AddDataFromInputsToTextarea() {
+  function updateTextarea () {
+    for (let i = 0; i < samples.length; i++) {
+      if (samples[i].name === currentSample) {
+        textarea.value = samples[i].messageText();
+      }    
+    }
+  }
+  let textarea = document.getElementById("textarea");
+  let textInputs = document.getElementsByClassName("inputText");
+  let subjectLine = document.getElementById("subject");
+  let includeLoadToSubjectLineCheckbox = document.getElementById("loadToSubject");
+  for (let i = 0; i < textInputs.length; i++) {
+    textInputs[i].onkeyup = () => {
+      updateTextarea ();
+      if (includeLoadToSubjectLineCheckbox.checked) {
+        subjectLine.value = options.subject();
+      }
+    };
+  }
+
+  includeLoadToSubjectLineCheckbox.onchange = () => {
+    if (!includeLoadToSubjectLineCheckbox.checked) {
+      subjectLine.value = "";
+    } else {
+      subjectLine.value = options.subject();
+    }
+  };
+
+  let page = document.getElementById("inputPage");
+  let pageFrom = document.getElementById("inputPageFrom");
+  let pageTo = document.getElementById("inputPageTo");
+  page.onkeyup = () => { 
+    pageFrom.value = "";
+    pageTo.value = "";
+    updateTextarea();
+  };
+  pageFrom.onkeyup = () => { 
+    page.value = "";
+    updateTextarea();
+  };
+  pageTo.onkeyup = () => { 
+    page.value = "";
+    updateTextarea();
+  };
+  UpdateTextAreaOnCheckboxChange("checkboxGreeting");
+  UpdateTextAreaOnCheckboxChange("checkboxRate");
+  UpdateTextAreaOnCheckboxChange("checkboxDirection");
+  UpdateTextAreaOnCheckboxChange("checkboxOtherActivities");
+  UpdateTextAreaOnCheckboxChange("checkboxGratitude");
+  function UpdateTextAreaOnCheckboxChange(checkboxClass) {
+    let checkboxClassElements = document.getElementsByClassName(checkboxClass);
+    for (let i = 0; i < checkboxClassElements.length; i++) {
+      checkboxClassElements[i].onchange = () => {
+        updateTextarea();
+      };
+    }
+  }
+}
+
+  function lockEmail () {
+    let subject = document.getElementById("subject");
+    let textarea = document.getElementById("textarea");
+    
+  }
+
+
+
+  function unlockEmail () {
+    hideAllOptions();
+
+
+  }
+
+
+
+
+
 
   function hideAllOptions() {
     let options = document.getElementsByClassName("rowOptions");
@@ -137,18 +223,10 @@
     subjectLine.value = "";
   }
 
-
-
-
-
-
-
   document.getElementById("buttonCopyMessage").onclick = copyMessage;
   document.getElementById("buttonCreateEmail").onclick = createMessage;
 
   function copyMessage() {
-    // alert(options.load());
-
     let text = document.getElementById("textarea").value;
     if (!text) {
       showSnackbar("Message is empty!", "red");
@@ -187,7 +265,3 @@
   }
 
 })();
-
-
-
-

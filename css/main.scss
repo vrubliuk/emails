@@ -256,7 +256,7 @@ div.accordionPanel {
     font-size:20px;
     border: none;
     // border: solid 1px red; 
-    display: inline-block;
+   
     // padding-top:5px;
     // padding-bottom: 5px;
     // padding-left: 10px;
@@ -264,28 +264,33 @@ div.accordionPanel {
     background-color: transparent;
     height: 40px;
     width: 40px;
-    cursor: pointer;
+    // cursor: pointer;
     float: right;
     margin-top: -40px;
-    color: $redcolor;
+ 
 
-    &:hover #lockIcon {
-        display: none;
+    // &:hover #lockIcon {
+    //     display: none;
 
-    }
-    &:hover #unlockIcon {
-        display: inline;
+    // }
+    // &:hover #unlockIcon {
+    //     display: inline;
 
-    }
+    // }
 
 
     #lockIcon {
+        display: inline-block;
+        width: 100%;
         color: $redcolor;
         display: none;
+        cursor: pointer;
     }
     #unlockIcon {
+        display: inline-block;
+        width: 100%;
         color: $greencolor;
- 
+        cursor: pointer;
     }
 
 

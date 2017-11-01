@@ -5,7 +5,7 @@ let notes = [
   "emailed AE regarding rates",
   "emailed AE about the load status",
   "information on BOL doesn't match PLS PRO",
-  "don’t pay carrier until customer accepts paperwork",
+  "don't pay carrier until customer accepts paperwork",
   "emailed Support Request to put pro and date",
   "released w/o BOL per AE",
   "shipment number on BOL doesn't match PLS PRO",
@@ -143,6 +143,22 @@ let options = {
     let data = document.getElementById("inputCustomer").value;
     return data ? ` (${data})` : "";
   },
+  released () {
+    let data = document.getElementById("inputReleased").value;
+    return data ? data : "";
+  },
+  fsBilling () {
+    let checkbox = document.getElementById("fsBilling");
+    return checkbox.checked ? `\nFS Billing emails`: "";
+  },
+  audit () {
+    let checkbox = document.getElementById("audit");
+    return checkbox.checked ? `\nAudit`: "";
+  },
+  report () {
+    let checkbox = document.getElementById("report");
+    return checkbox.checked ? `\nReport`: "";
+  },
   gratitude () {
     let checkboxGratitude = document.getElementsByClassName("checkboxGratitude");
     for (let i = 0; i < checkboxGratitude.length; i++) {
@@ -185,7 +201,7 @@ let samples = [
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "document", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached paperwork${options.page()}${options.pageRange()} is sufficient to process ${options.load()}? We don’t have ${options.document()}.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached paperwork${options.page()}${options.pageRange()} is sufficient to process ${options.load()}? We don't have ${options.document()}.\n${options.gratitude()}`;
     }
   },
   {
@@ -349,7 +365,6 @@ let samples = [
       return `${options.greeting()}${options.receiver()},\nCould you please provide the correct BOL for this shipment?\nPLS LOAD #: ${options.load()}\nPickup date: ${options.pickupDate()}\nFrom: ${options.cityFrom()}\nTo: ${options.cityTo()}\n${options.gratitude()}`;
     }
   },
-
   {
     name: "carrier doesn't have BOL",
     section: "carrier issues",
@@ -367,24 +382,6 @@ let samples = [
     }
   },
   
-
-
-  {
-    name: "no paperwork in Onbase yet",
-    section: "misc",
-    availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
-      return `${options.greeting()}${options.receiver()},\nWe haven't received the paperwork for ${options.load()} from the carrier yet.\n${options.gratitude()}`;
-    }
-  },
-  {
-    name: "WEYERHAEUSER",
-    section: "misc",
-    availableOptions: ["greeting", "load", "gratitude"],
-    messageText () {
-      return `${options.greeting()} Michael,\nPlease advise if the attached paperwork is good to go? Load#: ${options.load()}.\n${options.gratitude()}`;
-    }
-  },
   {
     name: "put data in PLS PRO",
     section: "TO SUPPORT REQUEST",
@@ -418,85 +415,34 @@ let samples = [
       return `${options.greeting()}${options.receiver()},\nPlease advise if the customer${options.customer()} has paid for ${options.load()}?\n${options.gratitude()}`;
     }
   },
-
-
-
-
-
+  {
+    name: "no paperwork in Onbase yet",
+    section: "misc",
+    availableOptions: ["greeting", "receiver", "load", "gratitude"],
+    messageText () {
+      return `${options.greeting()}${options.receiver()},\nWe haven't received the paperwork for ${options.load()} from the carrier yet.\n${options.gratitude()}`;
+    }
+  },
+  {
+    name: "WEYERHAEUSER",
+    section: "misc",
+    availableOptions: ["greeting", "load", "gratitude"],
+    messageText () {
+      return `${options.greeting()} Michael,\nPlease advise if the attached paperwork is good to go? Load#: ${options.load()}.\n${options.gratitude()}`;
+    }
+  },
+  {
+    name: "statistics",
+    section: "misc",
+    availableOptions: ["released", "otherActivities"],
+    messageText () {
+      return `Released: ${options.released()}${options.fsBilling()}${options.audit()}${options.report()}`;
+    }
+  }
 ];
 
-let currentSample;
 
 
-AddDataFromInputsToTextarea();
-function AddDataFromInputsToTextarea() {
-
-
-  function updateTextarea () {
-    for (let i = 0; i < samples.length; i++) {
-      if (samples[i].name === currentSample) {
-        textarea.value = samples[i].messageText();
-      }    
-    }
-  }
-  let textarea = document.getElementById("textarea");
-  let textInputs = document.getElementsByClassName("inputText");
-  let subjectLine = document.getElementById("subject");
-  let includeLoadToSubjectLineCheckbox = document.getElementById("loadToSubject");
-  for (let i = 0; i < textInputs.length; i++) {
-    textInputs[i].onkeyup = () => {
-      updateTextarea ();
-      if (includeLoadToSubjectLineCheckbox.checked) {
-        subjectLine.value = options.subject();
-      }
-
-
-
-    };
-  }
-
-  includeLoadToSubjectLineCheckbox.onchange = () => {
-    if (!includeLoadToSubjectLineCheckbox.checked) {
-      subjectLine.value = "";
-    } else {
-      subjectLine.value = options.subject();
-    }
-  };
-
-
-  let page = document.getElementById("inputPage");
-  let pageFrom = document.getElementById("inputPageFrom");
-  let pageTo = document.getElementById("inputPageTo");
-  page.onkeyup = () => { 
-    pageFrom.value = "";
-    pageTo.value = "";
-    updateTextarea();
-  };
-  pageFrom.onkeyup = () => { 
-    page.value = "";
-    updateTextarea();
-  };
-  pageTo.onkeyup = () => { 
-    page.value = "";
-    updateTextarea();
-  };
-
-  UpdateTextAreaOnCheckboxChange("checkboxGreeting");
-  UpdateTextAreaOnCheckboxChange("checkboxRate");
-  UpdateTextAreaOnCheckboxChange("checkboxDirection");
-  UpdateTextAreaOnCheckboxChange("checkboxGratitude");
-
-  function UpdateTextAreaOnCheckboxChange(checkboxClass) {
-    let checkboxClassElements = document.getElementsByClassName(checkboxClass);
-    for (let i = 0; i < checkboxClassElements.length; i++) {
-      checkboxClassElements[i].onchange = () => {
-        updateTextarea();
-      };
-    }
-  }
-
-
-}
 
 
 
