@@ -45,7 +45,8 @@ function _classCallCheck(instance, Constructor) {
       currentSample = _this.name;
       hideAllOptions();
       clearTextInputs();
-      lockEmail();
+      access.lock();
+      window.getSelection().removeAllRanges();
       _this.textarea.value = _this.messageText();
       _this.showAvailableOptions();
       if (_this.name === "statistics") {
@@ -122,18 +123,48 @@ function _classCallCheck(instance, Constructor) {
     fakeTextarea.parentNode.removeChild(fakeTextarea);
     showSnackbar("Successfully copied", "green");
   }
+
+  // function accordion() {
+  //   let acc = document.getElementsByClassName("accordion");
+  //   for (let i = 0; i < acc.length; i++) {
+  //     acc[i].onclick = function () {
+  //       this.classList.toggle("active");
+  //       let panel = this.nextElementSibling;
+  //       if (panel.style.maxHeight) {
+  //         panel.style.maxHeight = null;
+  //       } else {
+  //         panel.style.maxHeight = panel.scrollHeight + "px";
+  //       }
+  //     };
+  //   }
+  // }
+
+
   function accordion() {
     var acc = document.getElementsByClassName("accordion");
-    for (var _i5 = 0; _i5 < acc.length; _i5++) {
+
+    var _loop2 = function _loop2(_i5) {
       acc[_i5].onclick = function () {
+        var index = _i5;
+        for (var _i6 = 0; _i6 < acc.length; _i6++) {
+          if (index !== _i6) {
+            acc[_i6].classList.remove("active");
+            acc[_i6].nextElementSibling.style.maxHeight = null;
+          }
+        }
         this.classList.toggle("active");
         var panel = this.nextElementSibling;
+
         if (panel.style.maxHeight) {
           panel.style.maxHeight = null;
         } else {
           panel.style.maxHeight = panel.scrollHeight + "px";
         }
       };
+    };
+
+    for (var _i5 = 0; _i5 < acc.length; _i5++) {
+      _loop2(_i5);
     }
   }
 
@@ -142,9 +173,9 @@ function _classCallCheck(instance, Constructor) {
   AddDataFromInputsToTextarea();
   function AddDataFromInputsToTextarea() {
     function updateTextarea() {
-      for (var _i6 = 0; _i6 < samples.length; _i6++) {
-        if (samples[_i6].name === currentSample) {
-          textarea.value = samples[_i6].messageText();
+      for (var _i7 = 0; _i7 < samples.length; _i7++) {
+        if (samples[_i7].name === currentSample) {
+          textarea.value = samples[_i7].messageText();
         }
       }
     }
@@ -152,8 +183,8 @@ function _classCallCheck(instance, Constructor) {
     var textInputs = document.getElementsByClassName("inputText");
     var subjectLine = document.getElementById("subject");
     var includeLoadToSubjectLineCheckbox = document.getElementById("loadToSubject");
-    for (var _i7 = 0; _i7 < textInputs.length; _i7++) {
-      textInputs[_i7].onkeyup = function () {
+    for (var _i8 = 0; _i8 < textInputs.length; _i8++) {
+      textInputs[_i8].onkeyup = function () {
         updateTextarea();
         if (includeLoadToSubjectLineCheckbox.checked) {
           subjectLine.value = options.subject();
@@ -192,34 +223,63 @@ function _classCallCheck(instance, Constructor) {
     UpdateTextAreaOnCheckboxChange("checkboxGratitude");
     function UpdateTextAreaOnCheckboxChange(checkboxClass) {
       var checkboxClassElements = document.getElementsByClassName(checkboxClass);
-      for (var _i8 = 0; _i8 < checkboxClassElements.length; _i8++) {
-        checkboxClassElements[_i8].onchange = function () {
+      for (var _i9 = 0; _i9 < checkboxClassElements.length; _i9++) {
+        checkboxClassElements[_i9].onchange = function () {
           updateTextarea();
         };
       }
     }
   }
 
-  function lockEmail() {
+  var access = new accessToEmail();
+  function accessToEmail() {
     var subject = document.getElementById("subject");
     var textarea = document.getElementById("textarea");
+    var subjectCover = document.getElementById("subjectCover");
+    var textareaCover = document.getElementById("textareaCover");
+    var lockButton = document.getElementById("lockButton");
+    var lockIcon = document.getElementById("lockIcon");
+    this.lock = function () {
+      subjectCover.style.display = "block";
+      textareaCover.style.display = "block";
+      subject.style.backgroundColor = "#21252b";
+      textarea.style.backgroundColor = "#21252b";
+      subject.readOnly = true;
+      textarea.readOnly = true;
+      lockButton.disabled = false;
+      lockButton.style.cursor = "pointer";
+      lockIcon.className = "fa fa-lock";
+      lockIcon.style.color = "#be5046";
+    };
+    this.unlock = function () {
+      if (lockIcon.className === "fa fa-unlock-alt") return;
+      subjectCover.style.display = "";
+      textareaCover.style.display = "";
+      subject.style.backgroundColor = "";
+      textarea.style.backgroundColor = "";
+      subject.readOnly = false;
+      textarea.readOnly = false;
+      lockButton.disabled = true;
+      lockButton.style.cursor = "";
+      lockIcon.className = "fa fa-unlock-alt";
+      lockIcon.style.color = "#98c379";
+      hideAllOptions();
+    };
   }
 
-  function unlockEmail() {
-    hideAllOptions();
-  }
+  document.getElementById("lockButton").onclick = access.unlock;
 
   function hideAllOptions() {
     var options = document.getElementsByClassName("rowOptions");
-    for (var _i9 = 0; _i9 < options.length; _i9++) {
-      options[_i9].style.display = "none";
+    for (var _i10 = 0; _i10 < options.length; _i10++) {
+      options[_i10].style.display = "none";
     }
   }
 
   function clearTextInputs() {
     var textInputs = document.getElementsByClassName("inputText");
-    for (var _i10 = 0; _i10 < textInputs.length; _i10++) {
-      textInputs[_i10].value = "";
+    for (var _i11 = 0; _i11 < textInputs.length; _i11++) {
+      textInputs[_i11].value = "";
     }
     var subjectLine = document.getElementById("subject");
     subjectLine.value = "";

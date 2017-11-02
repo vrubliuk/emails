@@ -1,6 +1,6 @@
 "use strict";
 
-var notes = ["emailed to confirm delivery", "emailed AE regarding rates", "emailed AE about the load status", "information on BOL doesn't match PLS PRO", "don’t pay carrier until customer accepts paperwork", "emailed Support Request to put pro and date", "released w/o BOL per AE", "shipment number on BOL doesn't match PLS PRO", "origin/destination city on BOL doesn't match PLS PRO", "date on BOL doesn't match PLS PRO", "weight on BOL doesn't match PLS PRO"];
+var notes = ["emailed to confirm delivery", "emailed AE regarding rates", "emailed AE about the load status", "information on BOL doesn't match PLS PRO", "don't pay carrier until customer accepts paperwork", "emailed Support Request to put pro and date", "released w/o BOL per AE", "shipment number on BOL doesn't match PLS PRO", "origin/destination city on BOL doesn't match PLS PRO", "date on BOL doesn't match PLS PRO", "weight on BOL doesn't match PLS PRO"];
 
 var options = {
   subject: function subject() {
@@ -138,6 +138,22 @@ var options = {
     var data = document.getElementById("inputCustomer").value;
     return data ? " (" + data + ")" : "";
   },
+  released: function released() {
+    var data = document.getElementById("inputReleased").value;
+    return data ? data : "";
+  },
+  fsBilling: function fsBilling() {
+    var checkbox = document.getElementById("fsBilling");
+    return checkbox.checked ? "\nFS Billing emails" : "";
+  },
+  audit: function audit() {
+    var checkbox = document.getElementById("audit");
+    return checkbox.checked ? "\nAudit" : "";
+  },
+  report: function report() {
+    var checkbox = document.getElementById("report");
+    return checkbox.checked ? "\nReport" : "";
+  },
   gratitude: function gratitude() {
     var checkboxGratitude = document.getElementsByClassName("checkboxGratitude");
     for (var i = 0; i < checkboxGratitude.length; i++) {
@@ -174,7 +190,7 @@ var samples = [{
   section: "paperwork issues",
   availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "document", "gratitude"],
   messageText: function messageText() {
-    return "" + options.greeting() + options.receiver() + ",\nPlease advise if the attached paperwork" + options.page() + options.pageRange() + " is sufficient to process " + options.load() + "? We don\u2019t have " + options.document() + ".\n" + options.gratitude();
+    return "" + options.greeting() + options.receiver() + ",\nPlease advise if the attached paperwork" + options.page() + options.pageRange() + " is sufficient to process " + options.load() + "? We don't have " + options.document() + ".\n" + options.gratitude();
   }
 }, {
   name: "release sheet",
@@ -321,7 +337,7 @@ var samples = [{
   section: "carrier issues",
   availableOptions: ["greeting", "receiver", "load", "gratitude"],
   messageText: function messageText() {
-    return "" + options.greeting() + options.receiver() + ",\nPlease see below the carrier's answer regarding the paperwork for " + options.load() + ".\n      Could you help to get the paperwork? Or should we close the load?\n" + options.gratitude();
+    return "" + options.greeting() + options.receiver() + ",\nPlease see below the carrier's answer regarding the paperwork for " + options.load() + ". Could you help to get the paperwork? Or should we close the load?\n" + options.gratitude();
   }
 }, {
   name: "carrier doesn't have load in his system",
@@ -329,20 +345,6 @@ var samples = [{
   availableOptions: ["greeting", "receiver", "load", "gratitude"],
   messageText: function messageText() {
     return "" + options.greeting() + options.receiver() + ",\nPlease see below and advise. Per the carrier they don't have " + options.load() + " in their system. Should we close it in the system?\n" + options.gratitude();
-  }
-}, {
-  name: "no paperwork in Onbase yet",
-  section: "misc",
-  availableOptions: ["greeting", "receiver", "load", "gratitude"],
-  messageText: function messageText() {
-    return "" + options.greeting() + options.receiver() + ",\nWe haven't received the paperwork for " + options.load() + " from the carrier yet.\n" + options.gratitude();
-  }
-}, {
-  name: "WEYERHAEUSER",
-  section: "misc",
-  availableOptions: ["greeting", "load", "gratitude"],
-  messageText: function messageText() {
-    return options.greeting() + " Michael,\nPlease advise if the attached paperwork is good to go? Load#: " + options.load() + ".\n" + options.gratitude();
   }
 }, {
   name: "put data in PLS PRO",
@@ -372,69 +374,25 @@ var samples = [{
   messageText: function messageText() {
     return "" + options.greeting() + options.receiver() + ",\nPlease advise if the customer" + options.customer() + " has paid for " + options.load() + "?\n" + options.gratitude();
   }
+}, {
+  name: "no paperwork in Onbase yet",
+  section: "misc",
+  availableOptions: ["greeting", "receiver", "load", "gratitude"],
+  messageText: function messageText() {
+    return "" + options.greeting() + options.receiver() + ",\nWe haven't received the paperwork for " + options.load() + " from the carrier yet.\n" + options.gratitude();
+  }
+}, {
+  name: "WEYERHAEUSER",
+  section: "misc",
+  availableOptions: ["greeting", "load", "gratitude"],
+  messageText: function messageText() {
+    return options.greeting() + " Michael,\nPlease advise if the attached paperwork is good to go? Load#: " + options.load() + ".\n" + options.gratitude();
+  }
+}, {
+  name: "statistics",
+  section: "misc",
+  availableOptions: ["released", "otherActivities"],
+  messageText: function messageText() {
+    return "Released: " + options.released() + options.fsBilling() + options.audit() + options.report();
+  }
 }];
-
-var currentSample = void 0;
-
-AddDataFromInputsToTextarea();
-function AddDataFromInputsToTextarea() {
-
-  function updateTextarea() {
-    for (var i = 0; i < samples.length; i++) {
-      if (samples[i].name === currentSample) {
-        textarea.value = samples[i].messageText();
-      }
-    }
-  }
-  var textarea = document.getElementById("textarea");
-  var textInputs = document.getElementsByClassName("inputText");
-  var subjectLine = document.getElementById("subject");
-  var includeLoadToSubjectLineCheckbox = document.getElementById("loadToSubject");
-  for (var i = 0; i < textInputs.length; i++) {
-    textInputs[i].onkeyup = function () {
-      updateTextarea();
-      if (includeLoadToSubjectLineCheckbox.checked) {
-        subjectLine.value = options.subject();
-      }
-    };
-  }
-
-  includeLoadToSubjectLineCheckbox.onchange = function () {
-    if (!includeLoadToSubjectLineCheckbox.checked) {
-      subjectLine.value = "";
-    } else {
-      subjectLine.value = options.subject();
-    }
-  };
-
-  var page = document.getElementById("inputPage");
-  var pageFrom = document.getElementById("inputPageFrom");
-  var pageTo = document.getElementById("inputPageTo");
-  page.onkeyup = function () {
-    pageFrom.value = "";
-    pageTo.value = "";
-    updateTextarea();
-  };
-  pageFrom.onkeyup = function () {
-    page.value = "";
-    updateTextarea();
-  };
-  pageTo.onkeyup = function () {
-    page.value = "";
-    updateTextarea();
-  };
-
-  UpdateTextAreaOnCheckboxChange("checkboxGreeting");
-  UpdateTextAreaOnCheckboxChange("checkboxRate");
-  UpdateTextAreaOnCheckboxChange("checkboxDirection");
-  UpdateTextAreaOnCheckboxChange("checkboxGratitude");
-
-  function UpdateTextAreaOnCheckboxChange(checkboxClass) {
-    var checkboxClassElements = document.getElementsByClassName(checkboxClass);
-    for (var _i = 0; _i < checkboxClassElements.length; _i++) {
-      checkboxClassElements[_i].onchange = function () {
-        updateTextarea();
-      };
-    }
-  }
-}

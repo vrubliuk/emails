@@ -33,7 +33,8 @@
         currentSample = this.name;
         hideAllOptions();
         clearTextInputs();
-        lockEmail();
+        access.lock();
+        window.getSelection().removeAllRanges();
         this.textarea.value = this.messageText();
         this.showAvailableOptions();
         if (this.name === "statistics") {
@@ -110,12 +111,37 @@
     fakeTextarea.parentNode.removeChild(fakeTextarea);
     showSnackbar("Successfully copied", "green");
   }
+
+  // function accordion() {
+  //   let acc = document.getElementsByClassName("accordion");
+  //   for (let i = 0; i < acc.length; i++) {
+  //     acc[i].onclick = function () {
+  //       this.classList.toggle("active");
+  //       let panel = this.nextElementSibling;
+  //       if (panel.style.maxHeight) {
+  //         panel.style.maxHeight = null;
+  //       } else {
+  //         panel.style.maxHeight = panel.scrollHeight + "px";
+  //       }
+  //     };
+  //   }
+  // }
+
+    
   function accordion() {
     let acc = document.getElementsByClassName("accordion");
     for (let i = 0; i < acc.length; i++) {
       acc[i].onclick = function () {
+        let index = i;
+        for (let i = 0; i < acc.length; i++) {
+          if (index !== i) {
+            acc[i].classList.remove("active");
+            acc[i].nextElementSibling.style.maxHeight = null;
+          }
+        }
         this.classList.toggle("active");
         let panel = this.nextElementSibling;
+        
         if (panel.style.maxHeight) {
           panel.style.maxHeight = null;
         } else {
@@ -188,24 +214,46 @@ function AddDataFromInputsToTextarea() {
   }
 }
 
-  function lockEmail () {
+
+  let access = new accessToEmail();
+  function accessToEmail() {
     let subject = document.getElementById("subject");
     let textarea = document.getElementById("textarea");
-    
+    let subjectCover = document.getElementById("subjectCover");
+    let textareaCover = document.getElementById("textareaCover");
+    let lockButton = document.getElementById("lockButton");
+    let lockIcon = document.getElementById("lockIcon");
+    this.lock = () => {
+      subjectCover.style.display = "block";
+      textareaCover.style.display = "block";
+      subject.style.backgroundColor = "#21252b";
+      textarea.style.backgroundColor = "#21252b";
+      subject.readOnly = true;
+      textarea.readOnly = true;
+      lockButton.disabled = false;
+      lockButton.style.cursor = "pointer";
+      lockIcon.className = "fa fa-lock";
+      lockIcon.style.color = "#be5046";
+
+
+    };
+    this.unlock = () => {
+      if (lockIcon.className === "fa fa-unlock-alt") return;
+      subjectCover.style.display = "";
+      textareaCover.style.display = "";
+      subject.style.backgroundColor = "";
+      textarea.style.backgroundColor = "";
+      subject.readOnly = false;
+      textarea.readOnly = false;
+      lockButton.disabled = true;
+      lockButton.style.cursor = "";
+      lockIcon.className = "fa fa-unlock-alt";
+      lockIcon.style.color = "#98c379";
+      hideAllOptions();
+    };
   }
 
-
-
-  function unlockEmail () {
-    hideAllOptions();
-
-
-  }
-
-
-
-
-
+document.getElementById("lockButton").onclick = access.unlock;
 
   function hideAllOptions() {
     let options = document.getElementsByClassName("rowOptions");

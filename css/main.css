@@ -1,4 +1,4 @@
-#container:after {
+#container:after, #sectionButton:after {
   content: "";
   display: table;
   clear: both; }
@@ -33,7 +33,8 @@ a:visited {
   background: rgba(97, 175, 239, 0.996); }
 
 #container {
-  margin: 0 auto; }
+  margin: 0 auto;
+  min-width: 1730px; }
 
 #panelMenu {
   width: 25%;
@@ -122,15 +123,39 @@ div.accordionPanel {
 #panelWorking {
   width: 75%;
   float: right;
-  height: 100%; }
+  height: 100vh; }
 
 #panelWorkingContainer {
   display: block;
   width: 75%;
   margin: 0 auto;
-  margin-top: 50px; }
+  margin-top: 42px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative; }
+
+#sectionButton {
+  text-align: center; }
+
+.buttonFinal {
+  float: left;
+  height: 42px;
+  width: 49%;
+  border: none;
+  background-color: #61afef;
+  color: whitesmoke;
+  cursor: pointer;
+  font-size: 20px; }
+
+#buttonCopyMessage {
+  float: right;
+  background-color: #e5c07b; }
 
 #subjectContainer {
+  margin-top: 42px;
+  position: relative;
   padding: 5px;
   background-color: #21252b;
   height: 45px;
@@ -161,7 +186,7 @@ div.accordionPanel {
       width: 250px; }
 
 #textareaContainer {
-  margin-bottom: 50px;
+  margin-bottom: 42px;
   position: relative; }
 
 #textarea {
@@ -171,33 +196,29 @@ div.accordionPanel {
   background-color: #2c313a;
   resize: none;
   width: 100%;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   padding: 10px;
   overflow: auto;
   border: solid 5px #21252b; }
 
+#subjectCover, #textareaCover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none; }
+
 #lockButton {
+  position: absolute;
   font-size: 20px;
   border: none;
   background-color: transparent;
   height: 40px;
   width: 40px;
-  float: right;
-  margin-top: -40px; }
+  margin-top: -40px;
+  right: 0px; }
   #lockButton #lockIcon {
     display: inline-block;
     width: 100%;
-    color: #be5046;
-    display: none;
-    cursor: pointer; }
-  #lockButton #unlockIcon {
-    display: inline-block;
-    width: 100%;
-    color: #98c379;
-    cursor: pointer; }
+    color: #98c379; }
 
 #sectionOptions {
   font-size: 18px;
@@ -332,24 +353,6 @@ input:checked + .slider:before {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg); }
-
-#sectionButton {
-  text-align: center; }
-
-.buttonFinal {
-  display: inline-block;
-  height: 50px;
-  width: 150px;
-  border: none;
-  background-color: #61afef;
-  color: whitesmoke;
-  cursor: pointer;
-  margin: 10px;
-  font-size: 20px;
-  border-radius: 5px; }
-
-#buttonCopyMessage {
-  background-color: #e5c07b; }
 
 #snackbar {
   visibility: hidden;

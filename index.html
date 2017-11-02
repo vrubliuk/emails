@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emails</title>
     <link rel="icon" href="images/icon.png">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-    crossorigin="anonymous">
+        crossorigin="anonymous">
     <link href="css/main.css" rel="stylesheet">
 </head>
 
@@ -27,7 +27,7 @@
             <div class="accordionPanel">
                 <!-- <div class="email">BOL is not signed</div> -->
             </div>
-           
+
             <button class="accordion">RATES ISSUES</button>
             <div class="accordionPanel"></div>
             <button class="accordion">STATUS ISSUES</button>
@@ -46,25 +46,31 @@
         <div id="panelWorking">
 
             <div id="panelWorkingContainer">
-                <div id="subjectContainer">
-                    <div id="subjectTitle">Subject:</div>
-                    <div id="subjectValue">
-                        <input type="text" name="subject" id="subject" >
+                    <div id="sectionButton">
+                            <button id="buttonCreateEmail" class="buttonFinal">Create email</button>
+                            <button id="buttonCopyMessage" class="buttonFinal">Copy message</button>
+                        </div>
+        
+                     
+                    <div id="subjectContainer">
+                        <div id="subjectCover"></div>
+                        <div id="subjectTitle">Subject:</div>
+                        <div id="subjectValue">
+                            <input type="text" name="subject" id="subject">
+                        </div>
                     </div>
-                </div>
+                    <div id="textareaContainer">
+                        <div>
+                            <div id="textareaCover"></div>
+                            <textarea id="textarea" name="message" rows="10" placeholder="Enter text here..."></textarea>
+                        </div>
+                        <button id="lockButton" disabled>
+                            <!-- <i id="lockIcon" class="fa fa-lock" aria-hidden="true"></i> -->
+                            <i id="lockIcon" class="fa fa-unlock-alt" aria-hidden="true"></i>
+                        </button>
+                    </div>
+           
 
-                <div id="textareaContainer">
-               
-                    <textarea id="textarea" name="message" rows="10" placeholder="Enter text here..." ></textarea>
-                    <button id="lockButton">
-                        <i id="lockIcon" class="fa fa-lock" aria-hidden="true"></i>
-                        <i id="unlockIcon" class="fa fa-unlock-alt" aria-hidden="true"></i>
-                    </button>
-                    
-
-
-
-                </div>
 
                 <form id="sectionOptions">
                     <!-- <p>Available options:</p> -->
@@ -126,7 +132,7 @@
                         <span class="rowLabel">Shipment numbers:</span>
                         <input type="text" id="inputShipmentPW" class="inputText" placeholder="on BOL"> /
                         <input type="text" id="inputShipmentPRO" class="inputText" placeholder="in PLS PRO">
-                    
+
                     </div>
                     <div id="rowIncorrectCity" class="rowOptions">
                         <span class="rowLabel">Incorrect point:</span>
@@ -144,26 +150,26 @@
                         <span class="rowLabel">Cities:</span>
                         <input type="text" id="inputCityPW" class="inputText" placeholder="on BOL"> /
                         <input type="text" id="inputCityPRO" class="inputText" placeholder="in PLS PRO">
-               
+
                     </div>
                     <div id="rowDate" class="rowOptions">
                         <span class="rowLabel">Dates:</span>
                         <input type="text" id="inputDatePW" class="inputText" placeholder="on BOL"> /
                         <input type="text" id="inputDatePRO" class="inputText" placeholder="in PLS PRO">
-                     
+
                     </div>
                     <div id="rowWeight" class="rowOptions">
                         <span class="rowLabel">Weights:</span>
                         <input type="text" id="inputWeightPW" class="inputText" placeholder="on BOL"> /
                         <input type="text" id="inputWeightPRO" class="inputText" placeholder="in PLS PRO">
-                        
+
                     </div>
 
                     <div id="rowRate" class="rowOptions">
                         <span class="rowLabel">Rates:</span>
                         <input type="text" id="inputRatePW" class="inputText" placeholder="on invoice"> /
                         <input type="text" id="inputRatePRO" class="inputText" placeholder="in PLS PRO">
-                
+
                     </div>
 
                     <div id="rowClient" class="rowOptions">
@@ -182,7 +188,7 @@
                         <span class="rowLabel">Carrier's names:</span>
                         <input type="text" id="inputCarrierPW" class="inputText" placeholder="on invoice"> /
                         <input type="text" id="inputCarrierPRO" class="inputText" placeholder="in PLS PRO">
-                       
+
                     </div>
                     <div id="rowPickupDate" class="rowOptions">
                         <span class="rowLabel">Pickup date:</span>
@@ -212,7 +218,7 @@
                         <input type="text" id="inputReleased" class="inputText">
                     </div>
                     <div id="rowOtherActivities" class="rowOptions">
-        
+
                         <span class="rowLabel">FS Billing emails:</span>
                         <label class="switch">
                             <input id="fsBilling" type="checkbox" class="checkboxOtherActivities">
@@ -246,16 +252,16 @@
                         </label>
                     </div>
                 </form>
-                <div id="sectionButton">
+                <!-- <div id="sectionButton">
                     <button id="buttonCreateEmail" class="buttonFinal">Create email</button>
                     <button id="buttonCopyMessage" class="buttonFinal">Copy message</button>
-                </div>
+                </div> -->
             </div>
         </div>
         <div id="snackbar"></div>
     </div>
-    <script src="javascript/samples.js" defer></script>
-    <script src="javascript/main.js" defer></script>
+    <script src="javascript/samples-dist.js" defer></script>
+    <script src="javascript/main-dist.js" defer></script>
 </body>
 
 </html>
