@@ -1,10 +1,18 @@
 "use strict";
 
 var notes = ["emailed to confirm delivery", "emailed AE regarding rates", "emailed AE about the load status", "information on BOL doesn't match PLS PRO", "don't pay carrier until customer accepts paperwork", "emailed Support Request to put pro and date", "released w/o BOL per AE", "shipment number on BOL doesn't match PLS PRO", "origin/destination city on BOL doesn't match PLS PRO", "date on BOL doesn't match PLS PRO", "weight on BOL doesn't match PLS PRO"];
+var currentSample = void 0;
 
 var options = {
   subject: function subject() {
-    return this.load();
+    if (currentSample === "statistics") {
+      var date = new Date();
+      var month = ("0" + (date.getMonth() + 1)).slice(-2);
+      var day = ("0" + date.getDate()).slice(-2);
+      var year = date.getFullYear();
+      return "statistics " + month + "/" + day + "/" + year;
+    }
+    return this.load() ? this.load() : "";
   },
   load: function load() {
     var data = document.getElementById("inputload").value;

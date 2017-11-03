@@ -13,16 +13,23 @@ let notes = [
   "date on BOL doesn't match PLS PRO",
   "weight on BOL doesn't match PLS PRO"
 ];
+let currentSample;
 
 let options = {
   subject() {
-    return this.load();
+    if (currentSample === "statistics") {
+      let date = new Date();
+      let month = ("0" + (date.getMonth() + 1)).slice(-2);
+      let day = ("0" + date.getDate()).slice(-2);
+      let year = date.getFullYear();
+      return `statistics ${month}/${day}/${year}`;
+    }
+    return this.load() ? this.load() : "";
   },
   load(){
     let data = document.getElementById("inputload").value;
     return data ? data : "";
   },
-  
   greeting () {
     let checkboxGreeting = document.getElementsByClassName("checkboxGreeting");
     for (let i = 0; i < checkboxGreeting.length; i++) {

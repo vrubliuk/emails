@@ -10,8 +10,8 @@ function _classCallCheck(instance, Constructor) {
   "use strict";
 
   //GENERAL
+  // let currentSample;
 
-  var currentSample = void 0;
   includeNotesToMarkup();
   includeSamplesToMarkup();
 
@@ -61,6 +61,10 @@ function _classCallCheck(instance, Constructor) {
 
   for (var i = 0; i < samples.length; i++) {
     new Email(samples[i]);
+  }
+
+  function getCurrentSample() {
+    return currentSample;
   }
 
   function includeNotesToMarkup() {
@@ -303,6 +307,8 @@ function _classCallCheck(instance, Constructor) {
     showSnackbar("Successfully copied", "green");
   }
 
+  var signature = "%0A%0AValentyn Rubliuk%0AFS Billing Team Lead%0APLS Logistics Services";
+
   function createMessage() {
     var text = document.getElementById("textarea").value;
     if (!text) {
@@ -311,7 +317,11 @@ function _classCallCheck(instance, Constructor) {
     }
     var correctedText = text.replace(/\n/g, "%0A");
     var subject = document.getElementById("subject").value;
-    location.href = "mailto:?subject=" + subject + "&body=" + correctedText;
+    if (subject) {
+      location.href = "mailto:?subject=" + subject + "&body=" + correctedText + signature;
+    } else {
+      location.href = "mailto:?body=" + correctedText + signature;
+    }
     showSnackbar("Creating email", "green");
   }
 

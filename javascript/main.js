@@ -2,7 +2,7 @@
   "use strict";
 
   //GENERAL
-  let currentSample;
+  // let currentSample;
   includeNotesToMarkup();
   includeSamplesToMarkup();
 
@@ -54,6 +54,9 @@
   }
 
 
+  function getCurrentSample() {
+    return currentSample;
+  }
 
   function includeNotesToMarkup() {
     let section = document.getElementById("notesPanel");
@@ -289,6 +292,9 @@ document.getElementById("lockButton").onclick = access.unlock;
     showSnackbar("Successfully copied", "green");
   }
 
+
+  let signature = `%0A%0AValentyn Rubliuk%0AFS Billing Team Lead%0APLS Logistics Services`;
+
   function createMessage() {
     let text = document.getElementById("textarea").value;
     if (!text) {
@@ -297,7 +303,11 @@ document.getElementById("lockButton").onclick = access.unlock;
     }
     let correctedText = text.replace(/\n/g, "%0A");
     let subject = document.getElementById("subject").value;
-    location.href = `mailto:?subject=${subject}&body=${correctedText}`;
+    if (subject) {
+      location.href = `mailto:?subject=${subject}&body=${correctedText}${signature}`;
+    } else {
+      location.href = `mailto:?body=${correctedText}${signature}`;
+    }
     showSnackbar("Creating email", "green");
   }
 
