@@ -315,7 +315,7 @@ function _classCallCheck(instance, Constructor) {
       showSnackbar("Message is empty!", "red");
       return;
     }
-    var correctedText = text.replace(/\n/g, "%0A");
+    var correctedText = text.replace(/\n/g, "%0A").replace(/#/g, "%23");
     var subject = document.getElementById("subject").value;
     if (subject) {
       location.href = "mailto:?subject=" + subject + "&body=" + correctedText + signature;

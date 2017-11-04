@@ -301,7 +301,7 @@ document.getElementById("lockButton").onclick = access.unlock;
       showSnackbar("Message is empty!", "red");
       return;
     }
-    let correctedText = text.replace(/\n/g, "%0A");
+    let correctedText = text.replace(/\n/g, "%0A").replace(/#/g, "%23");
     let subject = document.getElementById("subject").value;
     if (subject) {
       location.href = `mailto:?subject=${subject}&body=${correctedText}${signature}`;

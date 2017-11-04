@@ -170,7 +170,7 @@ let options = {
     let checkboxGratitude = document.getElementsByClassName("checkboxGratitude");
     for (let i = 0; i < checkboxGratitude.length; i++) {
       if (checkboxGratitude[i].checked) {
-        return checkboxGratitude[i].value;
+        return checkboxGratitude[i].value ? `\n${checkboxGratitude[i].value}` : "";
       }
     }
   }
@@ -182,7 +182,7 @@ let samples = [
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "page", "pageRange", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if we can use the attached BOL${options.page()}${options.pageRange()} to process ${options.load()}? Looks like it is not signed by the receiver.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if we can use the attached BOL${options.page()}${options.pageRange()} to process ${options.load()}? Looks like it is not signed by the receiver.${options.gratitude()}`;
     }
   },
   {
@@ -190,7 +190,7 @@ let samples = [
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "page", "pageRange", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} is legible enough to process ${options.load()}?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} is legible enough to process ${options.load()}?${options.gratitude()}`;
     }
   },
   
@@ -200,7 +200,7 @@ let samples = [
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if we can use the attached paperwork${options.page()}${options.pageRange()} as the BOL to process ${options.load()}?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if we can use the attached paperwork${options.page()}${options.pageRange()} as the BOL to process ${options.load()}?${options.gratitude()}`;
     }
   },
   {
@@ -208,7 +208,7 @@ let samples = [
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "document", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached paperwork${options.page()}${options.pageRange()} is sufficient to process ${options.load()}? We don't have ${options.document()}.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached paperwork${options.page()}${options.pageRange()} is sufficient to process ${options.load()}? We don't have ${options.document()}.${options.gratitude()}`;
     }
   },
   {
@@ -216,7 +216,7 @@ let samples = [
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease send the release sheet for ${options.load()}.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease send the release sheet for ${options.load()}.${options.gratitude()}`;
     }
   },
   {
@@ -224,7 +224,7 @@ let samples = [
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease confirm the delivery in PLS PRO.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease confirm the delivery in PLS PRO.${options.gratitude()}`;
     }
   },
   {
@@ -232,7 +232,7 @@ let samples = [
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nAccording to the note in PLS PRO, there was a possible claim on ${options.load()}. Can we process this load now?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nAccording to the note in PLS PRO, there was a possible claim on ${options.load()}. Can we process this load now?${options.gratitude()}`;
     }
   },
 
@@ -241,7 +241,7 @@ let samples = [
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the claim on load ${options.load()} has already been resolved? Can we pay the carrier and bill the customer?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the claim on load ${options.load()} has already been resolved? Can we pay the carrier and bill the customer?${options.gratitude()}`;
     }
   },
   {
@@ -249,7 +249,7 @@ let samples = [
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nWe've received the paperwork for ${options.load()} but it’s on shipment planning status in PLS PRO. Is something wrong with this load or is there another id# for this paperwork?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nWe've received the paperwork for ${options.load()} but it’s on shipment planning status in PLS PRO. Is something wrong with this load or is there another id# for this paperwork?${options.gratitude()}`;
     }
   },
   {
@@ -257,7 +257,7 @@ let samples = [
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nWe've received the paperwork for ${options.load()} but it’s closed in PLS PRO. Is something wrong with this load or is there another load id# for this paperwork?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nWe've received the paperwork for ${options.load()} but it’s closed in PLS PRO. Is something wrong with this load or is there another load id# for this paperwork?${options.gratitude()}`;
     }
   },
   {
@@ -265,7 +265,7 @@ let samples = [
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if we can reopen and process ${options.load()} with the attached paperwork?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if we can reopen and process ${options.load()} with the attached paperwork?${options.gratitude()}`;
     }
   },
   {
@@ -273,7 +273,7 @@ let samples = [
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPer the carrier this load ${options.load()} was cancelled. Can we close it in the system?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPer the carrier this load ${options.load()} was cancelled. Can we close it in the system?${options.gratitude()}`;
     }
   },
   {
@@ -281,7 +281,7 @@ let samples = [
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "fee", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if we should add $${options.fee()} fee to the carrier's and shipper's rates in PLS PRO for ${options.load()}?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if we should add $${options.fee()} fee to the carrier's and shipper's rates in PLS PRO for ${options.load()}?${options.gratitude()}`;
     }
   },
   {
@@ -289,7 +289,7 @@ let samples = [
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude", "rate"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise which carrier's rate is correct for ${options.load()}? The carrier’s invoice is showing $${options.ratePW()}, PLS PRO - $${options.ratePRO()}.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise which carrier's rate is correct for ${options.load()}? The carrier’s invoice is showing $${options.ratePW()}, PLS PRO - $${options.ratePRO()}.${options.gratitude()}`;
     }
   },
   {
@@ -297,7 +297,7 @@ let samples = [
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise the correct rates for ${options.load()}. PLS PRO is showing $0.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise the correct rates for ${options.load()}. PLS PRO is showing $0.${options.gratitude()}`;
     }
   },
   {
@@ -305,7 +305,7 @@ let samples = [
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "load", "client", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the ${options.client()} rate is correct for ${options.load()}. PLS PRO is showing $0.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the ${options.client()} rate is correct for ${options.load()}. PLS PRO is showing $0.${options.gratitude()}`;
     }
   },
   {
@@ -313,7 +313,7 @@ let samples = [
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise which weight we should put in PLS PRO for ${options.load()} to reflect the correct rates (as they are based on hundred weight)? \n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise which weight we should put in PLS PRO for ${options.load()} to reflect the correct rates (as they are based on hundred weight)?${options.gratitude()}`;
     }
   },
   {
@@ -321,7 +321,7 @@ let samples = [
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise what number of pieces we should put in PLS for ${options.load()} to reflect the correct rates?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise what number of pieces we should put in PLS for ${options.load()} to reflect the correct rates?${options.gratitude()}`;
     }
   },
   {
@@ -329,7 +329,7 @@ let samples = [
     section: "something doesn't match", 
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "shipment", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The shipment number on it${options.shipmentPW()} doesn't match PLS PRO${options.shipmentPRO()}.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The shipment number on it${options.shipmentPW()} doesn't match PLS PRO${options.shipmentPRO()}.${options.gratitude()}`;
     }
   },
   {
@@ -337,7 +337,7 @@ let samples = [
     section: "something doesn't match",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "incorrectCity", "city", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The ${options.incorrectCity()} city on it${options.cityPW()} doesn't match PLS PRO${options.cityPRO()}.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The ${options.incorrectCity()} city on it${options.cityPW()} doesn't match PLS PRO${options.cityPRO()}.${options.gratitude()}`;
     }
   },
   {
@@ -345,7 +345,7 @@ let samples = [
     section: "something doesn't match",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "date", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The date on it${options.datePW()} doesn't match PLS PRO${options.datePRO()}.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The date on it${options.datePW()} doesn't match PLS PRO${options.datePRO()}.${options.gratitude()}`;
     }
   },
   {
@@ -353,7 +353,7 @@ let samples = [
     section: "something doesn't match",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "weight", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} is complete to process ${options.load()}? The weight on it${options.weightPW()} doesn't match PLS PRO${options.weightPRO()}.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} is complete to process ${options.load()}? The weight on it${options.weightPW()} doesn't match PLS PRO${options.weightPRO()}.${options.gratitude()}`;
     }
   },
   {
@@ -361,7 +361,7 @@ let samples = [
     section: "carrier issues",
     availableOptions: ["greeting", "receiver", "load", "carrier", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nThere are different carrier's names on the invoice${options.carrierPW()} and in PLS PRO${options.carrierPRO()}. The load is ${options.load()}. Please advise. Is there another id# this paperwork goes to?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nThere are different carrier's names on the invoice${options.carrierPW()} and in PLS PRO${options.carrierPRO()}. The load is ${options.load()}. Please advise. Is there another id# this paperwork goes to?${options.gratitude()}`;
     }
   },
   {
@@ -369,7 +369,7 @@ let samples = [
     section: "carrier issues",
     availableOptions: ["greeting", "receiver", "load", "pickupDate", "cities", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nCould you please provide the correct BOL for this shipment?\nPLS LOAD #: ${options.load()}\nPickup date: ${options.pickupDate()}\nFrom: ${options.cityFrom()}\nTo: ${options.cityTo()}\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nCould you please provide the correct BOL for this shipment?\nPLS LOAD #: ${options.load()}\nPickup date: ${options.pickupDate()}\nFrom: ${options.cityFrom()}\nTo: ${options.cityTo()}${options.gratitude()}`;
     }
   },
   {
@@ -377,7 +377,7 @@ let samples = [
     section: "carrier issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease see below the carrier's answer regarding the paperwork for ${options.load()}. Could you help to get the paperwork? Or should we close the load?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease see below the carrier's answer regarding the paperwork for ${options.load()}. Could you help to get the paperwork? Or should we close the load?${options.gratitude()}`;
     }
   },
   {
@@ -385,7 +385,7 @@ let samples = [
     section: "carrier issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease see below and advise. Per the carrier they don't have ${options.load()} in their system. Should we close it in the system?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease see below and advise. Per the carrier they don't have ${options.load()} in their system. Should we close it in the system?${options.gratitude()}`;
     }
   },
   
@@ -394,7 +394,7 @@ let samples = [
     section: "TO SUPPORT REQUEST",
     availableOptions: ["greeting", "load", "numberPRO", "freightBillDate", "gratitude"],
     messageText () {
-      return `${options.greeting()},\nI am not able to add pro# and date for this load ${options.load()}. Please put the following data in PLS PRO FLEX:\nPRO#: ${options.numberPRO()}\nFreight bill date: ${options.freightBillDate()}\n${options.gratitude()}`;
+      return `${options.greeting()},\nI am not able to add pro# and date for this load ${options.load()}. Please put the following data in PLS PRO FLEX:\nPRO#: ${options.numberPRO()}\nFreight bill date: ${options.freightBillDate()}${options.gratitude()}`;
     }
   },
 
@@ -403,7 +403,7 @@ let samples = [
     section: "TO SUPPORT REQUEST",
     availableOptions: ["greeting", "gratitude"],
     messageText () {
-      return `${options.greeting()},\nPlease be informed that PLS PRO FLEX hasn’t been working about 10 min. We can login but nothing else.\n${options.gratitude()}`;
+      return `${options.greeting()},\nPlease be informed that PLS PRO FLEX hasn’t been working about 10 min. We can login but nothing else.${options.gratitude()}`;
     }
   },
   {
@@ -411,7 +411,7 @@ let samples = [
     section: "TO SUPPORT REQUEST",
     availableOptions: ["greeting", "gratitude"],
     messageText () {
-      return `${options.greeting()},\nPlease be informed that we are unable to release loads to field billing status about 10 minutes in PLS PRO FLEX.\n${options.gratitude()}`;
+      return `${options.greeting()},\nPlease be informed that we are unable to release loads to field billing status about 10 minutes in PLS PRO FLEX.${options.gratitude()}`;
     }
   },
   {
@@ -419,7 +419,7 @@ let samples = [
     section: "TO ACCOUNTS RECEIVABLE",
     availableOptions: ["greeting", "receiver", "load", "customer", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nPlease advise if the customer${options.customer()} has paid for ${options.load()}?\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the customer${options.customer()} has paid for ${options.load()}?${options.gratitude()}`;
     }
   },
   {
@@ -427,7 +427,7 @@ let samples = [
     section: "misc",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()}${options.receiver()},\nWe haven't received the paperwork for ${options.load()} from the carrier yet.\n${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nWe haven't received the paperwork for ${options.load()} from the carrier yet.${options.gratitude()}`;
     }
   },
   {
@@ -435,7 +435,7 @@ let samples = [
     section: "misc",
     availableOptions: ["greeting", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()} Michael,\nPlease advise if the attached paperwork is good to go? Load#: ${options.load()}.\n${options.gratitude()}`;
+      return `${options.greeting()} Michael,\nPlease advise if the attached paperwork is good to go? Load#: ${options.load()}.${options.gratitude()}`;
     }
   },
   {
