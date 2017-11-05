@@ -47,7 +47,12 @@ function _classCallCheck(instance, Constructor) {
       clearTextInputs();
       access.lock();
       window.getSelection().removeAllRanges();
-      _this.textarea.value = _this.messageText();
+      var text = _this.messageText();
+      if (text.charAt(0) === ",") {
+        text = text.slice(1);
+        text = text.replace(/\n/, '');
+      }
+      _this.textarea.value = text;
       _this.showAvailableOptions();
       if (_this.name === "statistics") {
         var date = new Date();
@@ -179,7 +184,19 @@ function _classCallCheck(instance, Constructor) {
     function updateTextarea() {
       for (var _i7 = 0; _i7 < samples.length; _i7++) {
         if (samples[_i7].name === currentSample) {
-          textarea.value = samples[_i7].messageText();
+          var text = samples[_i7].messageText();
+
+          if (text.charAt(0) === ",") {
+            text = text.slice(1);
+            text = text.replace(/\n/, '');
+
+            // if (text.charAt(0) === "\\") {
+            //   text = text.slice(2);
+            // }
+          }
+          // alert(text);
+          textarea.value = text;
+          // textarea.value = samples[i].messageText();
         }
       }
     }
@@ -324,6 +341,12 @@ function _classCallCheck(instance, Constructor) {
     }
     showSnackbar("Creating email", "green");
   }
+
+  //jquery plugin "INPUT MASK"
+  $("#inputDatePW").inputmask({ "alias": "mm/dd/yyyy" });
+  $("#inputDatePRO").inputmask({ "alias": "mm/dd/yyyy" });
+  $("#inputPickupDate").inputmask({ "alias": "mm/dd/yyyy" });
+  $("#inputFreightBillDate").inputmask({ "alias": "mm/dd/yyyy" });
 
   //FOOTER
   function showSnackbar(text, color) {

@@ -23,13 +23,26 @@ var options = {
     for (var i = 0; i < checkboxGreeting.length; i++) {
       if (checkboxGreeting[i].checked) {
         return checkboxGreeting[i].value;
+
+        //   return checkboxGreeting[i].value;
+        // }
+
+        // if (this.receiver()) {
+        //   return checkboxGreeting[i].value;
+        // } else {
+        //   return `${checkboxGreeting[i].value}\n`;
+        // } 
       }
     }
   },
   receiver: function receiver() {
     var data = document.getElementById("inputReceiver").value;
     var Data = data.charAt(0).toUpperCase() + data.slice(1);
-    return data ? " " + Data : "";
+    if (this.greeting()) {
+      return data ? " " + Data : "";
+    } else {
+      return data ? "" + Data : "";
+    }
   },
   page: function page() {
     var data = document.getElementById("inputPage").value;
@@ -43,6 +56,10 @@ var options = {
   fee: function fee() {
     var data = document.getElementById("inputFee").value;
     return data ? data : "";
+  },
+  typeFee: function typeFee() {
+    var data = document.getElementById("inputTypeFee").value;
+    return data ? " " + data : "";
   },
   document: function (_document) {
     function document() {
@@ -115,11 +132,11 @@ var options = {
     return data ? " (" + data + " lbs)" : "";
   },
   carrierPRO: function carrierPRO() {
-    var data = document.getElementById("inputCarrierPRO").value;
+    var data = document.getElementById("inputCarrierPRO").value.toUpperCase();
     return data ? " (" + data + ")" : "";
   },
   carrierPW: function carrierPW() {
-    var data = document.getElementById("inputCarrierPW").value;
+    var data = document.getElementById("inputCarrierPW").value.toUpperCase();
     return data ? " (" + data + ")" : "";
   },
   pickupDate: function pickupDate() {
@@ -127,11 +144,11 @@ var options = {
     return data ? data : "";
   },
   cityFrom: function cityFrom() {
-    var data = document.getElementById("inputCityFrom").value;
+    var data = document.getElementById("inputCityFrom").value.toUpperCase();
     return data ? data : "";
   },
   cityTo: function cityTo() {
-    var data = document.getElementById("inputCityTo").value;
+    var data = document.getElementById("inputCityTo").value.toUpperCase();
     return data ? data : "";
   },
   numberPRO: function numberPRO() {
@@ -143,7 +160,7 @@ var options = {
     return data ? data : "";
   },
   customer: function customer() {
-    var data = document.getElementById("inputCustomer").value;
+    var data = document.getElementById("inputCustomer").value.toUpperCase();
     return data ? " (" + data + ")" : "";
   },
   released: function released() {
@@ -233,14 +250,14 @@ var samples = [{
   section: "status issues",
   availableOptions: ["greeting", "receiver", "load", "gratitude"],
   messageText: function messageText() {
-    return "" + options.greeting() + options.receiver() + ",\nWe've received the paperwork for " + options.load() + " but it\u2019s on shipment planning status in PLS PRO. Is something wrong with this load or is there another id# for this paperwork?" + options.gratitude();
+    return "" + options.greeting() + options.receiver() + ",\nWe've received the paperwork for " + options.load() + " but it\u2019s on shipment planning status in PLS PRO.\nIs something wrong with this load or is there another id# for this paperwork?" + options.gratitude();
   }
 }, {
   name: "closed",
   section: "status issues",
   availableOptions: ["greeting", "receiver", "load", "gratitude"],
   messageText: function messageText() {
-    return "" + options.greeting() + options.receiver() + ",\nWe've received the paperwork for " + options.load() + " but it\u2019s closed in PLS PRO. Is something wrong with this load or is there another load id# for this paperwork?" + options.gratitude();
+    return "" + options.greeting() + options.receiver() + ",\nWe've received the paperwork for " + options.load() + " but it\u2019s closed in PLS PRO.\nIs something wrong with this load or is there another load id# for this paperwork?" + options.gratitude();
   }
 }, {
   name: "reopen",
@@ -259,9 +276,9 @@ var samples = [{
 }, {
   name: "additional fee",
   section: "rates issues",
-  availableOptions: ["greeting", "receiver", "fee", "load", "gratitude"],
+  availableOptions: ["greeting", "receiver", "fee", "typeFee", "load", "gratitude"],
   messageText: function messageText() {
-    return "" + options.greeting() + options.receiver() + ",\nPlease advise if we should add $" + options.fee() + " fee to the carrier's and shipper's rates in PLS PRO for " + options.load() + "?" + options.gratitude();
+    return "" + options.greeting() + options.receiver() + ",\nPlease advise if we should add $" + options.fee() + options.typeFee() + " fee to the carrier's and shipper's rates in PLS PRO for " + options.load() + "?" + options.gratitude();
   }
 }, {
   name: "mismatching rates",
@@ -331,7 +348,7 @@ var samples = [{
   section: "carrier issues",
   availableOptions: ["greeting", "receiver", "load", "carrier", "gratitude"],
   messageText: function messageText() {
-    return "" + options.greeting() + options.receiver() + ",\nThere are different carrier's names on the invoice" + options.carrierPW() + " and in PLS PRO" + options.carrierPRO() + ". The load is " + options.load() + ". Please advise. Is there another id# this paperwork goes to?" + options.gratitude();
+    return "" + options.greeting() + options.receiver() + ",\nThere are different carrier's names on the invoice" + options.carrierPW() + " and in PLS PRO" + options.carrierPRO() + ". The load is " + options.load() + ".\nPlease advise. Is there another id# this paperwork goes to?" + options.gratitude();
   }
 }, {
   name: "missing paperwork request",

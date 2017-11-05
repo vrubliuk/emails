@@ -35,7 +35,12 @@
         clearTextInputs();
         access.lock();
         window.getSelection().removeAllRanges();
-        this.textarea.value = this.messageText();
+        let text = this.messageText();
+        if (text.charAt(0) === ",") {
+          text = text.slice(1);
+          text = text.replace(/\n/, '');
+        } 
+        this.textarea.value = text;
         this.showAvailableOptions();
         if (this.name === "statistics") {
           let date = new Date();
@@ -161,7 +166,21 @@ function AddDataFromInputsToTextarea() {
   function updateTextarea () {
     for (let i = 0; i < samples.length; i++) {
       if (samples[i].name === currentSample) {
-        textarea.value = samples[i].messageText();
+        let text = samples[i].messageText();
+    
+        
+        if (text.charAt(0) === ",") {
+          text = text.slice(1);
+          text = text.replace(/\n/, '');
+          
+          // if (text.charAt(0) === "\\") {
+          //   text = text.slice(2);
+          // }
+        } 
+        // alert(text);
+        textarea.value = text;
+        // textarea.value = samples[i].messageText();
+        
       }    
     }
   }
@@ -311,6 +330,12 @@ document.getElementById("lockButton").onclick = access.unlock;
     showSnackbar("Creating email", "green");
   }
 
+  //jquery plugin "INPUT MASK"
+  $("#inputDatePW").inputmask({ "alias": "mm/dd/yyyy"});
+  $("#inputDatePRO").inputmask({ "alias": "mm/dd/yyyy"});
+  $("#inputPickupDate").inputmask({ "alias": "mm/dd/yyyy"});
+  $("#inputFreightBillDate").inputmask({ "alias": "mm/dd/yyyy"});
+ 
 
   //FOOTER
   function showSnackbar(text, color) {
