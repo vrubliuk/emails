@@ -60,6 +60,77 @@ a:visited {
     // border: solid 5px blue;
     @extend %clearfix;
     min-width: 1730px;
+    // border: solid 1px red;
+}
+
+//SIGNATURE PANEL
+#signaturePanel {
+    // border: solid 1px red;
+    position: fixed;
+    background-color: $bgcolor;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    display: flex;
+}
+
+#signatureForm {
+    background-color: $bgcolordarker;
+    margin: auto;
+    max-width: 600px;
+    // border: solid 1px red;
+    padding: 10px;
+    font-size: 18px;
+  }
+
+#signatureFormTitle {
+    font-size: 22px;
+    border-bottom: solid 5px $purplecolor;
+    // padding: 10px;
+    text-align: center;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+#inputFirstName {
+    margin-right: 7px;
+}
+
+.inputSignature {
+    background-color: $bgcolorlighter;
+    border: none;
+    height: 30px;
+    padding: 5px;
+    font-size: 18px;
+    width: 250px;
+}
+
+#textareaSignature {
+    font-size: 18px;
+    background-color: $bgcolorlighter;
+    // background-color: $bgcolordarker;
+    resize: none;
+    // height: 50%;
+    width: 100%;
+    padding: 5px;
+    overflow:auto;
+    border: none;
+    // border: solid 5px $bgcolordarker;
+}
+#buttonSaveSignature {
+    border: none;
+    background-color: $redcolor;
+    color: whitesmoke;
+    height: 40px;
+    width: 160px;
+    border-radius: 6px;
+    font-size: 18px;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
