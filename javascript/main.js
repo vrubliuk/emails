@@ -7,77 +7,77 @@
 
   //---------------------------SIGNATURE--------------------------------
 
-validateInputSignature();
-  function validateInputSignature() {
-    let inputs = document.getElementsByClassName("inputSignature");
-    let firstName = document.getElementById("inputFirstName");
-    let secondName = document.getElementById("inputSecondName");
-    let textarea = document.getElementById("textareaSignature");
-    let button = document.getElementById("buttonSaveSignature");
-    function getFirstName () {
-      let firstName = document.getElementById("inputFirstName").value;
-      firstName = (firstName.split(" "))[0];
-      return firstName.charAt(0).toUpperCase() + firstName.slice(1);
-    }
-    function getSecondName () {
-      let secondName = document.getElementById("inputSecondName").value;
-      secondName = (secondName.split(" "))[0]; 
-      return secondName.charAt(0).toUpperCase() + secondName.slice(1);
-    }
-    function activateButton () {
-      button.disabled = false;
-      button.style.backgroundColor = "#61AFEF";
-      button.style.cursor = "pointer";
-    }
-    function disactivateButton () {
-      button.disabled = true;
-      button.style.backgroundColor = "";
-      button.style.cursor = "";
-    }
+// validateInputSignature();
+//   function validateInputSignature() {
+//     let inputs = document.getElementsByClassName("inputSignature");
+//     let firstName = document.getElementById("inputFirstName");
+//     let secondName = document.getElementById("inputSecondName");
+//     let textarea = document.getElementById("textareaSignature");
+//     let button = document.getElementById("buttonSaveSignature");
+//     function getFirstName () {
+//       let firstName = document.getElementById("inputFirstName").value;
+//       firstName = (firstName.split(" "))[0];
+//       return firstName.charAt(0).toUpperCase() + firstName.slice(1);
+//     }
+//     function getSecondName () {
+//       let secondName = document.getElementById("inputSecondName").value;
+//       secondName = (secondName.split(" "))[0]; 
+//       return secondName.charAt(0).toUpperCase() + secondName.slice(1);
+//     }
+//     function activateButton () {
+//       button.disabled = false;
+//       button.style.backgroundColor = "#61AFEF";
+//       button.style.cursor = "pointer";
+//     }
+//     function disactivateButton () {
+//       button.disabled = true;
+//       button.style.backgroundColor = "";
+//       button.style.cursor = "";
+//     }
 
-    for (let i = 0; i < inputs.length; i++) {
-      inputs[i].onkeyup = () => {
-        if (getFirstName() || getSecondName()) {
-          textarea.value = `${getFirstName()} ${getSecondName()}\nFS Billing Team\nPLS Logistics Services`;
-          activateButton();
-        } else {
-          textarea.value = "";
-          disactivateButton();
-        }
-      };
-    }
-    textarea.onkeyup = () => {
-      firstName.value = "";
-      secondName.value = "";
-      if (textarea.value) {
-        activateButton();
-      } else {
-        disactivateButton();
-      }
-    };
-  }
+//     for (let i = 0; i < inputs.length; i++) {
+//       inputs[i].onkeyup = () => {
+//         if (getFirstName() || getSecondName()) {
+//           textarea.value = `${getFirstName()} ${getSecondName()}\nFS Billing Team\nPLS Logistics Services`;
+//           activateButton();
+//         } else {
+//           textarea.value = "";
+//           disactivateButton();
+//         }
+//       };
+//     }
+//     textarea.onkeyup = () => {
+//       firstName.value = "";
+//       secondName.value = "";
+//       if (textarea.value) {
+//         activateButton();
+//       } else {
+//         disactivateButton();
+//       }
+//     };
+//   }
 
-  document.getElementById("buttonSaveSignature").onclick = saveSignature;
-  let currentSignature;
-  function saveSignature() {
-    currentSignature = document.getElementById("textareaSignature").value;
-    localStorage.setItem("signature", currentSignature);
-    signaturePanel.hide();
-  }
+//   document.getElementById("buttonSaveSignature").onclick = saveSignature;
+//   let currentSignature;
+//   function saveSignature() {
+//     currentSignature = document.getElementById("textareaSignature").value;
+//     localStorage.setItem("signature", currentSignature);
+//     signaturePanel.hide();
+//   }
 
 
-  let signaturePanel = new SignaturePanel();
-  signaturePanel.show();
+//   let signaturePanel = new SignaturePanel();
+//   signaturePanel.show();
 
-  function SignaturePanel () {
-    let signaturePanel = document.getElementById("signaturePanel");
-    this.show =() => {
-      signaturePanel.style.display = "flex";
-    };
-    this.hide =() => {
-      signaturePanel.style.display = "none";
-    };
-  }
+//   function SignaturePanel () {
+//     let signaturePanel = document.getElementById("signaturePanel");
+//     this.show =() => {
+//       signaturePanel.style.display = "flex";
+//     };
+//     this.hide =() => {
+//       signaturePanel.style.display = "none";
+//     };
+//   }
 //--------------------------------------------------------------
 
 
@@ -402,12 +402,12 @@ document.getElementById("lockButton").onclick = access.unlock;
       return;
     }
     let correctedText = text.replace(/\n/g, "%0A").replace(/#/g, "%23");
-    let correctedSignature = `%0A%0A${currentSignature.replace(/\n/g, "%0A")}`;
+    // let correctedSignature = `%0A%0A${currentSignature.replace(/\n/g, "%0A")}`;
     let subject = document.getElementById("subject").value;
     if (subject) {
-      location.href = `mailto:?subject=${subject}&body=${correctedText}${correctedSignature}`;
+      location.href = `mailto:?subject=${subject}&body=${correctedText}${signature}`;
     } else {
-      location.href = `mailto:?body=${correctedText}${correctedSignature}`;
+      location.href = `mailto:?body=${correctedText}${signature}`;
     }
     showSnackbar("Creating email", "green");
   }

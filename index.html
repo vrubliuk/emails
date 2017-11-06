@@ -15,7 +15,7 @@
 
 <body>
     <div id="container">
-        <div id="signaturePanel">
+        <!-- <div id="signaturePanel">
                 <div id="signatureForm">
                     <p id="signatureFormTitle">Let's create your signature</p>
                     <p>Enter your name:</p> 
@@ -26,7 +26,7 @@
                     <button type="button" id="buttonSaveSignature" disabled>Save</button>
 
                 </div>
-        </div>
+        </div> -->
 
         <div id="panelMenu">
             <button class="accordion">Notes</button>
@@ -59,12 +59,49 @@
         <div id="panelWorking">
 
             <div id="panelWorkingContainer">
+
+                <!-- <div id="sectionButton">
+                    <button id="buttonCreateEmail" class="buttonFinal">Create email</button>
+                    <button id="buttonCopyMessage" class="buttonFinal">Copy message</button>
+                </div>
+                <div id="subjectContainer">
+                    <div id="subjectCover"></div>
+                    <div id="subjectTitle">Subject:</div>
+                    <div id="subjectValue">
+                        <input type="text" name="subject" id="subject">
+                    </div>
+                </div>
+                <div id="textareaContainer">
+                    <div>
+                        <div id="textareaCover"></div>
+                        <textarea id="textarea" name="message" rows="9" placeholder="Enter text here..."></textarea>
+                    </div>
+                    <button id="lockButton" disabled>
+                        <i id="lockIcon" class="fa fa-unlock-alt" aria-hidden="true"></i>
+                    </button>
+                </div> -->
+                <div id="emailContainer">
                     <div id="sectionButton">
-                            <button id="buttonCreateEmail" class="buttonFinal">Create email</button>
-                            <button id="buttonCopyMessage" class="buttonFinal">Copy message</button>
+                        <div id="buttonsFinal">
+                            <button id="buttonCreateEmail" class="buttonFinal parallelogram">
+                                <span class="skew-fix">Create email</span>
+                            </button>
+                            <button id="buttonCopyMessage" class="buttonFinal parallelogram">
+                                <span class="skew-fix">Copy message</span>
+                            </button>
                         </div>
-        
-                     
+                        <div id="buttonsTextarea">
+                            <button id="buttonShowBody" class="buttonSwitchTextarea parallelogram">
+                                <span class="skew-fix">Show subject & body</span>
+                            </button>
+                            <button id="buttonShowSignature" class="buttonSwitchTextarea">
+                                <span>Show signature</span>
+                            </button>
+
+                        </div>
+
+
+                    </div>
                     <div id="subjectContainer">
                         <div id="subjectCover"></div>
                         <div id="subjectTitle">Subject:</div>
@@ -72,17 +109,20 @@
                             <input type="text" name="subject" id="subject">
                         </div>
                     </div>
+
                     <div id="textareaContainer">
                         <div>
                             <div id="textareaCover"></div>
-                            <textarea id="textarea" name="message" rows="10" placeholder="Enter text here..."></textarea>
+                            <textarea id="textarea" name="message" rows="9" placeholder="Enter text here..."></textarea>
                         </div>
                         <button id="lockButton" disabled>
-                            <!-- <i id="lockIcon" class="fa fa-lock" aria-hidden="true"></i> -->
                             <i id="lockIcon" class="fa fa-unlock-alt" aria-hidden="true"></i>
                         </button>
                     </div>
-           
+
+                </div>
+
+
 
 
                 <form id="sectionOptions">
@@ -230,7 +270,7 @@
                     </div>
                     <div id="rowFreightBillDate" class="rowOptions">
                         <span class="rowLabel">Freight bill date:</span>
-                        <input type="text" id="inputFreightBillDate" class="inputText"> 
+                        <input type="text" id="inputFreightBillDate" class="inputText">
                     </div>
                     <div id="rowCustomer" class="rowOptions">
                         <span class="rowLabel">Customer name:</span>
