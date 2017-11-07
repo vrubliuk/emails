@@ -23,15 +23,6 @@ var options = {
     for (var i = 0; i < checkboxGreeting.length; i++) {
       if (checkboxGreeting[i].checked) {
         return checkboxGreeting[i].value;
-
-        //   return checkboxGreeting[i].value;
-        // }
-
-        // if (this.receiver()) {
-        //   return checkboxGreeting[i].value;
-        // } else {
-        //   return `${checkboxGreeting[i].value}\n`;
-        // } 
       }
     }
   },

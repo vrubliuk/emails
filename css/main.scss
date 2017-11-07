@@ -155,7 +155,7 @@ a:visited {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 20px;
-    padding-right: 20px;
+    padding-right: 15px;
 
 
     width: 100%;
@@ -220,10 +220,14 @@ div.accordionPanel {
             line-height: 20px;
             float: right;
             background-color: $orangecolor;
-            color: whitesmoke;
-            border-radius: 4px; 
-            &:hover {
-                
+            // color: whitesmoke;
+            // border-radius: 4px; 
+            transform: skew(-20deg);
+        
+            .quickCopyText {
+                color: whitesmoke;
+                display:inline-block;
+                transform: skew(20deg);
             }
         }
     }
@@ -238,7 +242,6 @@ div.accordionPanel {
     }
    }
 }
-
 
 
 
@@ -343,6 +346,7 @@ div.accordionPanel {
 }
 #buttonShowSignature {
     background-color: $bgcolordarker;
+    // background-color: $greycolor;
     margin-left: -10px;
     span {
         color: whitesmoke;
@@ -411,17 +415,43 @@ div.accordionPanel {
     background-color: $bgcolorlighter;
     resize: none;
     width: 100%;
+    height: 226px;
     padding: 5px;
-    overflow:auto;
+    overflow:hidden;
+    // border: solid 1px green; 
 
 }
-#subjectCover, #textareaCover {
+#subjectCover, #textareaCover, #textareaCover2 {
     // border: solid 1px red; 
     position: absolute;
     width: 100%;
     height: 100%;
     display: none;
 }
+
+#textareaContainer1 {
+    // border: solid 1px green; 
+}
+
+// #textareaContainer2 {
+//      display: none;
+//     //  border: solid 1px red; 
+// }
+
+#textarea2 {
+    display: none;
+    font-size:22px;
+    // display: block;
+    border: none;
+    background-color: $bgcolorlighter;
+    resize: none;
+    width: 100%;
+    height: 266px;
+    padding: 5px;
+    overflow:hidden;
+    // border: solid 1px red; 
+}
+
 
 
 #lockButton {
@@ -432,12 +462,50 @@ div.accordionPanel {
     height: 40px;
     width: 40px;
     margin-top: -40px;
-    right: 0px;
+    right: 10px;
+    // border: solid 1px red; 
     #lockIcon {
         display: inline-block;
         width: 100%;
         color: $greencolor;
     }
+}
+
+
+
+
+#optionsTitle {
+    border-bottom: solid 10px $cyancolor;
+    @extend %clearfix;
+    #buttonOptionsTitle {
+        margin-left: -10px;
+        float: right;
+        height: 52px;
+        width: 266px;
+      background-color: $cyancolor;
+      //   margin: 10px;
+        border: none;
+        color: whitesmoke;
+
+      //   margin-left: 10px;
+      //   margin-right: 10px;
+        font-size: 20px;
+      //   margin-left: 10px;
+      span {
+          position: relative;
+          top: -5px;
+          color: whitesmoke;
+      }
+
+    }
+    #buttonFake {
+        height: 52px;
+        border: none;
+        width: 30px;
+        float: right;
+        background-color: $bgcolor;
+    }
+    
 }
 
 
@@ -453,6 +521,7 @@ div.accordionPanel {
     // padding-top: 5px;
     // padding-bottom: 5px;
     // border-radius: 6px;
+    // border-top: solid 10px $cyancolor; 
 
 
    
@@ -628,7 +697,7 @@ div.accordionPanel {
     // background-color: $greencolor;
     color: whitesmoke; /* White text color */
     text-align: center; /* Centered text */
-    border-radius: 6px; /* Rounded borders */
+    // border-radius: 6px; 
     padding: 16px; /* Padding */
     position: fixed; /* Sit on top of the screen */
     z-index: 1; /* Add a z-index if needed */

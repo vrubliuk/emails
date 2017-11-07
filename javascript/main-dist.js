@@ -113,6 +113,7 @@ function _classCallCheck(instance, Constructor) {
     this.showAvailableOptions = function () {
       for (var i = 0; i < _this.availableOptions.length; i++) {
         var option = _this.availableOptions[i].charAt(0).toUpperCase() + _this.availableOptions[i].slice(1);
+        document.getElementById("optionsTitle").style.display = "block";
         document.getElementById("row" + option).style.display = "block";
       }
     };
@@ -148,6 +149,22 @@ function _classCallCheck(instance, Constructor) {
     return currentSample;
   }
 
+  // function includeNotesToMarkup() {
+  //   let section = document.getElementById("notesPanel");
+  //   for (let i = 0; i < notes.length; i++) {
+  //     let phraseContainer = document.createElement('div');
+  //     phraseContainer.classList.add("phraseContainer");
+  //     let phrase = document.createElement('span');
+  //     phrase.classList.add("phrase");
+  //     phrase.innerHTML = notes[i];
+  //     let quickCopy = document.createElement('button');
+  //     quickCopy.classList.add("quickCopy");
+  //     quickCopy.innerHTML = "Copy";
+  //     section.appendChild(phraseContainer);
+  //     phraseContainer.appendChild(phrase);
+  //     phraseContainer.appendChild(quickCopy);
+  //   }
+  // }
   function includeNotesToMarkup() {
     var section = document.getElementById("notesPanel");
     for (var _i = 0; _i < notes.length; _i++) {
@@ -158,7 +175,11 @@ function _classCallCheck(instance, Constructor) {
       phrase.innerHTML = notes[_i];
       var quickCopy = document.createElement('button');
       quickCopy.classList.add("quickCopy");
-      quickCopy.innerHTML = "Copy";
+      var text = document.createElement('span');
+      text.classList.add("quickCopyText");
+      text.innerHTML = "Copy";
+      quickCopy.appendChild(text);
+      // quickCopy.innerHTML = "Copy";
       section.appendChild(phraseContainer);
       phraseContainer.appendChild(phrase);
       phraseContainer.appendChild(quickCopy);
@@ -328,6 +349,7 @@ function _classCallCheck(instance, Constructor) {
     }
   }
 
+  var lockButtonState = void 0;
   var access = new accessToEmail();
   function accessToEmail() {
     var subject = document.getElementById("subject");
@@ -347,6 +369,7 @@ function _classCallCheck(instance, Constructor) {
       lockButton.style.cursor = "pointer";
       lockIcon.className = "fa fa-lock";
       lockIcon.style.color = "#be5046";
+      lockButtonState = "red";
     };
     this.unlock = function () {
       if (lockIcon.className === "fa fa-unlock-alt") return;
@@ -361,6 +384,7 @@ function _classCallCheck(instance, Constructor) {
       lockIcon.className = "fa fa-unlock-alt";
       lockIcon.style.color = "#98c379";
       hideAllOptions();
+      lockButtonState = "green";
     };
   }
 
@@ -371,6 +395,7 @@ function _classCallCheck(instance, Constructor) {
     for (var _i10 = 0; _i10 < options.length; _i10++) {
       options[_i10].style.display = "none";
     }
+    document.getElementById("optionsTitle").style.display = "none";
   }
 
   function clearTextInputs() {
@@ -380,6 +405,72 @@ function _classCallCheck(instance, Constructor) {
     }
     var subjectLine = document.getElementById("subject");
     subjectLine.value = "";
+  }
+
+  showChosenTextarea();
+  function showChosenTextarea() {
+    var buttonShowBody = document.getElementById("buttonShowBody");
+    var buttonShowSignature = document.getElementById("buttonShowSignature");
+    var textarea1 = document.getElementById("textareaContainer1");
+    var textarea2 = document.getElementById("textarea2");
+    var subjectContainer = document.getElementById("subjectContainer");
+    var lockButton = document.getElementById("lockButton");
+
+    // let optionsTitle =  document.getElementById("optionsTitle");
+    // let sectionOptions =  document.getElementById("sectionOptions");
+
+    function setLockButton(state) {
+      if (state === "red") {
+        lockButton.disabled = false;
+        lockButton.style.cursor = "pointer";
+        lockIcon.className = "fa fa-lock";
+        lockIcon.style.color = "#be5046";
+      } else if (state === "green") {
+        lockButton.disabled = true;
+        lockButton.style.cursor = "";
+        lockIcon.className = "fa fa-unlock-alt";
+        lockIcon.style.color = "#98c379";
+      }
+    }
+
+    buttonShowBody.onclick = function () {
+      buttonShowBody.style.backgroundColor = "#C678DD";
+      buttonShowSignature.style.backgroundColor = "#21252b";
+      textarea1.style.display = "block";
+      textarea2.style.display = "none";
+      subjectContainer.style.display = "block";
+      lockButton.style.display = "block";
+      if (lockButtonState === "green") {
+        setLockButton("green");
+      } else if (lockButtonState === "red") {
+        setLockButton("red");
+      }
+    };
+    buttonShowSignature.onclick = function () {
+      buttonShowBody.style.backgroundColor = "#21252b";
+      buttonShowSignature.style.backgroundColor = "#C678DD";
+      textarea1.style.display = "none";
+      textarea2.style.display = "block";
+      subjectContainer.style.display = "none";
+      setLockButton("green");
+    };
+  }
+
+  var currentSignature = "";
+  insertSignature();
+  function insertSignature() {
+    var textarea2 = document.getElementById("textarea2");
+    textarea2.placeholder = "Name Surname\nFS Billing Team\nPLS Logistics Services";
+    if (localStorage.getItem("signature")) {
+      currentSignature = localStorage.getItem("signature");
+    } else {
+      currentSignature = "Name Surname\nFS Billing Team\nPLS Logistics Services";
+    }
+    textarea2.onkeyup = function () {
+      currentSignature = textarea2.value;
+      localStorage.setItem("signature", currentSignature);
+    };
+    textarea2.value = currentSignature;
   }
 
   document.getElementById("buttonCopyMessage").onclick = copyMessage;
@@ -409,12 +500,12 @@ function _classCallCheck(instance, Constructor) {
       return;
     }
     var correctedText = text.replace(/\n/g, "%0A").replace(/#/g, "%23");
-    // let correctedSignature = `%0A%0A${currentSignature.replace(/\n/g, "%0A")}`;
+    var correctedSignature = "%0A%0A" + currentSignature.replace(/\n/g, "%0A");
     var subject = document.getElementById("subject").value;
     if (subject) {
-      location.href = "mailto:?subject=" + subject + "&body=" + correctedText + signature;
+      location.href = "mailto:?subject=" + subject + "&body=" + correctedText + correctedSignature;
     } else {
-      location.href = "mailto:?body=" + correctedText + signature;
+      location.href = "mailto:?body=" + correctedText + correctedSignature;
     }
     showSnackbar("Creating email", "green");
   }

@@ -106,6 +106,7 @@
       this.showAvailableOptions = () => {
         for (let i = 0; i < this.availableOptions.length; i++) {
           let option = this.availableOptions[i].charAt(0).toUpperCase() + this.availableOptions[i].slice(1);
+          document.getElementById("optionsTitle").style.display = "block";
           document.getElementById("row" + option).style.display = "block";
         }
       };
@@ -144,6 +145,22 @@
     return currentSample;
   }
 
+  // function includeNotesToMarkup() {
+  //   let section = document.getElementById("notesPanel");
+  //   for (let i = 0; i < notes.length; i++) {
+  //     let phraseContainer = document.createElement('div');
+  //     phraseContainer.classList.add("phraseContainer");
+  //     let phrase = document.createElement('span');
+  //     phrase.classList.add("phrase");
+  //     phrase.innerHTML = notes[i];
+  //     let quickCopy = document.createElement('button');
+  //     quickCopy.classList.add("quickCopy");
+  //     quickCopy.innerHTML = "Copy";
+  //     section.appendChild(phraseContainer);
+  //     phraseContainer.appendChild(phrase);
+  //     phraseContainer.appendChild(quickCopy);
+  //   }
+  // }
   function includeNotesToMarkup() {
     let section = document.getElementById("notesPanel");
     for (let i = 0; i < notes.length; i++) {
@@ -154,10 +171,15 @@
       phrase.innerHTML = notes[i];
       let quickCopy = document.createElement('button');
       quickCopy.classList.add("quickCopy");
-      quickCopy.innerHTML = "Copy";
+      let text = document.createElement('span');
+      text.classList.add("quickCopyText");
+      text.innerHTML = "Copy";
+      quickCopy.appendChild(text);
+      // quickCopy.innerHTML = "Copy";
       section.appendChild(phraseContainer);
       phraseContainer.appendChild(phrase);
       phraseContainer.appendChild(quickCopy);
+
     }
   }
 
@@ -317,7 +339,7 @@ function AddDataFromInputsToTextarea() {
   }
 }
 
-
+  let lockButtonState;
   let access = new accessToEmail();
   function accessToEmail() {
     let subject = document.getElementById("subject");
@@ -337,7 +359,7 @@ function AddDataFromInputsToTextarea() {
       lockButton.style.cursor = "pointer";
       lockIcon.className = "fa fa-lock";
       lockIcon.style.color = "#be5046";
-
+      lockButtonState = "red";
 
     };
     this.unlock = () => {
@@ -353,6 +375,7 @@ function AddDataFromInputsToTextarea() {
       lockIcon.className = "fa fa-unlock-alt";
       lockIcon.style.color = "#98c379";
       hideAllOptions();
+      lockButtonState = "green";
     };
   }
 
@@ -363,6 +386,7 @@ document.getElementById("lockButton").onclick = access.unlock;
     for (let i = 0; i < options.length; i++) {
       options[i].style.display = "none";
     }
+    document.getElementById("optionsTitle").style.display = "none";
   }
 
   function clearTextInputs() {
@@ -373,6 +397,76 @@ document.getElementById("lockButton").onclick = access.unlock;
     let subjectLine = document.getElementById("subject");
     subjectLine.value = "";
   }
+
+  showChosenTextarea();
+  function showChosenTextarea() {
+    let buttonShowBody = document.getElementById("buttonShowBody");
+    let buttonShowSignature = document.getElementById("buttonShowSignature");
+    let textarea1 = document.getElementById("textareaContainer1");
+    let textarea2 = document.getElementById("textarea2");
+    let subjectContainer = document.getElementById("subjectContainer");
+    let lockButton = document.getElementById("lockButton");
+
+    // let optionsTitle =  document.getElementById("optionsTitle");
+    // let sectionOptions =  document.getElementById("sectionOptions");
+  
+    function setLockButton(state) {
+      if (state === "red") {
+        lockButton.disabled = false;
+        lockButton.style.cursor = "pointer";
+        lockIcon.className = "fa fa-lock";
+        lockIcon.style.color = "#be5046";
+      } else if (state === "green") {
+        lockButton.disabled = true;
+        lockButton.style.cursor = "";
+        lockIcon.className = "fa fa-unlock-alt";
+        lockIcon.style.color = "#98c379";
+      } 
+    }
+
+    buttonShowBody.onclick = () => {
+      buttonShowBody.style.backgroundColor = "#C678DD";
+      buttonShowSignature.style.backgroundColor = "#21252b";
+      textarea1.style.display = "block";
+      textarea2.style.display = "none";
+      subjectContainer.style.display = "block";
+      lockButton.style.display = "block";
+      if (lockButtonState === "green") {
+        setLockButton("green");
+      } else if (lockButtonState === "red") {
+        setLockButton("red");
+      }
+    
+    };
+    buttonShowSignature.onclick = () => {
+      buttonShowBody.style.backgroundColor = "#21252b";
+      buttonShowSignature.style.backgroundColor = "#C678DD";
+      textarea1.style.display = "none";
+      textarea2.style.display = "block";
+      subjectContainer.style.display = "none";
+      setLockButton("green");
+     
+    };
+  }
+
+
+  let currentSignature = "";
+  insertSignature();
+  function insertSignature() {
+    let textarea2 = document.getElementById("textarea2");
+    textarea2.placeholder = "Name Surname\nFS Billing Team\nPLS Logistics Services";
+    if (localStorage.getItem("signature")) {
+      currentSignature = localStorage.getItem("signature");
+    } else {
+      currentSignature = "Name Surname\nFS Billing Team\nPLS Logistics Services";
+    }
+    textarea2.onkeyup = () => {
+      currentSignature = textarea2.value;
+      localStorage.setItem("signature", currentSignature);
+    };
+    textarea2.value = currentSignature;
+  }
+
 
   document.getElementById("buttonCopyMessage").onclick = copyMessage;
   document.getElementById("buttonCreateEmail").onclick = createMessage;
@@ -402,12 +496,12 @@ document.getElementById("lockButton").onclick = access.unlock;
       return;
     }
     let correctedText = text.replace(/\n/g, "%0A").replace(/#/g, "%23");
-    // let correctedSignature = `%0A%0A${currentSignature.replace(/\n/g, "%0A")}`;
+    let correctedSignature = `%0A%0A${currentSignature.replace(/\n/g, "%0A")}`;
     let subject = document.getElementById("subject").value;
     if (subject) {
-      location.href = `mailto:?subject=${subject}&body=${correctedText}${signature}`;
+      location.href = `mailto:?subject=${subject}&body=${correctedText}${correctedSignature}`;
     } else {
-      location.href = `mailto:?body=${correctedText}${signature}`;
+      location.href = `mailto:?body=${correctedText}${correctedSignature}`;
     }
     showSnackbar("Creating email", "green");
   }
