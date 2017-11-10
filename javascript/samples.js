@@ -46,7 +46,6 @@ let options = {
     } else {
       return data ? `${Data}` : "";
     }
-    
   },
   page () {
     let data = document.getElementById("inputPage").value;
@@ -442,9 +441,9 @@ let samples = [
   {
     name: "WEYERHAEUSER",
     section: "misc",
-    availableOptions: ["greeting", "load", "gratitude"],
+    availableOptions: ["greeting", "receiver", "load", "gratitude"],
     messageText () {
-      return `${options.greeting()} Michael,\nPlease advise if the attached paperwork is good to go? Load#: ${options.load()}.${options.gratitude()}`;
+      return `${options.greeting()}${options.receiver()},\nPlease advise if the attached paperwork is good to go? Load#: ${options.load()}.${options.gratitude()}`;
     }
   },
   {

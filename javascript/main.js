@@ -117,6 +117,9 @@
         clearTextInputs();
         access.lock();
         window.getSelection().removeAllRanges();
+        if (currentSample === "WEYERHAEUSER") {
+          document.getElementById("inputReceiver").value = "Michael";
+        }
         let text = this.messageText();
         if (text.charAt(0) === ",") {
           text = text.slice(1);
@@ -131,6 +134,9 @@
           let year = date.getFullYear();
           this.subject.value = `statistics ${month}/${day}/${year}`;
         }
+        // if (currentSample === "WEYERHAEUSER") {
+        //   document.getElementById("inputReceiver").value = "Michael";
+        // }
 
       };
 

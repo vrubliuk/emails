@@ -124,6 +124,9 @@ function _classCallCheck(instance, Constructor) {
       clearTextInputs();
       access.lock();
       window.getSelection().removeAllRanges();
+      if (currentSample === "WEYERHAEUSER") {
+        document.getElementById("inputReceiver").value = "Michael";
+      }
       var text = _this.messageText();
       if (text.charAt(0) === ",") {
         text = text.slice(1);
@@ -138,6 +141,9 @@ function _classCallCheck(instance, Constructor) {
         var year = date.getFullYear();
         _this.subject.value = "statistics " + month + "/" + day + "/" + year;
       }
+      // if (currentSample === "WEYERHAEUSER") {
+      //   document.getElementById("inputReceiver").value = "Michael";
+      // }
     };
   };
 
