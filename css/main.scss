@@ -1,28 +1,16 @@
- //PLACEHOLDERS
- %clearfix {
-    &:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-  }
-// GENERAL STYLES
-
 //COLORS
 $bgcolor: #282c34;
 $bgcolordarker: #21252b;
 $bgcolorlighter: #2c313a;
 $greycolor: hsl(220, 14%, 71%);
-$redcolor: hsl(  5, 48%, 51%);
+$redcolor: hsl( 5, 48%, 51%);
 $redcolorbrighter: rgb(230, 50, 50);
 $bluecolor: hsl(207, 82%, 66%);
 $purplecolor: hsl(286, 60%, 67%);
 $orangecolor:hsl( 39, 67%, 69%);
-$cyancolor: hsl(187, 47%, 55%); 
+$cyancolor: hsl(187, 47%, 55%);
 $greencolor: hsl( 95, 38%, 62%);
-
-
-*{
+* {
     font-family: 'Roboto Condensed', sans-serif;
     color: $greycolor;
     outline: none !important;
@@ -33,118 +21,41 @@ $greencolor: hsl( 95, 38%, 62%);
     color: #737373 !important;
 }
 
+html,
 body {
     margin: 0;
     padding: 0;
-    // font-family: 'Montserrat', sans-serif;
-    // font-family: Consolas, monaco, monospace;
-    // font-family: 'Roboto Condensed', sans-serif !important;
+    height: 100%;
+    width: 100%;
     background-color: $bgcolor;
- 
-    // outline: none !important;
     &:focus {
-      outline: none !important;
-      outline: 0;
+        outline: none !important;
+        outline: 0;
     }
 }
+
 a,
 a:hover,
 a:visited {
-  color: inherit;
-  text-decoration: none !important;
+    color: inherit;
+    text-decoration: none !important;
 }
+
 ::selection {
     color: whitesmoke;
     background: rgba(97, 175, 239, 0.996); // rgba for Chrome
-  }
+}
 
 #container {
-    margin: 0 auto;
-    // border: solid 5px blue;
-    @extend %clearfix;
-    min-width: 1730px;
-    // border: solid 1px red;
-}
-
-//SIGNATURE PANEL
-#signaturePanel {
-    // border: solid 1px red;
-    position: fixed;
-    background-color: $bgcolor;
-    width: 100vw;
-    height: 100vh;
-    z-index: 999;
-    display: flex;
-}
-
-#signatureForm {
-    background-color: $bgcolordarker;
-    margin: auto;
-    max-width: 600px;
-    // border: solid 1px red;
-    padding: 10px;
-    font-size: 18px;
-  }
-
-#signatureFormTitle {
-    font-size: 22px;
-    border-bottom: solid 5px $purplecolor;
-    // padding: 10px;
-    text-align: center;
-    margin: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-transform: uppercase;
-}
-#inputFirstName {
-    margin-right: 7px;
-}
-
-.inputSignature {
-    background-color: $bgcolorlighter;
-    border: none;
-    height: 30px;
-    padding: 5px;
-    font-size: 18px;
-    width: 250px;
-}
-
-#textareaSignature {
-    font-size: 18px;
-    background-color: $bgcolorlighter;
-    // background-color: $bgcolordarker;
-    resize: none;
-    // height: 50%;
+    height: 100%;
     width: 100%;
-    padding: 5px;
-    overflow:auto;
-    border: none;
-    // border: solid 5px $bgcolordarker;
-}
-#buttonSaveSignature {
-    border: none;
-    background-color: $redcolor;
-    color: whitesmoke;
-    height: 40px;
-    width: 160px;
-    border-radius: 6px;
-    font-size: 18px;
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    margin-left: auto;
-    margin-right: auto;
-
 }
 
 // MENU PANEL
 #panelMenu {
     width: 25%;
-    // border-right: solid 5px $bgcolordarker;
-    // min-width: 400px;
-    min-height: 100vh;
-    // min-width: 450px;
- 
+    width: 450px;
+    height: 100%;
     float: left;
     background-color: $bgcolordarker;
 }
@@ -154,13 +65,10 @@ a:visited {
     color: $greycolor;
     color: $bluecolor;
     cursor: pointer;
-    // padding: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 20px;
     padding-right: 20px;
-
-
     width: 100%;
     border: none;
     text-align: left;
@@ -172,26 +80,23 @@ a:visited {
         background-color: $bgcolorlighter;
     }
 }
+
 .accordion:first-child {
     color: $orangecolor;
 }
 
 button.accordion:after {
-    // content: "\23F7";
-    // content: "\25bc";
     content: "\25BE";
     color: $bluecolor;
     float: right;
     margin-left: 5px;
-    // font-family: Arial, Helvetica, sans-serif;
 }
+
 .accordion:first-child:after {
     color: $orangecolor;
 }
 
 button.accordion.active:after {
-    // content: "\23F6";
-    // content: "\25B2";
     content: "\25B4";
 }
 
@@ -202,23 +107,19 @@ div.accordionPanel {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    // color: #61aad7;
     div.phraseContainer {
         height: 30px;
         padding: 5px;
         padding-left: 15px;
-  
         &:hover {
             background-color: $bgcolorlighter;
         }
-
         span.phrase {
             font-size: 16px;
             margin-left: 5px;
-            
         }
         button.quickCopy {
-            border:none;
+            border: none;
             font-size: 16px;
             cursor: pointer;
             margin-top: -1px;
@@ -227,150 +128,110 @@ div.accordionPanel {
             line-height: 20px;
             float: right;
             background-color: $orangecolor;
-            // color: whitesmoke;
-            // border-radius: 4px; 
             transform: skew(-20deg);
-        
             .quickCopyText {
                 color: whitesmoke;
-                display:inline-block;
+                display: inline-block;
                 transform: skew(20deg);
             }
         }
     }
-   div.email {
-    padding: 5px;
-    padding-left: 20px;
-    height: 30px;
-
-    cursor: pointer;
-    &:hover {
-        background-color: $bgcolorlighter;
+    div.email {
+        padding: 5px;
+        padding-left: 20px;
+        height: 30px;
+        cursor: pointer;
+        &:hover {
+            background-color: $bgcolorlighter;
+        }
     }
-   }
 }
 
-
-
-
 //WORKING PANEL
-
 #panelWorking {
-    // border: solid 1px red;
-    // min-height: 100vh;
-    width: 75%;
-    float: right;
-    height: 100vh;
+    margin-left: 450px;
+    height: 100%;
+    padding: 42px;
 }
 
 #panelWorkingContainer {
     display: block;
-    // border: solid 1px green;
     width: 1080px;
-    margin: 0 auto;
-    margin-top: 42px;
+    margin: auto;
     user-select: none;
-    // min-height: 884px;
     position: relative;
 }
+
 // #emailContainer {
 //     background-color: $bgcolordarker;
 //     padding: 10px;
 //     margin-bottom: 42px;
 // }
-
 #sectionButton {
-    //   text-align: center;
-      // margin-top: 52px;
-      // position: absolute;
-      // bottom: 0;
-      // left: 0;
-      // right: 0;
-    //   @extend %clearfix;
-    //   background-color: $bgcolordarker;
-    //   padding: 10px;
-    // padding-bottom: 10px;
     border-bottom: solid 10px $purplecolor;
-
     font-size: 0;
     height: 62px;
-  }
-  
+}
 
 #buttonsFinal {
     float: left;
 }
-  .buttonFinal {
-    // float: left;
-      height: 42px;
-      width: 266px;
-    //   margin: 10px;
-      border: none;
-      background-color: $bluecolor;
-      color: whitesmoke;
-      cursor: pointer;
-    //   margin-left: 10px;
-    //   margin-right: 10px;
-      font-size: 20px;
-      vertical-align: top;
-      margin-left: 8px;
 
-     
-  }
-  #buttonCopyMessage {
-      background-color: $orangecolor;
-      margin-left: 10px;
-  }
+.buttonFinal {
+    height: 42px;
+    width: 266px;
+    border: none;
+    background-color: $bluecolor;
+    color: whitesmoke;
+    cursor: pointer;
+    font-size: 20px;
+    vertical-align: top;
+    margin-left: 8px;
+}
 
-  #buttonsTextarea {
+#buttonCopyMessage {
+    background-color: $orangecolor;
+    margin-left: 10px;
+}
+
+#buttonsTextarea {
     float: right;
 }
 
-
-  .buttonSwitchTextarea {
-
-      height: 52px;
-      width: 266px;
-    
-    //   margin: 10px;
-      border: none;
-      color: whitesmoke;
-      cursor: pointer;
-    //   margin-left: 10px;
-    //   margin-right: 10px;
-      font-size: 20px;
-    //   margin-left: 10px;
+.buttonSwitchTextarea {
+    height: 52px;
+    width: 266px; 
+    border: none;
+    color: whitesmoke;
+    cursor: pointer; 
+    font-size: 20px;
     span {
         position: relative;
         top: -5px;
     }
+}
 
-    
-  }
 #buttonShowBody {
     background-color: $purplecolor;
-
 }
+
 #buttonShowSignature {
     background-color: $bgcolordarker;
-    // background-color: $greycolor;
     margin-left: -10px;
     span {
         color: whitesmoke;
     }
 }
 
-
-  
-  .parallelogram{
+.parallelogram {
     transform: skew(-20deg);
-  
-  }
-  .skew-fix{
+}
+
+.skew-fix {
     color: whitesmoke;
-    display:inline-block;
+    display: inline-block;
     transform: skew(20deg);
-  }
+}
 
 #subjectContainer {
     position: relative;
@@ -378,34 +239,29 @@ div.accordionPanel {
     padding-bottom: 0;
     background-color: $bgcolordarker;
     user-select: none;
-    // border-top: solid 2px $bgcolorlighter;
-    // border-bottom: solid 2px $bgcolorlighter;
-    @extend %clearfix;
     #subjectTitle {
         padding-left: 5px;
         line-height: 30px;
         width: 250px;
-        font-size:22px;
+        font-size: 22px;
         float: left;
     }
     #subjectValue {
-        float: left;
         display: block;
         padding-left: 10px;
-        font-size:22px;
+        font-size: 22px;
         #subject {
             line-height: 30px;
             padding-left: 5px;
             height: 30px;
             border: none;
             background-color: $bgcolorlighter;
-            font-size:22px;
+            font-size: 22px;
             display: block;
             width: 250px;
         }
     }
 }
-
 
 #textareaContainer {
     background-color: $bgcolordarker;
@@ -414,9 +270,8 @@ div.accordionPanel {
     padding: 10px;
 }
 
-
 #textarea {
-    font-size:22px;
+    font-size: 22px;
     display: block;
     border: none;
     background-color: $bgcolorlighter;
@@ -424,53 +279,39 @@ div.accordionPanel {
     width: 100%;
     height: 226px;
     padding: 5px;
-    overflow:hidden;
-    // border: solid 1px green; 
-
+    overflow: hidden; 
 }
-#subjectCover, #textareaCover, #textareaCover2 {
-    // border: solid 1px red; 
+
+#subjectCover,
+#textareaCover,
+#textareaCover2 { 
     position: absolute;
     width: 100%;
     height: 100%;
     display: none;
 }
 
-#textareaContainer1 {
-    // border: solid 1px green; 
-}
-
-// #textareaContainer2 {
-//      display: none;
-//     //  border: solid 1px red; 
-// }
-
 #textarea2 {
     display: none;
-    font-size:22px;
-    // display: block;
+    font-size: 22px;
     border: none;
     background-color: $bgcolorlighter;
     resize: none;
     width: 100%;
     height: 266px;
     padding: 5px;
-    overflow:hidden;
-    // border: solid 1px red; 
+    overflow: hidden;
 }
-
-
 
 #lockButton {
     position: absolute;
-    font-size:20px;
+    font-size: 20px;
     border: none;
     background-color: transparent;
     height: 40px;
     width: 40px;
     margin-top: -40px;
     right: 10px;
-    // border: solid 1px red; 
     #lockIcon {
         display: inline-block;
         width: 100%;
@@ -478,32 +319,23 @@ div.accordionPanel {
     }
 }
 
-
-
-
 #optionsTitle {
     border-bottom: solid 10px $cyancolor;
-    @extend %clearfix;
+    height: 62px;
     #buttonOptionsTitle {
         margin-left: -10px;
         float: right;
         height: 52px;
         width: 266px;
-      background-color: $cyancolor;
-      //   margin: 10px;
+        background-color: $cyancolor;
         border: none;
         color: whitesmoke;
-
-      //   margin-left: 10px;
-      //   margin-right: 10px;
         font-size: 20px;
-      //   margin-left: 10px;
-      span {
-          position: relative;
-          top: -5px;
-          color: whitesmoke;
-      }
-
+        span {
+            position: relative;
+            top: -5px;
+            color: whitesmoke;
+        }
     }
     #buttonFake {
         height: 52px;
@@ -512,30 +344,14 @@ div.accordionPanel {
         float: right;
         background-color: $bgcolor;
     }
-    
 }
-
-
-
-
 
 #sectionOptions {
     font-size: 18px;
     line-height: 40px;
     background-color: $bgcolordarker;
-    padding-left: 10px;
-    padding-right: 10px;
-    // padding-top: 5px;
-    // padding-bottom: 5px;
-    // border-radius: 6px;
-    // border-top: solid 10px $cyancolor; 
-
-
-   
-}
-
-#rowTitle {
-    // background-color: $bgcolordarker;
+    padding-left: 15px;
+    padding-right: 15px; 
 }
 
 .rowOptions {
@@ -546,25 +362,21 @@ div.accordionPanel {
     &:last-child {
         padding-bottom: 5px;
     }
-
 }
 
 .rowLabel {
     display: inline-block;
     width: 250px;
-
 }
 
 .inputText {
     background-color: $bgcolorlighter;
     border: none;
-    // border-radius: 2px;
     height: 30px;
     padding: 5px;
     font-size: 18px;
     width: 250px;
 }
-
 
 //SWITCH
 .switch {
@@ -573,11 +385,13 @@ div.accordionPanel {
     width: 46px;
     height: 26px;
     vertical-align: middle;
-  }
-  
-  .switch input {display:none;}
-  
-  .slider {
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -587,9 +401,9 @@ div.accordionPanel {
     background-color: #ccc;
     background-color: $bgcolorlighter;
     transition: .4s;
-  }
-  
-  .slider:before {
+}
+
+.slider:before {
     position: absolute;
     content: "";
     height: 20px;
@@ -599,89 +413,75 @@ div.accordionPanel {
     background-color: white;
     background-color: $greycolor;
     transition: .4s;
-  }
-  
-  input:checked + .slider {
+}
+
+input:checked+.slider {
     background-color: $bluecolor;
-  }
-  input:checked + .slider:before {
+}
+
+input:checked+.slider:before {
     background-color: white;
-  }
+}
 
-  input:focus + .slider {
+input:focus+.slider {
     box-shadow: 0 0 1px $bluecolor;
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(20px);
-  }
-  
-  .slider.round {
-    border-radius: 30px;
-  }
+}
 
-  .slider.round:before {
+input:checked+.slider:before {
+    transform: translateX(20px);
+}
+
+.slider.round {
+    border-radius: 30px;
+}
+
+.slider.round:before {
     border-radius: 50%;
-  }
+}
 
 //CHECKBOX
-
-  .containerCheckbox {
+.containerCheckbox {
     display: inline-block;
     position: relative;
     padding-left: 35px;
-    // margin-bottom: 12px;
     cursor: pointer;
     user-select: none;
-//    margin-left: 15px;
 }
+
 .containerCheckbox:not(:first-child):not(:nth-child(2)) {
     margin-left: 20px;
 }
 
-/* Hide the browser's default checkbox */
 .containerCheckbox input {
     position: absolute;
     opacity: 0;
 }
 
-/* Create a custom checkbox */
 .checkmark {
     position: absolute;
     top: 7px;
     left: 0;
     height: 25px;
     width: 25px;
-    // background-color: #eee;
     background-color: #ccc;
     background-color: $bgcolorlighter;
     border-radius: 50%;
- 
 }
 
-/* On mouse-over, add a grey background color */
-// .containerCheckbox:hover input ~ .checkmark {
-//     background-color: #ccc;
-// }
-
-/* When the checkbox is checked, add a blue background */
-.containerCheckbox input:checked ~ .checkmark {
+.containerCheckbox input:checked~.checkmark {
     background-color: $bluecolor;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
-/* Show the checkmark when checked */
-.containerCheckbox input:checked ~ .checkmark:after {
+.containerCheckbox input:checked~.checkmark:after {
     display: block;
 }
 
-/* Style the checkmark/indicator */
 .containerCheckbox .checkmark:after {
     left: 9px;
     top: 5px;
@@ -692,49 +492,51 @@ div.accordionPanel {
     transform: rotate(45deg);
 }
 
-
-
-
 //SNACKBAR
 #snackbar {
-    visibility: hidden; /* Hidden by default. Visible on click */
-    min-width: 250px; /* Set a default minimum width */
-    margin-left: -125px; /* Divide value of min-width by 2 */
-    // background-color: #333; 
-    // background-color: $greencolor;
-    color: whitesmoke; /* White text color */
-    text-align: center; /* Centered text */
-    // border-radius: 6px; 
-    padding: 16px; /* Padding */
-    position: fixed; /* Sit on top of the screen */
-    z-index: 1; /* Add a z-index if needed */
-    left: 50%; /* Center the snackbar */
-    bottom: 30px; /* 30px from the bottom */
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    color: whitesmoke;
+    text-align: center;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
 }
 
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
 #snackbar.snackbarShow {
-    visibility: visible; 
-   
-/* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
-However, delay the fade out process for 2.5 seconds */
+    visibility: visible;
     animation: fadein 0.5s, fadeout 0.5s 1s;
 }
 
 .snackbargreen {
     background-color: $greencolor;
 }
+
 .snackbarred {
     background-color: $redcolor;
 }
 
-
-
 @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
 }
+
 @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }

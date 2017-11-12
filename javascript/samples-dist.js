@@ -1,6 +1,7 @@
 "use strict";
 
-var notes = ["emailed to confirm delivery", "emailed AE regarding rates", "emailed AE about the load status", "information on BOL doesn't match PLS PRO", "don't pay carrier until customer accepts paperwork", "emailed Support Request to put pro and date", "released w/o BOL per AE", "shipment number on BOL doesn't match PLS PRO", "origin/destination city on BOL doesn't match PLS PRO", "date on BOL doesn't match PLS PRO", "weight on BOL doesn't match PLS PRO"];
+var notes = ["emailed to confirm delivery", "emailed AE regarding rates", "emailed AE about the load status", "information on BOL doesn't match PLS PRO", "don't pay carrier until customer accepts paperwork", "emailed Support Request to put pro and date", "released w/o BOL per AE", "shipment number on BOL doesn't match PLS PRO", "origin/destination city on BOL doesn't match PLS PRO", "date on BOL doesn't match PLS PRO", "weight on BOL doesn't match PLS PRO", "sorry, we don't work with non FS or 2.0 loads"];
+
 var currentSample = void 0;
 
 var options = {
@@ -99,11 +100,11 @@ var options = {
     }
   },
   cityPRO: function cityPRO() {
-    var data = document.getElementById("inputCityPRO").value;
+    var data = document.getElementById("inputCityPRO").value.toUpperCase();
     return data ? " (" + data + ")" : "";
   },
   cityPW: function cityPW() {
-    var data = document.getElementById("inputCityPW").value;
+    var data = document.getElementById("inputCityPW").value.toUpperCase();
     return data ? " (" + data + ")" : "";
   },
   datePRO: function datePRO() {

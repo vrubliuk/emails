@@ -2,88 +2,6 @@
   "use strict";
 
   //GENERAL
-
-
-
-  //---------------------------SIGNATURE--------------------------------
-
-// validateInputSignature();
-//   function validateInputSignature() {
-//     let inputs = document.getElementsByClassName("inputSignature");
-//     let firstName = document.getElementById("inputFirstName");
-//     let secondName = document.getElementById("inputSecondName");
-//     let textarea = document.getElementById("textareaSignature");
-//     let button = document.getElementById("buttonSaveSignature");
-//     function getFirstName () {
-//       let firstName = document.getElementById("inputFirstName").value;
-//       firstName = (firstName.split(" "))[0];
-//       return firstName.charAt(0).toUpperCase() + firstName.slice(1);
-//     }
-//     function getSecondName () {
-//       let secondName = document.getElementById("inputSecondName").value;
-//       secondName = (secondName.split(" "))[0]; 
-//       return secondName.charAt(0).toUpperCase() + secondName.slice(1);
-//     }
-//     function activateButton () {
-//       button.disabled = false;
-//       button.style.backgroundColor = "#61AFEF";
-//       button.style.cursor = "pointer";
-//     }
-//     function disactivateButton () {
-//       button.disabled = true;
-//       button.style.backgroundColor = "";
-//       button.style.cursor = "";
-//     }
-
-//     for (let i = 0; i < inputs.length; i++) {
-//       inputs[i].onkeyup = () => {
-//         if (getFirstName() || getSecondName()) {
-//           textarea.value = `${getFirstName()} ${getSecondName()}\nFS Billing Team\nPLS Logistics Services`;
-//           activateButton();
-//         } else {
-//           textarea.value = "";
-//           disactivateButton();
-//         }
-//       };
-//     }
-//     textarea.onkeyup = () => {
-//       firstName.value = "";
-//       secondName.value = "";
-//       if (textarea.value) {
-//         activateButton();
-//       } else {
-//         disactivateButton();
-//       }
-//     };
-//   }
-
-//   document.getElementById("buttonSaveSignature").onclick = saveSignature;
-//   let currentSignature;
-//   function saveSignature() {
-//     currentSignature = document.getElementById("textareaSignature").value;
-//     localStorage.setItem("signature", currentSignature);
-//     signaturePanel.hide();
-//   }
-
-
-//   let signaturePanel = new SignaturePanel();
-//   signaturePanel.show();
-
-//   function SignaturePanel () {
-//     let signaturePanel = document.getElementById("signaturePanel");
-//     this.show =() => {
-//       signaturePanel.style.display = "flex";
-//     };
-//     this.hide =() => {
-//       signaturePanel.style.display = "none";
-//     };
-//   }
-//--------------------------------------------------------------
-
-
-
-
-
   includeNotesToMarkup();
   includeSamplesToMarkup();
 
@@ -110,7 +28,6 @@
           document.getElementById("row" + option).style.display = "block";
         }
       };
-
       this.button.onclick = () => {
         currentSample = this.name;
         hideAllOptions();
@@ -124,7 +41,7 @@
         if (text.charAt(0) === ",") {
           text = text.slice(1);
           text = text.replace(/\n/, '');
-        } 
+        }
         this.textarea.value = text;
         this.showAvailableOptions();
         if (this.name === "statistics") {
@@ -134,39 +51,15 @@
           let year = date.getFullYear();
           this.subject.value = `statistics ${month}/${day}/${year}`;
         }
-        // if (currentSample === "WEYERHAEUSER") {
-        //   document.getElementById("inputReceiver").value = "Michael";
-        // }
-
       };
 
-    } 
+    }
   }
+
   for (let i = 0; i < samples.length; i++) {
     new Email(samples[i]);
   }
 
-
-  function getCurrentSample() {
-    return currentSample;
-  }
-
-  // function includeNotesToMarkup() {
-  //   let section = document.getElementById("notesPanel");
-  //   for (let i = 0; i < notes.length; i++) {
-  //     let phraseContainer = document.createElement('div');
-  //     phraseContainer.classList.add("phraseContainer");
-  //     let phrase = document.createElement('span');
-  //     phrase.classList.add("phrase");
-  //     phrase.innerHTML = notes[i];
-  //     let quickCopy = document.createElement('button');
-  //     quickCopy.classList.add("quickCopy");
-  //     quickCopy.innerHTML = "Copy";
-  //     section.appendChild(phraseContainer);
-  //     phraseContainer.appendChild(phrase);
-  //     phraseContainer.appendChild(quickCopy);
-  //   }
-  // }
   function includeNotesToMarkup() {
     let section = document.getElementById("notesPanel");
     for (let i = 0; i < notes.length; i++) {
@@ -181,7 +74,6 @@
       text.classList.add("quickCopyText");
       text.innerHTML = "Copy";
       quickCopy.appendChild(text);
-      // quickCopy.innerHTML = "Copy";
       section.appendChild(phraseContainer);
       phraseContainer.appendChild(phrase);
       phraseContainer.appendChild(quickCopy);
@@ -195,7 +87,6 @@
       let sample = samples[i];
       let button = document.createElement('div');
       button.classList.add("email");
-      // button.innerHTML = sample.name.toLowerCase();
       button.innerHTML = sample.name;
       for (let i = 0; i < sections.length; i++) {
         if (sections[i].innerHTML.toLowerCase() === sample.section.toLowerCase()) {
@@ -208,7 +99,6 @@
   // MENU PANEL
   accordion();
   copySimpleNotesToClipboard();
-
   function copySimpleNotesToClipboard() {
     let phraseAll = document.getElementsByClassName("phrase");
     let quickCopyAll = document.getElementsByClassName("quickCopy");
@@ -219,6 +109,7 @@
 
     }
   }
+
   function copyToClipboard(value) {
     let fakeTextarea = document.createElement('textarea');
     document.body.appendChild(fakeTextarea);
@@ -229,22 +120,6 @@
     showSnackbar("Successfully copied", "green");
   }
 
-  // function accordion() {
-  //   let acc = document.getElementsByClassName("accordion");
-  //   for (let i = 0; i < acc.length; i++) {
-  //     acc[i].onclick = function () {
-  //       this.classList.toggle("active");
-  //       let panel = this.nextElementSibling;
-  //       if (panel.style.maxHeight) {
-  //         panel.style.maxHeight = null;
-  //       } else {
-  //         panel.style.maxHeight = panel.scrollHeight + "px";
-  //       }
-  //     };
-  //   }
-  // }
-
-    
   function accordion() {
     let acc = document.getElementsByClassName("accordion");
     for (let i = 0; i < acc.length; i++) {
@@ -258,7 +133,6 @@
         }
         this.classList.toggle("active");
         let panel = this.nextElementSibling;
-        
         if (panel.style.maxHeight) {
           panel.style.maxHeight = null;
         } else {
@@ -269,81 +143,68 @@
   }
 
   //WORKING PANEL
-
-AddDataFromInputsToTextarea();
-function AddDataFromInputsToTextarea() {
-  function updateTextarea () {
-    for (let i = 0; i < samples.length; i++) {
-      if (samples[i].name === currentSample) {
-        let text = samples[i].messageText();
-    
-        
-        if (text.charAt(0) === ",") {
-          text = text.slice(1);
-          text = text.replace(/\n/, '');
-          
-          // if (text.charAt(0) === "\\") {
-          //   text = text.slice(2);
-          // }
-        } 
-        // alert(text);
-        textarea.value = text;
-        // textarea.value = samples[i].messageText();
-        
-      }    
+  AddDataFromInputsToTextarea();
+  function AddDataFromInputsToTextarea() {
+    function updateTextarea() {
+      for (let i = 0; i < samples.length; i++) {
+        if (samples[i].name === currentSample) {
+          let text = samples[i].messageText();
+          if (text.charAt(0) === ",") {
+            text = text.slice(1).replace(/\n/, '');
+          }
+          textarea.value = text;
+        }
+      }
     }
-  }
-  let textarea = document.getElementById("textarea");
-  let textInputs = document.getElementsByClassName("inputText");
-  let subjectLine = document.getElementById("subject");
-  let includeLoadToSubjectLineCheckbox = document.getElementById("loadToSubject");
-  for (let i = 0; i < textInputs.length; i++) {
-    textInputs[i].onkeyup = () => {
-      updateTextarea ();
-      if (includeLoadToSubjectLineCheckbox.checked) {
+    let textarea = document.getElementById("textarea");
+    let textInputs = document.getElementsByClassName("inputText");
+    let subjectLine = document.getElementById("subject");
+    let includeLoadToSubjectLineCheckbox = document.getElementById("loadToSubject");
+    for (let i = 0; i < textInputs.length; i++) {
+      textInputs[i].onkeyup = () => {
+        updateTextarea();
+        if (includeLoadToSubjectLineCheckbox.checked) {
+          subjectLine.value = options.subject();
+        }
+      };
+    }
+    includeLoadToSubjectLineCheckbox.onchange = () => {
+      if (!includeLoadToSubjectLineCheckbox.checked) {
+        subjectLine.value = "";
+      } else {
         subjectLine.value = options.subject();
       }
     };
-  }
-
-  includeLoadToSubjectLineCheckbox.onchange = () => {
-    if (!includeLoadToSubjectLineCheckbox.checked) {
-      subjectLine.value = "";
-    } else {
-      subjectLine.value = options.subject();
-    }
-  };
-
-  let page = document.getElementById("inputPage");
-  let pageFrom = document.getElementById("inputPageFrom");
-  let pageTo = document.getElementById("inputPageTo");
-  page.onkeyup = () => { 
-    pageFrom.value = "";
-    pageTo.value = "";
-    updateTextarea();
-  };
-  pageFrom.onkeyup = () => { 
-    page.value = "";
-    updateTextarea();
-  };
-  pageTo.onkeyup = () => { 
-    page.value = "";
-    updateTextarea();
-  };
-  UpdateTextAreaOnCheckboxChange("checkboxGreeting");
-  UpdateTextAreaOnCheckboxChange("checkboxRate");
-  UpdateTextAreaOnCheckboxChange("checkboxDirection");
-  UpdateTextAreaOnCheckboxChange("checkboxOtherActivities");
-  UpdateTextAreaOnCheckboxChange("checkboxGratitude");
-  function UpdateTextAreaOnCheckboxChange(checkboxClass) {
-    let checkboxClassElements = document.getElementsByClassName(checkboxClass);
-    for (let i = 0; i < checkboxClassElements.length; i++) {
-      checkboxClassElements[i].onchange = () => {
-        updateTextarea();
-      };
+    let page = document.getElementById("inputPage");
+    let pageFrom = document.getElementById("inputPageFrom");
+    let pageTo = document.getElementById("inputPageTo");
+    page.onkeyup = () => {
+      pageFrom.value = "";
+      pageTo.value = "";
+      updateTextarea();
+    };
+    pageFrom.onkeyup = () => {
+      page.value = "";
+      updateTextarea();
+    };
+    pageTo.onkeyup = () => {
+      page.value = "";
+      updateTextarea();
+    };
+    UpdateTextAreaOnCheckboxChange("checkboxGreeting");
+    UpdateTextAreaOnCheckboxChange("checkboxRate");
+    UpdateTextAreaOnCheckboxChange("checkboxDirection");
+    UpdateTextAreaOnCheckboxChange("checkboxOtherActivities");
+    UpdateTextAreaOnCheckboxChange("checkboxGratitude");
+    function UpdateTextAreaOnCheckboxChange(checkboxClass) {
+      let checkboxClassElements = document.getElementsByClassName(checkboxClass);
+      for (let i = 0; i < checkboxClassElements.length; i++) {
+        checkboxClassElements[i].onchange = () => {
+          updateTextarea();
+        };
+      }
     }
   }
-}
 
   let lockButtonState;
   let access = new accessToEmail();
@@ -366,7 +227,6 @@ function AddDataFromInputsToTextarea() {
       lockIcon.className = "fa fa-lock";
       lockIcon.style.color = "#be5046";
       lockButtonState = "red";
-
     };
     this.unlock = () => {
       if (lockIcon.className === "fa fa-unlock-alt") return;
@@ -385,7 +245,7 @@ function AddDataFromInputsToTextarea() {
     };
   }
 
-document.getElementById("lockButton").onclick = access.unlock;
+  document.getElementById("lockButton").onclick = access.unlock;
 
   function hideAllOptions() {
     let options = document.getElementsByClassName("rowOptions");
@@ -399,12 +259,13 @@ document.getElementById("lockButton").onclick = access.unlock;
     let textInputs = document.getElementsByClassName("inputText");
     for (let i = 0; i < textInputs.length; i++) {
       textInputs[i].value = "";
-    } 
+    }
     let subjectLine = document.getElementById("subject");
     subjectLine.value = "";
   }
 
   showChosenTextarea();
+
   function showChosenTextarea() {
     let buttonShowBody = document.getElementById("buttonShowBody");
     let buttonShowSignature = document.getElementById("buttonShowSignature");
@@ -412,10 +273,6 @@ document.getElementById("lockButton").onclick = access.unlock;
     let textarea2 = document.getElementById("textarea2");
     let subjectContainer = document.getElementById("subjectContainer");
     let lockButton = document.getElementById("lockButton");
-
-    // let optionsTitle =  document.getElementById("optionsTitle");
-    // let sectionOptions =  document.getElementById("sectionOptions");
-  
     function setLockButton(state) {
       if (state === "red") {
         lockButton.disabled = false;
@@ -427,9 +284,8 @@ document.getElementById("lockButton").onclick = access.unlock;
         lockButton.style.cursor = "";
         lockIcon.className = "fa fa-unlock-alt";
         lockIcon.style.color = "#98c379";
-      } 
+      }
     }
-
     buttonShowBody.onclick = () => {
       buttonShowBody.style.backgroundColor = "#C678DD";
       buttonShowSignature.style.backgroundColor = "#21252b";
@@ -442,7 +298,6 @@ document.getElementById("lockButton").onclick = access.unlock;
       } else if (lockButtonState === "red") {
         setLockButton("red");
       }
-    
     };
     buttonShowSignature.onclick = () => {
       buttonShowBody.style.backgroundColor = "#21252b";
@@ -451,10 +306,8 @@ document.getElementById("lockButton").onclick = access.unlock;
       textarea2.style.display = "block";
       subjectContainer.style.display = "none";
       setLockButton("green");
-     
     };
   }
-
 
   let currentSignature = "";
   insertSignature();
@@ -492,9 +345,6 @@ document.getElementById("lockButton").onclick = access.unlock;
     showSnackbar("Successfully copied", "green");
   }
 
-
-  let signature = `%0A%0AValentyn Rubliuk%0AFS Billing Team Lead%0APLS Logistics Services`;
-
   function createMessage() {
     let text = document.getElementById("textarea").value;
     if (!text) {
@@ -513,20 +363,37 @@ document.getElementById("lockButton").onclick = access.unlock;
   }
 
   //jquery plugin "INPUT MASK"
-  $("#inputDatePW").inputmask({ "alias": "mm/dd/yyyy"});
-  $("#inputDatePRO").inputmask({ "alias": "mm/dd/yyyy"});
-  $("#inputPickupDate").inputmask({ "alias": "mm/dd/yyyy"});
-  $("#inputFreightBillDate").inputmask({ "alias": "mm/dd/yyyy"});
- 
+  $("#inputload, #inputPage, #inputPageFrom, #inputPageTo, #inputFee, #inputWeightPW, #inputWeightPRO, #inputReleased").inputmask("9{*}");
+  $("#inputReceiver, #inputTypeFee").inputmask("a{*}");
+  $("#inputRatePW, #inputRatePRO").inputmask({
+    'alias': 'decimal',
+    'rightAlign': false,
+    'groupSeparator': '.',
+    'autoGroup': true
+  });
+
+
+  $("#inputDatePW").inputmask({
+    "alias": "mm/dd/yyyy"
+  });
+  $("#inputDatePRO").inputmask({
+    "alias": "mm/dd/yyyy"
+  });
+  $("#inputPickupDate").inputmask({
+    "alias": "mm/dd/yyyy"
+  });
+  $("#inputFreightBillDate").inputmask({
+    "alias": "mm/dd/yyyy"
+  });
 
   //FOOTER
   function showSnackbar(text, color) {
     let x = document.getElementById("snackbar");
     x.innerHTML = text;
     x.className = "snackbarShow";
-
     x.classList.add("snackbar" + color);
-    setTimeout(function () { x.className = x.className.replace("snackbarShow", ""); }, 1000);
+    setTimeout(function () {
+      x.className = x.className.replace("snackbarShow", "");
+    }, 1000);
   }
-
 })();

@@ -11,8 +11,10 @@ let notes = [
   "shipment number on BOL doesn't match PLS PRO",
   "origin/destination city on BOL doesn't match PLS PRO",
   "date on BOL doesn't match PLS PRO",
-  "weight on BOL doesn't match PLS PRO"
+  "weight on BOL doesn't match PLS PRO",
+  "sorry, we don't work with non FS or 2.0 loads"
 ];
+
 let currentSample;
 
 let options = {
@@ -100,13 +102,12 @@ let options = {
       }
     }
   },
-
   cityPRO () {
-    let data = document.getElementById("inputCityPRO").value;
+    let data = document.getElementById("inputCityPRO").value.toUpperCase();
     return data ? ` (${data})` : "";
   },
   cityPW () {
-    let data = document.getElementById("inputCityPW").value;
+    let data = document.getElementById("inputCityPW").value.toUpperCase();
     return data ? ` (${data})` : "";
   },
   datePRO () {
@@ -133,7 +134,6 @@ let options = {
     let data = document.getElementById("inputCarrierPW").value.toUpperCase();
     return data ?  ` (${data})` : "";
   },
-
   pickupDate () {
     let data = document.getElementById("inputPickupDate").value;
     return data ? data : "";
@@ -201,8 +201,6 @@ let samples = [
       return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} is legible enough to process ${options.load()}?${options.gratitude()}`;
     }
   },
-  
-
   {
     name: "using paperwork as BOL",
     section: "paperwork issues",
@@ -396,7 +394,6 @@ let samples = [
       return `${options.greeting()}${options.receiver()},\nPlease see below and advise. Per the carrier they don't have ${options.load()} in their system. Should we close it in the system?${options.gratitude()}`;
     }
   },
-  
   {
     name: "put data in PLS PRO",
     section: "TO SUPPORT REQUEST",
@@ -405,7 +402,6 @@ let samples = [
       return `${options.greeting()},\nI am not able to add pro# and date for this load ${options.load()}. Please put the following data in PLS PRO FLEX:\nPRO#: ${options.numberPRO()}\nFreight bill date: ${options.freightBillDate()}${options.gratitude()}`;
     }
   },
-
   {
     name: "PLS PRO isn't working",
     section: "TO SUPPORT REQUEST",
@@ -455,9 +451,3 @@ let samples = [
     }
   }
 ];
-
-
-
-
-
-

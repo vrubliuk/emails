@@ -11,83 +11,6 @@ function _classCallCheck(instance, Constructor) {
 
   //GENERAL
 
-
-  //---------------------------SIGNATURE--------------------------------
-
-  // validateInputSignature();
-  //   function validateInputSignature() {
-  //     let inputs = document.getElementsByClassName("inputSignature");
-  //     let firstName = document.getElementById("inputFirstName");
-  //     let secondName = document.getElementById("inputSecondName");
-  //     let textarea = document.getElementById("textareaSignature");
-  //     let button = document.getElementById("buttonSaveSignature");
-  //     function getFirstName () {
-  //       let firstName = document.getElementById("inputFirstName").value;
-  //       firstName = (firstName.split(" "))[0];
-  //       return firstName.charAt(0).toUpperCase() + firstName.slice(1);
-  //     }
-  //     function getSecondName () {
-  //       let secondName = document.getElementById("inputSecondName").value;
-  //       secondName = (secondName.split(" "))[0]; 
-  //       return secondName.charAt(0).toUpperCase() + secondName.slice(1);
-  //     }
-  //     function activateButton () {
-  //       button.disabled = false;
-  //       button.style.backgroundColor = "#61AFEF";
-  //       button.style.cursor = "pointer";
-  //     }
-  //     function disactivateButton () {
-  //       button.disabled = true;
-  //       button.style.backgroundColor = "";
-  //       button.style.cursor = "";
-  //     }
-
-  //     for (let i = 0; i < inputs.length; i++) {
-  //       inputs[i].onkeyup = () => {
-  //         if (getFirstName() || getSecondName()) {
-  //           textarea.value = `${getFirstName()} ${getSecondName()}\nFS Billing Team\nPLS Logistics Services`;
-  //           activateButton();
-  //         } else {
-  //           textarea.value = "";
-  //           disactivateButton();
-  //         }
-  //       };
-  //     }
-  //     textarea.onkeyup = () => {
-  //       firstName.value = "";
-  //       secondName.value = "";
-  //       if (textarea.value) {
-  //         activateButton();
-  //       } else {
-  //         disactivateButton();
-  //       }
-  //     };
-  //   }
-
-  //   document.getElementById("buttonSaveSignature").onclick = saveSignature;
-  //   let currentSignature;
-  //   function saveSignature() {
-  //     currentSignature = document.getElementById("textareaSignature").value;
-  //     localStorage.setItem("signature", currentSignature);
-  //     signaturePanel.hide();
-  //   }
-
-
-  //   let signaturePanel = new SignaturePanel();
-  //   signaturePanel.show();
-
-  //   function SignaturePanel () {
-  //     let signaturePanel = document.getElementById("signaturePanel");
-  //     this.show =() => {
-  //       signaturePanel.style.display = "flex";
-  //     };
-  //     this.hide =() => {
-  //       signaturePanel.style.display = "none";
-  //     };
-  //   }
-  //--------------------------------------------------------------
-
-
   includeNotesToMarkup();
   includeSamplesToMarkup();
 
@@ -117,7 +40,6 @@ function _classCallCheck(instance, Constructor) {
         document.getElementById("row" + option).style.display = "block";
       }
     };
-
     this.button.onclick = function () {
       currentSample = _this.name;
       hideAllOptions();
@@ -141,9 +63,6 @@ function _classCallCheck(instance, Constructor) {
         var year = date.getFullYear();
         _this.subject.value = "statistics " + month + "/" + day + "/" + year;
       }
-      // if (currentSample === "WEYERHAEUSER") {
-      //   document.getElementById("inputReceiver").value = "Michael";
-      // }
     };
   };
 
@@ -151,26 +70,6 @@ function _classCallCheck(instance, Constructor) {
     new Email(samples[i]);
   }
 
-  function getCurrentSample() {
-    return currentSample;
-  }
-
-  // function includeNotesToMarkup() {
-  //   let section = document.getElementById("notesPanel");
-  //   for (let i = 0; i < notes.length; i++) {
-  //     let phraseContainer = document.createElement('div');
-  //     phraseContainer.classList.add("phraseContainer");
-  //     let phrase = document.createElement('span');
-  //     phrase.classList.add("phrase");
-  //     phrase.innerHTML = notes[i];
-  //     let quickCopy = document.createElement('button');
-  //     quickCopy.classList.add("quickCopy");
-  //     quickCopy.innerHTML = "Copy";
-  //     section.appendChild(phraseContainer);
-  //     phraseContainer.appendChild(phrase);
-  //     phraseContainer.appendChild(quickCopy);
-  //   }
-  // }
   function includeNotesToMarkup() {
     var section = document.getElementById("notesPanel");
     for (var _i = 0; _i < notes.length; _i++) {
@@ -185,7 +84,6 @@ function _classCallCheck(instance, Constructor) {
       text.classList.add("quickCopyText");
       text.innerHTML = "Copy";
       quickCopy.appendChild(text);
-      // quickCopy.innerHTML = "Copy";
       section.appendChild(phraseContainer);
       phraseContainer.appendChild(phrase);
       phraseContainer.appendChild(quickCopy);
@@ -198,7 +96,6 @@ function _classCallCheck(instance, Constructor) {
       var sample = samples[_i2];
       var button = document.createElement('div');
       button.classList.add("email");
-      // button.innerHTML = sample.name.toLowerCase();
       button.innerHTML = sample.name;
       for (var _i3 = 0; _i3 < sections.length; _i3++) {
         if (sections[_i3].innerHTML.toLowerCase() === sample.section.toLowerCase()) {
@@ -211,7 +108,6 @@ function _classCallCheck(instance, Constructor) {
   // MENU PANEL
   accordion();
   copySimpleNotesToClipboard();
-
   function copySimpleNotesToClipboard() {
     var phraseAll = document.getElementsByClassName("phrase");
     var quickCopyAll = document.getElementsByClassName("quickCopy");
@@ -226,6 +122,7 @@ function _classCallCheck(instance, Constructor) {
       _loop(_i4);
     }
   }
+
   function copyToClipboard(value) {
     var fakeTextarea = document.createElement('textarea');
     document.body.appendChild(fakeTextarea);
@@ -235,22 +132,6 @@ function _classCallCheck(instance, Constructor) {
     fakeTextarea.parentNode.removeChild(fakeTextarea);
     showSnackbar("Successfully copied", "green");
   }
-
-  // function accordion() {
-  //   let acc = document.getElementsByClassName("accordion");
-  //   for (let i = 0; i < acc.length; i++) {
-  //     acc[i].onclick = function () {
-  //       this.classList.toggle("active");
-  //       let panel = this.nextElementSibling;
-  //       if (panel.style.maxHeight) {
-  //         panel.style.maxHeight = null;
-  //       } else {
-  //         panel.style.maxHeight = panel.scrollHeight + "px";
-  //       }
-  //     };
-  //   }
-  // }
-
 
   function accordion() {
     var acc = document.getElementsByClassName("accordion");
@@ -266,7 +147,6 @@ function _classCallCheck(instance, Constructor) {
         }
         this.classList.toggle("active");
         var panel = this.nextElementSibling;
-
         if (panel.style.maxHeight) {
           panel.style.maxHeight = null;
         } else {
@@ -281,25 +161,16 @@ function _classCallCheck(instance, Constructor) {
   }
 
   //WORKING PANEL
-
   AddDataFromInputsToTextarea();
   function AddDataFromInputsToTextarea() {
     function updateTextarea() {
       for (var _i7 = 0; _i7 < samples.length; _i7++) {
         if (samples[_i7].name === currentSample) {
           var text = samples[_i7].messageText();
-
           if (text.charAt(0) === ",") {
-            text = text.slice(1);
-            text = text.replace(/\n/, '');
-
-            // if (text.charAt(0) === "\\") {
-            //   text = text.slice(2);
-            // }
+            text = text.slice(1).replace(/\n/, '');
           }
-          // alert(text);
           textarea.value = text;
-          // textarea.value = samples[i].messageText();
         }
       }
     }
@@ -315,7 +186,6 @@ function _classCallCheck(instance, Constructor) {
         }
       };
     }
-
     includeLoadToSubjectLineCheckbox.onchange = function () {
       if (!includeLoadToSubjectLineCheckbox.checked) {
         subjectLine.value = "";
@@ -323,7 +193,6 @@ function _classCallCheck(instance, Constructor) {
         subjectLine.value = options.subject();
       }
     };
-
     var page = document.getElementById("inputPage");
     var pageFrom = document.getElementById("inputPageFrom");
     var pageTo = document.getElementById("inputPageTo");
@@ -414,6 +283,7 @@ function _classCallCheck(instance, Constructor) {
   }
 
   showChosenTextarea();
+
   function showChosenTextarea() {
     var buttonShowBody = document.getElementById("buttonShowBody");
     var buttonShowSignature = document.getElementById("buttonShowSignature");
@@ -421,10 +291,6 @@ function _classCallCheck(instance, Constructor) {
     var textarea2 = document.getElementById("textarea2");
     var subjectContainer = document.getElementById("subjectContainer");
     var lockButton = document.getElementById("lockButton");
-
-    // let optionsTitle =  document.getElementById("optionsTitle");
-    // let sectionOptions =  document.getElementById("sectionOptions");
-
     function setLockButton(state) {
       if (state === "red") {
         lockButton.disabled = false;
@@ -438,7 +304,6 @@ function _classCallCheck(instance, Constructor) {
         lockIcon.style.color = "#98c379";
       }
     }
-
     buttonShowBody.onclick = function () {
       buttonShowBody.style.backgroundColor = "#C678DD";
       buttonShowSignature.style.backgroundColor = "#21252b";
@@ -497,8 +362,6 @@ function _classCallCheck(instance, Constructor) {
     showSnackbar("Successfully copied", "green");
   }
 
-  var signature = "%0A%0AValentyn Rubliuk%0AFS Billing Team Lead%0APLS Logistics Services";
-
   function createMessage() {
     var text = document.getElementById("textarea").value;
     if (!text) {
@@ -517,17 +380,33 @@ function _classCallCheck(instance, Constructor) {
   }
 
   //jquery plugin "INPUT MASK"
-  $("#inputDatePW").inputmask({ "alias": "mm/dd/yyyy" });
-  $("#inputDatePRO").inputmask({ "alias": "mm/dd/yyyy" });
-  $("#inputPickupDate").inputmask({ "alias": "mm/dd/yyyy" });
-  $("#inputFreightBillDate").inputmask({ "alias": "mm/dd/yyyy" });
+  $("#inputload, #inputPage, #inputPageFrom, #inputPageTo, #inputFee, #inputWeightPW, #inputWeightPRO, #inputReleased").inputmask("9{*}");
+  $("#inputReceiver, #inputTypeFee").inputmask("a{*}");
+  $("#inputRatePW, #inputRatePRO").inputmask({
+    'alias': 'decimal',
+    'rightAlign': false,
+    'groupSeparator': '.',
+    'autoGroup': true
+  });
+
+  $("#inputDatePW").inputmask({
+    "alias": "mm/dd/yyyy"
+  });
+  $("#inputDatePRO").inputmask({
+    "alias": "mm/dd/yyyy"
+  });
+  $("#inputPickupDate").inputmask({
+    "alias": "mm/dd/yyyy"
+  });
+  $("#inputFreightBillDate").inputmask({
+    "alias": "mm/dd/yyyy"
+  });
 
   //FOOTER
   function showSnackbar(text, color) {
     var x = document.getElementById("snackbar");
     x.innerHTML = text;
     x.className = "snackbarShow";
-
     x.classList.add("snackbar" + color);
     setTimeout(function () {
       x.className = x.className.replace("snackbarShow", "");

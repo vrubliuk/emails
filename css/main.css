@@ -1,21 +1,21 @@
-#container:after, #subjectContainer:after, #optionsTitle:after {
-  content: "";
-  display: table;
-  clear: both; }
-
 * {
   font-family: 'Roboto Condensed', sans-serif;
   color: #abb2bf;
   outline: none !important;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 :-ms-input-placeholder {
   color: #737373 !important; }
 
+html,
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
   background-color: #282c34; }
+  html:focus,
   body:focus {
     outline: none !important;
     outline: 0; }
@@ -35,72 +35,13 @@ a:visited {
   background: rgba(97, 175, 239, 0.996); }
 
 #container {
-  margin: 0 auto;
-  min-width: 1730px; }
-
-#signaturePanel {
-  position: fixed;
-  background-color: #282c34;
-  width: 100vw;
-  height: 100vh;
-  z-index: 999;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex; }
-
-#signatureForm {
-  background-color: #21252b;
-  margin: auto;
-  max-width: 600px;
-  padding: 10px;
-  font-size: 18px; }
-
-#signatureFormTitle {
-  font-size: 22px;
-  border-bottom: solid 5px #c678dd;
-  text-align: center;
-  margin: 0;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-transform: uppercase; }
-
-#inputFirstName {
-  margin-right: 7px; }
-
-.inputSignature {
-  background-color: #2c313a;
-  border: none;
-  height: 30px;
-  padding: 5px;
-  font-size: 18px;
-  width: 250px; }
-
-#textareaSignature {
-  font-size: 18px;
-  background-color: #2c313a;
-  resize: none;
-  width: 100%;
-  padding: 5px;
-  overflow: auto;
-  border: none; }
-
-#buttonSaveSignature {
-  border: none;
-  background-color: #be5046;
-  color: whitesmoke;
-  height: 40px;
-  width: 160px;
-  border-radius: 6px;
-  font-size: 18px;
-  display: block;
-  margin-top: 15px;
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto; }
+  height: 100%;
+  width: 100%; }
 
 #panelMenu {
   width: 25%;
-  min-height: 100vh;
+  width: 450px;
+  height: 100%;
   float: left;
   background-color: #21252b; }
 
@@ -118,6 +59,8 @@ a:visited {
   text-align: left;
   outline: none;
   font-size: 18px;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
   transition: 0.4s;
   text-transform: uppercase; }
   .accordion:hover {
@@ -147,6 +90,8 @@ div.accordionPanel {
   padding: 0;
   max-height: 0;
   overflow: hidden;
+  -webkit-transition: max-height 0.2s ease-out;
+  -o-transition: max-height 0.2s ease-out;
   transition: max-height 0.2s ease-out; }
   div.accordionPanel div.phraseContainer {
     height: 30px;
@@ -185,15 +130,14 @@ div.accordionPanel {
       background-color: #2c313a; }
 
 #panelWorking {
-  width: 75%;
-  float: right;
-  height: 100vh; }
+  margin-left: 450px;
+  height: 100%;
+  padding: 42px; }
 
 #panelWorkingContainer {
   display: block;
   width: 1080px;
-  margin: 0 auto;
-  margin-top: 42px;
+  margin: auto;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -274,7 +218,6 @@ div.accordionPanel {
     font-size: 22px;
     float: left; }
   #subjectContainer #subjectValue {
-    float: left;
     display: block;
     padding-left: 10px;
     font-size: 22px; }
@@ -305,7 +248,9 @@ div.accordionPanel {
   padding: 5px;
   overflow: hidden; }
 
-#subjectCover, #textareaCover, #textareaCover2 {
+#subjectCover,
+#textareaCover,
+#textareaCover2 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -337,7 +282,8 @@ div.accordionPanel {
     color: #98c379; }
 
 #optionsTitle {
-  border-bottom: solid 10px #56b6c2; }
+  border-bottom: solid 10px #56b6c2;
+  height: 62px; }
   #optionsTitle #buttonOptionsTitle {
     margin-left: -10px;
     float: right;
@@ -362,8 +308,8 @@ div.accordionPanel {
   font-size: 18px;
   line-height: 40px;
   background-color: #21252b;
-  padding-left: 10px;
-  padding-right: 10px; }
+  padding-left: 15px;
+  padding-right: 15px; }
 
 .rowOptions {
   display: none; }
@@ -403,6 +349,8 @@ div.accordionPanel {
   bottom: 0;
   background-color: #ccc;
   background-color: #2c313a;
+  -webkit-transition: .4s;
+  -o-transition: .4s;
   transition: .4s; }
 
 .slider:before {
@@ -414,6 +362,8 @@ div.accordionPanel {
   bottom: 3px;
   background-color: white;
   background-color: #abb2bf;
+  -webkit-transition: .4s;
+  -o-transition: .4s;
   transition: .4s; }
 
 input:checked + .slider {
@@ -423,6 +373,7 @@ input:checked + .slider:before {
   background-color: white; }
 
 input:focus + .slider {
+  -webkit-box-shadow: 0 0 1px #61afef;
   box-shadow: 0 0 1px #61afef; }
 
 input:checked + .slider:before {
@@ -449,12 +400,10 @@ input:checked + .slider:before {
 .containerCheckbox:not(:first-child):not(:nth-child(2)) {
   margin-left: 20px; }
 
-/* Hide the browser's default checkbox */
 .containerCheckbox input {
   position: absolute;
   opacity: 0; }
 
-/* Create a custom checkbox */
 .checkmark {
   position: absolute;
   top: 7px;
@@ -465,22 +414,17 @@ input:checked + .slider:before {
   background-color: #2c313a;
   border-radius: 50%; }
 
-/* On mouse-over, add a grey background color */
-/* When the checkbox is checked, add a blue background */
 .containerCheckbox input:checked ~ .checkmark {
   background-color: #61afef; }
 
-/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
   content: "";
   position: absolute;
   display: none; }
 
-/* Show the checkmark when checked */
 .containerCheckbox input:checked ~ .checkmark:after {
   display: block; }
 
-/* Style the checkmark/indicator */
 .containerCheckbox .checkmark:after {
   left: 9px;
   top: 5px;
@@ -494,31 +438,18 @@ input:checked + .slider:before {
 
 #snackbar {
   visibility: hidden;
-  /* Hidden by default. Visible on click */
   min-width: 250px;
-  /* Set a default minimum width */
   margin-left: -125px;
-  /* Divide value of min-width by 2 */
   color: whitesmoke;
-  /* White text color */
   text-align: center;
-  /* Centered text */
   padding: 16px;
-  /* Padding */
   position: fixed;
-  /* Sit on top of the screen */
   z-index: 1;
-  /* Add a z-index if needed */
   left: 50%;
-  /* Center the snackbar */
-  bottom: 30px;
-  /* 30px from the bottom */ }
+  bottom: 30px; }
 
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
 #snackbar.snackbarShow {
   visibility: visible;
-  /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
-However, delay the fade out process for 2.5 seconds */
   -webkit-animation: fadein 0.5s, fadeout 0.5s 1s;
   animation: fadein 0.5s, fadeout 0.5s 1s; }
 
