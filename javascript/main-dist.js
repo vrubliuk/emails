@@ -379,28 +379,41 @@ function _classCallCheck(instance, Constructor) {
     showSnackbar("Creating email", "green");
   }
 
-  //jquery plugin "INPUT MASK"
-  $("#inputload, #inputPage, #inputPageFrom, #inputPageTo, #inputFee, #inputWeightPW, #inputWeightPRO, #inputReleased").inputmask("9{*}");
-  $("#inputReceiver, #inputTypeFee").inputmask("a{*}");
-  $("#inputRatePW, #inputRatePRO").inputmask({
-    'alias': 'decimal',
-    'rightAlign': false,
-    'groupSeparator': '.',
-    'autoGroup': true
-  });
+  //FILTERING USER'S INPUT
+  allowValue(/[0-9]/, "inputload", "inputPage", "inputPageFrom", "inputPageTo", "inputFee", "inputWeightPW", "inputWeightPRO", "inputReleased");
+  allowValue(/[a-zA-Z]/, "inputReceiver", "inputTypeFee");
+  allowValue(/[0-9]|\./, "inputRatePW", "inputRatePRO");
+  allowValue(/[0-9]|\/|\.|\-/, "inputDatePW", "inputDatePRO", "inputPickupDate", "inputFreightBillDate");
 
-  $("#inputDatePW").inputmask({
-    "alias": "mm/dd/yyyy"
-  });
-  $("#inputDatePRO").inputmask({
-    "alias": "mm/dd/yyyy"
-  });
-  $("#inputPickupDate").inputmask({
-    "alias": "mm/dd/yyyy"
-  });
-  $("#inputFreightBillDate").inputmask({
-    "alias": "mm/dd/yyyy"
-  });
+  function allowValue(regex) {
+    function getChar(event) {
+      // for IE
+      if (event.which == null) {
+        if (event.keyCode < 32) return null;
+        return String.fromCharCode(event.keyCode);
+      }
+      // other browsers
+      if (event.which != 0 && event.charCode != 0) {
+        if (event.which < 32) return null;
+        return String.fromCharCode(event.which);
+      }
+      return null;
+    }
+
+    for (var _len = arguments.length, inputIDs = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      inputIDs[_key - 1] = arguments[_key];
+    }
+
+    for (var _i12 = 0; _i12 < inputIDs.length; _i12++) {
+      var element = document.getElementById(inputIDs[_i12]);
+      element.onkeypress = function (e) {
+        var char = getChar(e);
+        if (!regex.test(char)) {
+          return false;
+        }
+      };
+    }
+  }
 
   //FOOTER
   function showSnackbar(text, color) {
