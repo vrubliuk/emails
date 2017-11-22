@@ -1,6 +1,6 @@
 "use strict";
 
-var notes = ["emailed to confirm delivery", "emailed AE regarding rates", "emailed AE about the load status", "information on BOL doesn't match PLS PRO", "don't pay carrier until customer accepts paperwork", "emailed Support Request to put pro and date", "released w/o BOL per AE", "shipment number on BOL doesn't match PLS PRO", "origin/destination city on BOL doesn't match PLS PRO", "date on BOL doesn't match PLS PRO", "weight on BOL doesn't match PLS PRO", "sorry, we don't work with non FS or 2.0 loads"];
+var notes = ["emailed to confirm delivery", "emailed AE regarding rates", "emailed AE about the load status", "don't pay carrier until customer accepts paperwork", "emailed Support Request to put pro and date", "released w/o BOL per AE", "information on BOL doesn't match PLS PRO", "shipment number on BOL doesn't match PLS PRO", "origin/destination city on BOL doesn't match PLS PRO", "date on BOL doesn't match PLS PRO", "weight on BOL doesn't match PLS PRO", "sorry, we don't work with non FS or 2.0 loads"];
 
 var currentSample = void 0;
 
@@ -125,11 +125,11 @@ var options = {
   },
   carrierPRO: function carrierPRO() {
     var data = document.getElementById("inputCarrierPRO").value.toUpperCase();
-    return data ? " (" + data + ")" : "";
+    return data ? " \"" + data + "\"" : "";
   },
   carrierPW: function carrierPW() {
     var data = document.getElementById("inputCarrierPW").value.toUpperCase();
-    return data ? " (" + data + ")" : "";
+    return data ? " \"" + data + "\"" : "";
   },
   pickupDate: function pickupDate() {
     var data = document.getElementById("inputPickupDate").value;
@@ -305,7 +305,7 @@ var samples = [{
   section: "rates issues",
   availableOptions: ["greeting", "receiver", "load", "gratitude"],
   messageText: function messageText() {
-    return "" + options.greeting() + options.receiver() + ",\nPlease advise what number of pieces we should put in PLS for " + options.load() + " to reflect the correct rates?" + options.gratitude();
+    return "" + options.greeting() + options.receiver() + ",\nPlease advise which number of pieces we should put in PLS for " + options.load() + " to reflect the correct rates?" + options.gratitude();
   }
 }, {
   name: "different shipment numbers",
@@ -340,7 +340,7 @@ var samples = [{
   section: "carrier issues",
   availableOptions: ["greeting", "receiver", "load", "carrier", "gratitude"],
   messageText: function messageText() {
-    return "" + options.greeting() + options.receiver() + ",\nThere are different carrier's names on the invoice" + options.carrierPW() + " and in PLS PRO" + options.carrierPRO() + ". The load is " + options.load() + ".\nPlease advise. Is there another id# this paperwork goes to?" + options.gratitude();
+    return "" + options.greeting() + options.receiver() + ",\nPlease advise which carrier is correct for " + options.load() + "? The invoice is showing" + options.carrierPW() + ", PLS PRO -" + options.carrierPRO() + "." + options.gratitude();
   }
 }, {
   name: "missing paperwork request",
