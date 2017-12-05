@@ -128,11 +128,11 @@ let options = {
   },
   carrierPRO  () {
     let data = document.getElementById("inputCarrierPRO").value.toUpperCase();
-    return data ?  ` "${data}"` : "";
+    return data ?  ` ${data}` : "";
   },
   carrierPW  () {
     let data = document.getElementById("inputCarrierPW").value.toUpperCase();
-    return data ?  ` "${data}"` : "";
+    return data ?  ` ${data}` : "";
   },
   pickupDate () {
     let data = document.getElementById("inputPickupDate").value;

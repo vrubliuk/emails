@@ -125,11 +125,11 @@ var options = {
   },
   carrierPRO: function carrierPRO() {
     var data = document.getElementById("inputCarrierPRO").value.toUpperCase();
-    return data ? " \"" + data + "\"" : "";
+    return data ? " " + data : "";
   },
   carrierPW: function carrierPW() {
     var data = document.getElementById("inputCarrierPW").value.toUpperCase();
-    return data ? " \"" + data + "\"" : "";
+    return data ? " " + data : "";
   },
   pickupDate: function pickupDate() {
     var data = document.getElementById("inputPickupDate").value;
