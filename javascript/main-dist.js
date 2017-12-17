@@ -380,7 +380,8 @@ function _classCallCheck(instance, Constructor) {
   }
 
   //FILTERING USER'S INPUT
-  allowValue(/[0-9]/, "inputload", "inputPage", "inputPageFrom", "inputPageTo", "inputFee", "inputWeightPW", "inputWeightPRO", "inputReleased");
+  allowValue(/[0-9]|\,|\s/, "inputload");
+  allowValue(/[0-9]/, "inputPage", "inputPageFrom", "inputPageTo", "inputFee", "inputWeightPW", "inputWeightPRO", "inputReleased");
   allowValue(/[a-zA-Z]/, "inputReceiver", "inputTypeFee");
   allowValue(/[0-9]|\./, "inputRatePW", "inputRatePRO");
   allowValue(/[0-9]|\/|\.|\-/, "inputDatePW", "inputDatePRO", "inputPickupDate", "inputFreightBillDate");

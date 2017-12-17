@@ -4,7 +4,6 @@ let notes = [
   "emailed to confirm delivery",
   "emailed AE regarding rates",
   "emailed AE about the load status",
-  "don't pay carrier until customer accepts paperwork",
   "emailed Support Request to put pro and date",
   "released w/o BOL per AE",
   "information on BOL doesn't match PLS PRO",
