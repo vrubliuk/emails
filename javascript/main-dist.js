@@ -46,9 +46,9 @@ function _classCallCheck(instance, Constructor) {
       clearTextInputs();
       access.lock();
       window.getSelection().removeAllRanges();
-      if (currentSample === "WEYERHAEUSER") {
-        document.getElementById("inputReceiver").value = "Michael";
-      }
+      // if (currentSample === "WEYERHAEUSER") {
+      //   document.getElementById("inputReceiver").value = "Michael";
+      // }
       var text = _this.messageText();
       if (text.charAt(0) === ",") {
         text = text.slice(1);

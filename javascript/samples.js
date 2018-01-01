@@ -1,5 +1,18 @@
 ﻿"use strict";
 
+document.addEventListener("DOMContentLoaded", function () {
+  showAnimation(2000);
+});
+
+function showAnimation(time) {
+  setTimeout(() => {
+    document.getElementById("cover-container").style.height = "0px";
+    setTimeout(() => {
+      document.getElementById("animation-container").style.visibility = "hidden";
+    }, time);
+  }, 100);
+}
+
 let notes = [
   "emailed to confirm delivery",
   "emailed AE regarding rates",
@@ -27,11 +40,11 @@ let options = {
     }
     return this.load() ? this.load() : "";
   },
-  load(){
+  load() {
     let data = document.getElementById("inputload").value;
     return data ? data : "";
   },
-  greeting () {
+  greeting() {
     let checkboxGreeting = document.getElementsByClassName("checkboxGreeting");
     for (let i = 0; i < checkboxGreeting.length; i++) {
       if (checkboxGreeting[i].checked) {
@@ -39,7 +52,7 @@ let options = {
       }
     }
   },
-  receiver (){
+  receiver() {
     let data = document.getElementById("inputReceiver").value;
     let Data = data.charAt(0).toUpperCase() + data.slice(1);
     if (this.greeting()) {
@@ -48,36 +61,36 @@ let options = {
       return data ? `${Data}` : "";
     }
   },
-  page () {
+  page() {
     let data = document.getElementById("inputPage").value;
-    return data ? ` (page ${data})`: "";
+    return data ? ` (page ${data})` : "";
   },
-  pageRange () {
+  pageRange() {
     let data1 = document.getElementById("inputPageFrom").value;
     let data2 = document.getElementById("inputPageTo").value;
-    return data1 || data2 ? ` (pages ${data1}-${data2})`: "";
+    return data1 || data2 ? ` (pages ${data1}-${data2})` : "";
   },
-  fee () {
+  fee() {
     let data = document.getElementById("inputFee").value;
     return data ? data : "";
   },
-  typeFee () {
+  typeFee() {
     let data = document.getElementById("inputTypeFee").value;
     return data ? ` ${data}` : "";
   },
-  document () {
+  document() {
     let data = document.getElementById("inputDocument").value;
     return data ? data : "";
   },
-  ratePRO () {
+  ratePRO() {
     let data = document.getElementById("inputRatePRO").value;
     return data ? data : "";
   },
-  ratePW () {
+  ratePW() {
     let data = document.getElementById("inputRatePW").value;
     return data ? data : "";
   },
-  client () {
+  client() {
     let checkboxRate = document.getElementsByClassName("checkboxRate");
     for (let i = 0; i < checkboxRate.length; i++) {
       if (checkboxRate[i].checked) {
@@ -85,15 +98,15 @@ let options = {
       }
     }
   },
-  shipmentPRO () {
+  shipmentPRO() {
     let data = document.getElementById("inputShipmentPRO").value;
     return data ? ` (${data})` : "";
   },
-  shipmentPW () {
+  shipmentPW() {
     let data = document.getElementById("inputShipmentPW").value;
     return data ? ` (${data})` : "";
   },
-  incorrectCity () {
+  incorrectCity() {
     let checkboxDirection = document.getElementsByClassName("checkboxDirection");
     for (let i = 0; i < checkboxDirection.length; i++) {
       if (checkboxDirection[i].checked) {
@@ -101,79 +114,83 @@ let options = {
       }
     }
   },
-  cityPRO () {
+  cityPRO() {
     let data = document.getElementById("inputCityPRO").value.toUpperCase();
     return data ? ` (${data})` : "";
   },
-  cityPW () {
+  cityPW() {
     let data = document.getElementById("inputCityPW").value.toUpperCase();
     return data ? ` (${data})` : "";
   },
-  datePRO () {
+  datePRO() {
     let data = document.getElementById("inputDatePRO").value;
     return data ? ` (${data})` : "";
   },
-  datePW () {
+  datePW() {
     let data = document.getElementById("inputDatePW").value;
     return data ? ` (${data})` : "";
   },
-  weightPRO () {
+  weightPRO() {
     let data = document.getElementById("inputWeightPRO").value;
     return data ? ` (${data} lbs)` : "";
   },
-  weightPW () {
+  weightPW() {
     let data = document.getElementById("inputWeightPW").value;
     return data ? ` (${data} lbs)` : "";
   },
-  carrierPRO  () {
+  carrierPRO() {
     let data = document.getElementById("inputCarrierPRO").value.toUpperCase();
-    return data ?  ` ${data}` : "";
+    return data ? ` ${data}` : "";
   },
-  carrierPW  () {
+  carrierPW() {
     let data = document.getElementById("inputCarrierPW").value.toUpperCase();
-    return data ?  ` ${data}` : "";
+    return data ? ` ${data}` : "";
   },
-  pickupDate () {
+  pickupDate() {
     let data = document.getElementById("inputPickupDate").value;
     return data ? data : "";
   },
-  cityFrom () {
+  cityFrom() {
     let data = document.getElementById("inputCityFrom").value.toUpperCase();
     return data ? data : "";
   },
-  cityTo () {
+  cityTo() {
     let data = document.getElementById("inputCityTo").value.toUpperCase();
     return data ? data : "";
   },
-  numberPRO () {
+  numberPRO() {
     let data = document.getElementById("inputNumberPRO").value;
     return data ? data : "";
   },
-  freightBillDate () {
+  freightBillDate() {
     let data = document.getElementById("inputFreightBillDate").value;
     return data ? data : "";
   },
-  customer () {
+  customer() {
     let data = document.getElementById("inputCustomer").value.toUpperCase();
     return data ? ` (${data})` : "";
   },
-  released () {
+  released() {
     let data = document.getElementById("inputReleased").value;
     return data ? data : "";
   },
-  fsBilling () {
+  fsBilling() {
     let checkbox = document.getElementById("fsBilling");
-    return checkbox.checked ? `\nFS Billing emails`: "";
+    return checkbox.checked ? `\nFS Billing emails` : "";
   },
-  audit () {
+  audit() {
     let checkbox = document.getElementById("audit");
-    return checkbox.checked ? `\nAudit`: "";
+    return checkbox.checked ? `\nAudit` : "";
   },
-  report () {
+  report() {
     let checkbox = document.getElementById("report");
-    return checkbox.checked ? `\nReport`: "";
+    return checkbox.checked ? `\nReport` : "";
   },
-  gratitude () {
+  shortTermHold() {
+    let checkbox = document.getElementById("shortTermHold");
+    return checkbox.checked ? `\nShort term hold` : "";
+  },
+  gratitude() {
     let checkboxGratitude = document.getElementsByClassName("checkboxGratitude");
     for (let i = 0; i < checkboxGratitude.length; i++) {
       if (checkboxGratitude[i].checked) {
@@ -183,12 +200,11 @@ let options = {
   }
 };
 
-let samples = [
-  {
+let samples = [{
     name: "BOL is not signed",
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "page", "pageRange", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if we can use the attached BOL${options.page()}${options.pageRange()} to process ${options.load()}? Looks like it is not signed by the receiver.${options.gratitude()}`;
     }
   },
@@ -196,7 +212,7 @@ let samples = [
     name: "BOL is not legible",
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "page", "pageRange", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} is legible enough to process ${options.load()}?${options.gratitude()}`;
     }
   },
@@ -204,7 +220,7 @@ let samples = [
     name: "using paperwork as BOL",
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if we can use the attached paperwork${options.page()}${options.pageRange()} as the BOL to process ${options.load()}?${options.gratitude()}`;
     }
   },
@@ -212,7 +228,7 @@ let samples = [
     name: "paperwork is not complete",
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "document", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if the attached paperwork${options.page()}${options.pageRange()} is sufficient to process ${options.load()}? We don't have ${options.document()}.${options.gratitude()}`;
     }
   },
@@ -220,7 +236,7 @@ let samples = [
     name: "release sheet",
     section: "paperwork issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease send the release sheet for ${options.load()}.${options.gratitude()}`;
     }
   },
@@ -228,7 +244,7 @@ let samples = [
     name: "pending pickup",
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease confirm the delivery in PLS PRO.${options.gratitude()}`;
     }
   },
@@ -236,7 +252,7 @@ let samples = [
     name: "claim (to AE)",
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nAccording to the note in PLS PRO, there was a possible claim on ${options.load()}. Can we process this load now?${options.gratitude()}`;
     }
   },
@@ -245,7 +261,7 @@ let samples = [
     name: "claim (to claims department)",
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if the claim on load ${options.load()} has already been resolved? Can we pay the carrier and bill the customer?${options.gratitude()}`;
     }
   },
@@ -253,7 +269,7 @@ let samples = [
     name: "shipment planning",
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nWe've received the paperwork for ${options.load()} but it’s on shipment planning status in PLS PRO.\nIs something wrong with this load or is there another id# for this paperwork?${options.gratitude()}`;
     }
   },
@@ -261,7 +277,7 @@ let samples = [
     name: "closed",
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nWe've received the paperwork for ${options.load()} but it’s closed in PLS PRO.\nIs something wrong with this load or is there another load id# for this paperwork?${options.gratitude()}`;
     }
   },
@@ -269,7 +285,7 @@ let samples = [
     name: "reopen",
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if we can reopen and process ${options.load()} with the attached paperwork?${options.gratitude()}`;
     }
   },
@@ -277,7 +293,7 @@ let samples = [
     name: "cancelled per carrier",
     section: "status issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPer the carrier this load ${options.load()} was cancelled. Can we close it in the system?${options.gratitude()}`;
     }
   },
@@ -285,7 +301,7 @@ let samples = [
     name: "additional fee",
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "fee", "typeFee", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if we should add $${options.fee()}${options.typeFee()} fee to the carrier's and shipper's rates in PLS PRO for ${options.load()}?${options.gratitude()}`;
     }
   },
@@ -293,7 +309,7 @@ let samples = [
     name: "mismatching rates",
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude", "rate"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise which carrier's rate is correct for ${options.load()}? The carrier’s invoice is showing $${options.ratePW()}, PLS PRO - $${options.ratePRO()}.${options.gratitude()}`;
     }
   },
@@ -301,7 +317,7 @@ let samples = [
     name: "$0 both rates",
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise the correct rates for ${options.load()}. PLS PRO is showing $0.${options.gratitude()}`;
     }
   },
@@ -309,7 +325,7 @@ let samples = [
     name: "$0 shipper's or carrier's rate",
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "load", "client", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if the ${options.client()} rate is correct for ${options.load()}. PLS PRO is showing $0.${options.gratitude()}`;
     }
   },
@@ -317,7 +333,7 @@ let samples = [
     name: "hundred weight",
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise which weight we should put in PLS PRO for ${options.load()} to reflect the correct rates (as they are based on hundred weight)?${options.gratitude()}`;
     }
   },
@@ -325,15 +341,15 @@ let samples = [
     name: "number of pieces",
     section: "rates issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise which number of pieces we should put in PLS for ${options.load()} to reflect the correct rates?${options.gratitude()}`;
     }
   },
   {
     name: "different shipment numbers",
-    section: "something doesn't match", 
+    section: "something doesn't match",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "shipment", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The shipment number on it${options.shipmentPW()} doesn't match PLS PRO${options.shipmentPRO()}.${options.gratitude()}`;
     }
   },
@@ -341,7 +357,7 @@ let samples = [
     name: "different cities",
     section: "something doesn't match",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "incorrectCity", "city", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The ${options.incorrectCity()} city on it${options.cityPW()} doesn't match PLS PRO${options.cityPRO()}.${options.gratitude()}`;
     }
   },
@@ -349,7 +365,7 @@ let samples = [
     name: "different dates",
     section: "something doesn't match",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "date", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} goes to ${options.load()}? The date on it${options.datePW()} doesn't match PLS PRO${options.datePRO()}.${options.gratitude()}`;
     }
   },
@@ -357,7 +373,7 @@ let samples = [
     name: "different weights",
     section: "something doesn't match",
     availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "weight", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if the attached BOL${options.page()}${options.pageRange()} is complete to process ${options.load()}? The weight on it${options.weightPW()} doesn't match PLS PRO${options.weightPRO()}.${options.gratitude()}`;
     }
   },
@@ -365,7 +381,7 @@ let samples = [
     name: "different carrier's names",
     section: "carrier issues",
     availableOptions: ["greeting", "receiver", "load", "carrier", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise which carrier is correct for ${options.load()}? The invoice is showing${options.carrierPW()}, PLS PRO -${options.carrierPRO()}.${options.gratitude()}`;
     }
   },
@@ -373,7 +389,7 @@ let samples = [
     name: "missing paperwork request",
     section: "carrier issues",
     availableOptions: ["greeting", "receiver", "load", "pickupDate", "cities", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nCould you please provide the correct BOL for this shipment?\nPLS LOAD #: ${options.load()}\nPickup date: ${options.pickupDate()}\nFrom: ${options.cityFrom()}\nTo: ${options.cityTo()}${options.gratitude()}`;
     }
   },
@@ -381,7 +397,7 @@ let samples = [
     name: "carrier doesn't have BOL",
     section: "carrier issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease see below the carrier's answer regarding the paperwork for ${options.load()}. Could you help to get the paperwork? Or should we close the load?${options.gratitude()}`;
     }
   },
@@ -389,7 +405,7 @@ let samples = [
     name: "carrier doesn't have load in his system",
     section: "carrier issues",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease see below and advise. Per the carrier they don't have ${options.load()} in their system. Should we close it in the system?${options.gratitude()}`;
     }
   },
@@ -397,7 +413,7 @@ let samples = [
     name: "put data in PLS PRO",
     section: "TO SUPPORT REQUEST",
     availableOptions: ["greeting", "load", "numberPRO", "freightBillDate", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()},\nI am not able to add pro# and date for this load ${options.load()}. Please put the following data in PLS PRO FLEX:\nPRO#: ${options.numberPRO()}\nFreight bill date: ${options.freightBillDate()}${options.gratitude()}`;
     }
   },
@@ -405,7 +421,7 @@ let samples = [
     name: "PLS PRO isn't working",
     section: "TO SUPPORT REQUEST",
     availableOptions: ["greeting", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()},\nPlease be informed that PLS PRO FLEX hasn’t been working about 10 min. We can login but nothing else.${options.gratitude()}`;
     }
   },
@@ -413,7 +429,7 @@ let samples = [
     name: "unable to release to FB status",
     section: "TO SUPPORT REQUEST",
     availableOptions: ["greeting", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()},\nPlease be informed that we are unable to release loads to field billing status about 10 minutes in PLS PRO FLEX.${options.gratitude()}`;
     }
   },
@@ -421,7 +437,7 @@ let samples = [
     name: "customer's payment",
     section: "TO ACCOUNTS RECEIVABLE",
     availableOptions: ["greeting", "receiver", "load", "customer", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if the customer${options.customer()} has paid for ${options.load()}?${options.gratitude()}`;
     }
   },
@@ -429,7 +445,7 @@ let samples = [
     name: "no paperwork in Onbase yet",
     section: "misc",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nWe haven't received the paperwork for ${options.load()} from the carrier yet.${options.gratitude()}`;
     }
   },
@@ -437,7 +453,7 @@ let samples = [
     name: "WEYERHAEUSER",
     section: "misc",
     availableOptions: ["greeting", "receiver", "load", "gratitude"],
-    messageText () {
+    messageText() {
       return `${options.greeting()}${options.receiver()},\nPlease advise if the attached paperwork is good to go? Load#: ${options.load()}.${options.gratitude()}`;
     }
   },
@@ -445,8 +461,8 @@ let samples = [
     name: "statistics",
     section: "misc",
     availableOptions: ["released", "otherActivities"],
-    messageText () {
-      return `Released: ${options.released()}${options.fsBilling()}${options.audit()}${options.report()}`;
+    messageText() {
+      return `Released: ${options.released()}${options.fsBilling()}${options.audit()}${options.report()}${options.shortTermHold()}`;
     }
   }
 ];

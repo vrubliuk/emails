@@ -14,7 +14,8 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #282c34; }
+  background-color: #282c34;
+  overflow-y: hidden; }
   html:focus,
   body:focus {
     outline: none !important;
@@ -33,6 +34,27 @@ a:visited {
 ::selection {
   color: whitesmoke;
   background: rgba(97, 175, 239, 0.996); }
+
+#animation-container {
+  z-index: 999;
+  position: absolute;
+  background-color: #282c34;
+  height: 100%;
+  width: 100%; }
+  #animation-container #cover-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    -webkit-transition: 1.8s ease-in;
+    -o-transition: 1.8s ease-in;
+    transition: 1.8s ease-in; }
+  #animation-container #image-container {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center; }
+  #animation-container img {
+    width: 100px; }
 
 #container {
   height: 100%;

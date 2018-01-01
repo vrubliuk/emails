@@ -1,5 +1,18 @@
 "use strict";
 
+document.addEventListener("DOMContentLoaded", function () {
+  showAnimation(2000);
+});
+
+function showAnimation(time) {
+  setTimeout(function () {
+    document.getElementById("cover-container").style.height = "0px";
+    setTimeout(function () {
+      document.getElementById("animation-container").style.visibility = "hidden";
+    }, time);
+  }, 100);
+}
+
 var notes = ["emailed to confirm delivery", "emailed AE regarding rates", "emailed AE about the load status", "emailed Support Request to put pro and date", "released w/o BOL per AE", "information on BOL doesn't match PLS PRO", "shipment number on BOL doesn't match PLS PRO", "origin/destination city on BOL doesn't match PLS PRO", "date on BOL doesn't match PLS PRO", "weight on BOL doesn't match PLS PRO", "sorry, we don't work with non FS or 2.0 loads"];
 
 var currentSample = void 0;
@@ -170,6 +183,10 @@ var options = {
   report: function report() {
     var checkbox = document.getElementById("report");
     return checkbox.checked ? "\nReport" : "";
+  },
+  shortTermHold: function shortTermHold() {
+    var checkbox = document.getElementById("shortTermHold");
+    return checkbox.checked ? "\nShort term hold" : "";
   },
   gratitude: function gratitude() {
     var checkboxGratitude = document.getElementsByClassName("checkboxGratitude");
@@ -410,6 +427,6 @@ var samples = [{
   section: "misc",
   availableOptions: ["released", "otherActivities"],
   messageText: function messageText() {
-    return "Released: " + options.released() + options.fsBilling() + options.audit() + options.report();
+    return "Released: " + options.released() + options.fsBilling() + options.audit() + options.report() + options.shortTermHold();
   }
 }];

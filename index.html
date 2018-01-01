@@ -13,6 +13,13 @@
 </head>
 
 <body>
+    <div id="animation-container">
+        <div id="cover-container">
+            <div id="image-container">
+                <img src="images/rocket-fire.png" alt="rocket" >
+            </div>
+        </div>        
+    </div>
     <div id="container">
         <div id="panelMenu">
             <button class="accordion">Notes</button>
@@ -224,7 +231,7 @@
                         <input type="text" id="inputCustomer" class="inputText">
                     </div>
                     <div id="rowReleased" class="rowOptions">
-                        <span class="rowLabel">Released</span>
+                        <span class="rowLabel">Released:</span>
                         <input type="text" id="inputReleased" class="inputText">
                     </div>
                     <div id="rowOtherActivities" class="rowOptions">
@@ -245,6 +252,13 @@
                             <input id="report" type="checkbox" class="checkboxOtherActivities">
                             <span class="slider round"></span>
                         </label>
+                        <br>
+                        <span class="rowLabel">Short term hold:</span>
+                        <label class="switch">
+                            <input id="shortTermHold" type="checkbox" class="checkboxOtherActivities">
+                            <span class="slider round"></span>
+                        </label>
+
                     </div>
                     <div id="rowGratitude" class="rowOptions">
                         <span class="rowLabel">Gratitude:</span>
