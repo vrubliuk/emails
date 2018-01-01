@@ -1,17 +1,8 @@
 ﻿"use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
-  showAnimation(2000);
+  showAnimation(2000); //ROCKET ANIMATION
 });
-
-function showAnimation(time) {
-  setTimeout(() => {
-    document.getElementById("cover-container").style.height = "0px";
-    setTimeout(() => {
-      document.getElementById("animation-container").style.visibility = "hidden";
-    }, time);
-  }, 100);
-}
 
 let notes = [
   "emailed to confirm delivery",
@@ -466,3 +457,14 @@ let samples = [{
     }
   }
 ];
+
+// -----ROCKET ANIMATION-----
+function showAnimation(time) {
+  setTimeout(() => {
+    document.getElementById("cover-container").style.height = "0px";
+    setTimeout(() => {
+      document.getElementById("animation-container").style.visibility = "hidden";
+    }, time);
+  }, 100);
+}
+// --------------------------
