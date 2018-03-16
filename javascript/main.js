@@ -363,36 +363,36 @@
   }
 
   //FILTERING USER'S INPUT
-  allowValue(/[0-9]|\,|\s/, "inputload");
-  allowValue(/[0-9]/, "inputPage", "inputPageFrom", "inputPageTo", "inputFee", "inputWeightPW", "inputWeightPRO", "inputReleased");
-  allowValue(/[a-zA-Z]/, "inputReceiver", "inputTypeFee");
-  allowValue(/[0-9]|\./, "inputRatePW", "inputRatePRO");
-  allowValue(/[0-9]|\/|\.|\-/, "inputDatePW", "inputDatePRO", "inputPickupDate", "inputFreightBillDate");
+  // allowValue(/[0-9]|\,|\s/, "inputload");
+  // allowValue(/[0-9]/, "inputPage", "inputPageFrom", "inputPageTo", "inputFee", "inputWeightPW", "inputWeightPRO", "inputReleased");
+  // allowValue(/[a-zA-Z]/, "inputReceiver", "inputTypeFee");
+  // allowValue(/[0-9]|\./, "inputRatePW", "inputRatePRO");
+  // allowValue(/[0-9]|\/|\.|\-/, "inputDatePW", "inputDatePRO", "inputPickupDate", "inputFreightBillDate");
   
-  function allowValue(regex, ...inputIDs) {
-    function getChar(event) {
-      // for IE
-      if (event.which == null) {
-        if (event.keyCode < 32) return null;
-        return String.fromCharCode(event.keyCode)
-      }
-      // other browsers
-      if (event.which != 0 && event.charCode != 0) {
-        if (event.which < 32) return null;
-        return String.fromCharCode(event.which)
-      }
-      return null;
-    }
-    for (let i = 0; i < inputIDs.length; i++) {
-        let element = document.getElementById(inputIDs[i]);
-        element.onkeypress = (e) => {
-        let char = getChar(e);
-        if(!regex.test(char)){
-          return false; 
-        }
-      };
-    }
-  }
+  // function allowValue(regex, ...inputIDs) {
+  //   function getChar(event) {
+  //     // for IE
+  //     if (event.which == null) {
+  //       if (event.keyCode < 32) return null;
+  //       return String.fromCharCode(event.keyCode)
+  //     }
+  //     // other browsers
+  //     if (event.which != 0 && event.charCode != 0) {
+  //       if (event.which < 32) return null;
+  //       return String.fromCharCode(event.which)
+  //     }
+  //     return null;
+  //   }
+  //   for (let i = 0; i < inputIDs.length; i++) {
+  //       let element = document.getElementById(inputIDs[i]);
+  //       element.onkeypress = (e) => {
+  //       let char = getChar(e);
+  //       if(!regex.test(char)){
+  //         return false; 
+  //       }
+  //     };
+  //   }
+  // }
 
   //FOOTER
   function showSnackbar(text, color) {

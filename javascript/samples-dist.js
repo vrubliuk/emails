@@ -20,7 +20,7 @@ var options = {
     return this.load() ? this.load() : "";
   },
   load: function load() {
-    var data = document.getElementById("inputload").value;
+    var data = document.getElementById("inputload").value.trim();
     return data ? data : "";
   },
   greeting: function greeting() {
@@ -32,7 +32,7 @@ var options = {
     }
   },
   receiver: function receiver() {
-    var data = document.getElementById("inputReceiver").value;
+    var data = document.getElementById("inputReceiver").value.trim();
     var Data = data.charAt(0).toUpperCase() + data.slice(1);
     if (this.greeting()) {
       return data ? " " + Data : "";
@@ -41,20 +41,20 @@ var options = {
     }
   },
   page: function page() {
-    var data = document.getElementById("inputPage").value;
+    var data = document.getElementById("inputPage").value.trim();
     return data ? " (page " + data + ")" : "";
   },
   pageRange: function pageRange() {
-    var data1 = document.getElementById("inputPageFrom").value;
-    var data2 = document.getElementById("inputPageTo").value;
+    var data1 = document.getElementById("inputPageFrom").value.trim();
+    var data2 = document.getElementById("inputPageTo").value.trim();
     return data1 || data2 ? " (pages " + data1 + "-" + data2 + ")" : "";
   },
   fee: function fee() {
-    var data = document.getElementById("inputFee").value;
+    var data = document.getElementById("inputFee").value.trim();
     return data ? data : "";
   },
   typeFee: function typeFee() {
-    var data = document.getElementById("inputTypeFee").value;
+    var data = document.getElementById("inputTypeFee").value.trim();
     return data ? " " + data : "";
   },
   document: function (_document) {
@@ -68,15 +68,15 @@ var options = {
 
     return document;
   }(function () {
-    var data = document.getElementById("inputDocument").value;
+    var data = document.getElementById("inputDocument").value.trim();
     return data ? data : "";
   }),
   ratePRO: function ratePRO() {
-    var data = document.getElementById("inputRatePRO").value;
+    var data = document.getElementById("inputRatePRO").value.trim();
     return data ? data : "";
   },
   ratePW: function ratePW() {
-    var data = document.getElementById("inputRatePW").value;
+    var data = document.getElementById("inputRatePW").value.trim();
     return data ? data : "";
   },
   client: function client() {
@@ -88,11 +88,11 @@ var options = {
     }
   },
   shipmentPRO: function shipmentPRO() {
-    var data = document.getElementById("inputShipmentPRO").value;
+    var data = document.getElementById("inputShipmentPRO").value.trim();
     return data ? " (" + data + ")" : "";
   },
   shipmentPW: function shipmentPW() {
-    var data = document.getElementById("inputShipmentPW").value;
+    var data = document.getElementById("inputShipmentPW").value.trim();
     return data ? " (" + data + ")" : "";
   },
   incorrectCity: function incorrectCity() {
@@ -104,63 +104,63 @@ var options = {
     }
   },
   cityPRO: function cityPRO() {
-    var data = document.getElementById("inputCityPRO").value.toUpperCase();
+    var data = document.getElementById("inputCityPRO").value.trim().toUpperCase();
     return data ? " (" + data + ")" : "";
   },
   cityPW: function cityPW() {
-    var data = document.getElementById("inputCityPW").value.toUpperCase();
+    var data = document.getElementById("inputCityPW").value.trim().toUpperCase();
     return data ? " (" + data + ")" : "";
   },
   datePRO: function datePRO() {
-    var data = document.getElementById("inputDatePRO").value;
+    var data = document.getElementById("inputDatePRO").value.trim();
     return data ? " (" + data + ")" : "";
   },
   datePW: function datePW() {
-    var data = document.getElementById("inputDatePW").value;
+    var data = document.getElementById("inputDatePW").value.trim();
     return data ? " (" + data + ")" : "";
   },
   weightPRO: function weightPRO() {
-    var data = document.getElementById("inputWeightPRO").value;
+    var data = document.getElementById("inputWeightPRO").value.trim();
     return data ? " (" + data + " lbs)" : "";
   },
   weightPW: function weightPW() {
-    var data = document.getElementById("inputWeightPW").value;
+    var data = document.getElementById("inputWeightPW").value.trim();
     return data ? " (" + data + " lbs)" : "";
   },
   carrierPRO: function carrierPRO() {
-    var data = document.getElementById("inputCarrierPRO").value.toUpperCase();
+    var data = document.getElementById("inputCarrierPRO").value.trim().toUpperCase();
     return data ? " " + data : "";
   },
   carrierPW: function carrierPW() {
-    var data = document.getElementById("inputCarrierPW").value.toUpperCase();
+    var data = document.getElementById("inputCarrierPW").value.trim().toUpperCase();
     return data ? " " + data : "";
   },
   pickupDate: function pickupDate() {
-    var data = document.getElementById("inputPickupDate").value;
+    var data = document.getElementById("inputPickupDate").value.trim();
     return data ? data : "";
   },
   cityFrom: function cityFrom() {
-    var data = document.getElementById("inputCityFrom").value.toUpperCase();
+    var data = document.getElementById("inputCityFrom").value.trim().toUpperCase();
     return data ? data : "";
   },
   cityTo: function cityTo() {
-    var data = document.getElementById("inputCityTo").value.toUpperCase();
+    var data = document.getElementById("inputCityTo").value.trim().toUpperCase();
     return data ? data : "";
   },
   numberPRO: function numberPRO() {
-    var data = document.getElementById("inputNumberPRO").value;
+    var data = document.getElementById("inputNumberPRO").value.trim();
     return data ? data : "";
   },
   freightBillDate: function freightBillDate() {
-    var data = document.getElementById("inputFreightBillDate").value;
+    var data = document.getElementById("inputFreightBillDate").value.trim();
     return data ? data : "";
   },
   customer: function customer() {
-    var data = document.getElementById("inputCustomer").value.toUpperCase();
+    var data = document.getElementById("inputCustomer").value.trim().toUpperCase();
     return data ? " (" + data + ")" : "";
   },
   released: function released() {
-    var data = document.getElementById("inputReleased").value;
+    var data = document.getElementById("inputReleased").value.trim();
     return data ? data : "";
   },
   fsBilling: function fsBilling() {

@@ -32,7 +32,7 @@ let options = {
     return this.load() ? this.load() : "";
   },
   load() {
-    let data = document.getElementById("inputload").value;
+    let data = document.getElementById("inputload").value.trim();
     return data ? data : "";
   },
   greeting() {
@@ -44,7 +44,7 @@ let options = {
     }
   },
   receiver() {
-    let data = document.getElementById("inputReceiver").value;
+    let data = document.getElementById("inputReceiver").value.trim();
     let Data = data.charAt(0).toUpperCase() + data.slice(1);
     if (this.greeting()) {
       return data ? ` ${Data}` : "";
@@ -53,32 +53,32 @@ let options = {
     }
   },
   page() {
-    let data = document.getElementById("inputPage").value;
+    let data = document.getElementById("inputPage").value.trim();
     return data ? ` (page ${data})` : "";
   },
   pageRange() {
-    let data1 = document.getElementById("inputPageFrom").value;
-    let data2 = document.getElementById("inputPageTo").value;
+    let data1 = document.getElementById("inputPageFrom").value.trim();
+    let data2 = document.getElementById("inputPageTo").value.trim();
     return data1 || data2 ? ` (pages ${data1}-${data2})` : "";
   },
   fee() {
-    let data = document.getElementById("inputFee").value;
+    let data = document.getElementById("inputFee").value.trim();
     return data ? data : "";
   },
   typeFee() {
-    let data = document.getElementById("inputTypeFee").value;
+    let data = document.getElementById("inputTypeFee").value.trim();
     return data ? ` ${data}` : "";
   },
   document() {
-    let data = document.getElementById("inputDocument").value;
+    let data = document.getElementById("inputDocument").value.trim();
     return data ? data : "";
   },
   ratePRO() {
-    let data = document.getElementById("inputRatePRO").value;
+    let data = document.getElementById("inputRatePRO").value.trim();
     return data ? data : "";
   },
   ratePW() {
-    let data = document.getElementById("inputRatePW").value;
+    let data = document.getElementById("inputRatePW").value.trim();
     return data ? data : "";
   },
   client() {
@@ -90,11 +90,11 @@ let options = {
     }
   },
   shipmentPRO() {
-    let data = document.getElementById("inputShipmentPRO").value;
+    let data = document.getElementById("inputShipmentPRO").value.trim();
     return data ? ` (${data})` : "";
   },
   shipmentPW() {
-    let data = document.getElementById("inputShipmentPW").value;
+    let data = document.getElementById("inputShipmentPW").value.trim();
     return data ? ` (${data})` : "";
   },
   incorrectCity() {
@@ -106,63 +106,63 @@ let options = {
     }
   },
   cityPRO() {
-    let data = document.getElementById("inputCityPRO").value.toUpperCase();
+    let data = document.getElementById("inputCityPRO").value.trim().toUpperCase();
     return data ? ` (${data})` : "";
   },
   cityPW() {
-    let data = document.getElementById("inputCityPW").value.toUpperCase();
+    let data = document.getElementById("inputCityPW").value.trim().toUpperCase();
     return data ? ` (${data})` : "";
   },
   datePRO() {
-    let data = document.getElementById("inputDatePRO").value;
+    let data = document.getElementById("inputDatePRO").value.trim();
     return data ? ` (${data})` : "";
   },
   datePW() {
-    let data = document.getElementById("inputDatePW").value;
+    let data = document.getElementById("inputDatePW").value.trim();
     return data ? ` (${data})` : "";
   },
   weightPRO() {
-    let data = document.getElementById("inputWeightPRO").value;
+    let data = document.getElementById("inputWeightPRO").value.trim();
     return data ? ` (${data} lbs)` : "";
   },
   weightPW() {
-    let data = document.getElementById("inputWeightPW").value;
+    let data = document.getElementById("inputWeightPW").value.trim();
     return data ? ` (${data} lbs)` : "";
   },
   carrierPRO() {
-    let data = document.getElementById("inputCarrierPRO").value.toUpperCase();
+    let data = document.getElementById("inputCarrierPRO").value.trim().toUpperCase();
     return data ? ` ${data}` : "";
   },
   carrierPW() {
-    let data = document.getElementById("inputCarrierPW").value.toUpperCase();
+    let data = document.getElementById("inputCarrierPW").value.trim().toUpperCase();
     return data ? ` ${data}` : "";
   },
   pickupDate() {
-    let data = document.getElementById("inputPickupDate").value;
+    let data = document.getElementById("inputPickupDate").value.trim();
     return data ? data : "";
   },
   cityFrom() {
-    let data = document.getElementById("inputCityFrom").value.toUpperCase();
+    let data = document.getElementById("inputCityFrom").value.trim().toUpperCase();
     return data ? data : "";
   },
   cityTo() {
-    let data = document.getElementById("inputCityTo").value.toUpperCase();
+    let data = document.getElementById("inputCityTo").value.trim().toUpperCase();
     return data ? data : "";
   },
   numberPRO() {
-    let data = document.getElementById("inputNumberPRO").value;
+    let data = document.getElementById("inputNumberPRO").value.trim();
     return data ? data : "";
   },
   freightBillDate() {
-    let data = document.getElementById("inputFreightBillDate").value;
+    let data = document.getElementById("inputFreightBillDate").value.trim();
     return data ? data : "";
   },
   customer() {
-    let data = document.getElementById("inputCustomer").value.toUpperCase();
+    let data = document.getElementById("inputCustomer").value.trim().toUpperCase();
     return data ? ` (${data})` : "";
   },
   released() {
-    let data = document.getElementById("inputReleased").value;
+    let data = document.getElementById("inputReleased").value.trim();
     return data ? data : "";
   },
   fsBilling() {
