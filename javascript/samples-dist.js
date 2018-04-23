@@ -215,7 +215,7 @@ var samples = [{
   section: "paperwork issues",
   availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "document", "gratitude"],
   messageText: function messageText() {
-    return "" + options.greeting() + options.receiver() + ",\nPlease advise if the attached paperwork" + options.page() + options.pageRange() + " is sufficient to process " + options.load() + "? We don't have " + options.document() + "." + options.gratitude();
+    return "" + options.greeting() + options.receiver() + ",\nPlease advise if the attached BOL" + options.page() + options.pageRange() + " is sufficient to process " + options.load() + "? We don't have " + options.document() + "." + options.gratitude();
   }
 }, {
   name: "release sheet",
@@ -320,21 +320,21 @@ var samples = [{
   section: "something doesn't match",
   availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "shipment", "gratitude"],
   messageText: function messageText() {
-    return "" + options.greeting() + options.receiver() + ",\nPlease advise if the attached BOL" + options.page() + options.pageRange() + " goes to " + options.load() + "? The shipment number on it" + options.shipmentPW() + " doesn't match PLS PRO" + options.shipmentPRO() + "." + options.gratitude();
+    return "" + options.greeting() + options.receiver() + ",\nPlease advise if the attached BOL" + options.page() + options.pageRange() + " goes with " + options.load() + "? The shipment number on it" + options.shipmentPW() + " doesn't match PLS PRO" + options.shipmentPRO() + "." + options.gratitude();
   }
 }, {
   name: "different cities",
   section: "something doesn't match",
   availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "incorrectCity", "city", "gratitude"],
   messageText: function messageText() {
-    return "" + options.greeting() + options.receiver() + ",\nPlease advise if the attached BOL" + options.page() + options.pageRange() + " goes to " + options.load() + "? The " + options.incorrectCity() + " city on it" + options.cityPW() + " doesn't match PLS PRO" + options.cityPRO() + "." + options.gratitude();
+    return "" + options.greeting() + options.receiver() + ",\nPlease advise if the attached BOL" + options.page() + options.pageRange() + " goes with " + options.load() + "? The " + options.incorrectCity() + " city on it" + options.cityPW() + " doesn't match PLS PRO" + options.cityPRO() + "." + options.gratitude();
   }
 }, {
   name: "different dates",
   section: "something doesn't match",
   availableOptions: ["greeting", "receiver", "load", "page", "pageRange", "date", "gratitude"],
   messageText: function messageText() {
-    return "" + options.greeting() + options.receiver() + ",\nPlease advise if the attached BOL" + options.page() + options.pageRange() + " goes to " + options.load() + "? The date on it" + options.datePW() + " doesn't match PLS PRO" + options.datePRO() + "." + options.gratitude();
+    return "" + options.greeting() + options.receiver() + ",\nPlease advise if the attached BOL" + options.page() + options.pageRange() + " goes with " + options.load() + "? The date on it" + options.datePW() + " doesn't match PLS PRO" + options.datePRO() + "." + options.gratitude();
   }
 }, {
   name: "different weights",
